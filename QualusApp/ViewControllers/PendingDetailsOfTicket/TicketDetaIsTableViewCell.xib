@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TicketDetaIsTableViewCell" id="KGk-i7-Jjw" customClass="TicketDetaIsTableViewCell" customModule="QualusApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LCh-PT-5vP">
+                        <rect key="frame" x="10" y="21" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="JhM-zv-sNB"/>
+                            <constraint firstAttribute="height" constant="35" id="ux6-RS-gzP"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jyD-YW-gHN">
+                        <rect key="frame" x="63" y="16" width="37" height="45"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0M1-bY-RG9">
+                                <rect key="frame" x="0.0" y="0.0" width="37" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3yO-GG-1OF">
+                                <rect key="frame" x="0.0" y="25" width="37" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="LCh-PT-5vP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="e6t-ih-Q3i"/>
+                    <constraint firstItem="LCh-PT-5vP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kNp-Hf-trh"/>
+                    <constraint firstItem="jyD-YW-gHN" firstAttribute="leading" secondItem="LCh-PT-5vP" secondAttribute="trailing" constant="18" id="sht-Hr-voH"/>
+                    <constraint firstItem="jyD-YW-gHN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="w3a-nX-6Uo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="ImagesOflable" destination="LCh-PT-5vP" id="uGQ-nO-fNp"/>
+                <outlet property="lblDetails" destination="3yO-GG-1OF" id="4cA-1X-3fq"/>
+                <outlet property="lblTittle" destination="0M1-bY-RG9" id="HN5-Fs-lOH"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="36.5"/>
+        </tableViewCell>
+    </objects>
+</document>

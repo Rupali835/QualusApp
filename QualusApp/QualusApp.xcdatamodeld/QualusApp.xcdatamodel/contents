@@ -1,4 +1,94 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FeatchProjects" representedClassName="FeatchProjects" syncable="YES" codeGenerationType="class">
+        <attribute name="active" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="com_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_active_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_active_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_barcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_branch" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_buildings" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_camera" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_contact_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_img_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_inactive_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_inactive_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_subcity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FetchBranches" representedClassName="FetchBranches" syncable="YES" codeGenerationType="class">
+        <attribute name="p_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pb_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pb_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FetchBuilding" representedClassName="FetchBuilding" syncable="YES" codeGenerationType="class">
+        <attribute name="b_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bb_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="branch_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FetchClassification" representedClassName="FetchClassification" syncable="YES" codeGenerationType="class">
+        <attribute name="active" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="active_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="clas_desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="class_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="class_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inactive_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified_time" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FetchLocation" representedClassName="FetchLocation" syncable="YES" codeGenerationType="class">
+        <attribute name="b_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="branch_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_barcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_class_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_floor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_room" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_space" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_wing" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FetchMapLocation" representedClassName="FetchMapLocation" syncable="YES" codeGenerationType="class">
+        <attribute name="branch_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lm_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="p_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="u_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FetchQueData" representedClassName="FetchQueData" syncable="YES" codeGenerationType="class">
+        <attribute name="class_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cq_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cq_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FetchUserList" representedClassName="FetchUserList" syncable="YES" codeGenerationType="class">
+        <attribute name="com_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="full_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="u_emp_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="up_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="FeatchProjects" positionX="-63" positionY="-18" width="128" height="390"/>
+        <element name="FetchBranches" positionX="-36" positionY="153" width="128" height="90"/>
+        <element name="FetchBuilding" positionX="-18" positionY="162" width="128" height="105"/>
+        <element name="FetchClassification" positionX="-36" positionY="135" width="128" height="165"/>
+        <element name="FetchLocation" positionX="-54" positionY="144" width="128" height="225"/>
+        <element name="FetchMapLocation" positionX="-36" positionY="135" width="128" height="120"/>
+        <element name="FetchQueData" positionX="-27" positionY="144" width="128" height="90"/>
+        <element name="FetchUserList" positionX="-36" positionY="135" width="128" height="150"/>
+    </elements>
 </model>

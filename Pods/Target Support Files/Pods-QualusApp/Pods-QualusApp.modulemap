@@ -1,0 +1,6 @@
+framework module Pods_QualusApp {
+  umbrella header "Pods-QualusApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

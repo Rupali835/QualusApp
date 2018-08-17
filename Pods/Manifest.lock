@@ -1,0 +1,70 @@
+PODS:
+  - Alamofire (4.7.1)
+  - AlamofireImage (3.3.1):
+    - Alamofire (~> 4.5)
+  - ALCameraViewController (3.0.3)
+  - AVScanner (0.4.0)
+  - libwebp (0.6.1):
+    - libwebp/core (= 0.6.1)
+    - libwebp/dec (= 0.6.1)
+    - libwebp/demux (= 0.6.1)
+    - libwebp/dsp (= 0.6.1)
+    - libwebp/enc (= 0.6.1)
+    - libwebp/mux (= 0.6.1)
+    - libwebp/utils (= 0.6.1)
+    - libwebp/webp (= 0.6.1)
+  - libwebp/core (0.6.1):
+    - libwebp/webp
+  - libwebp/dec (0.6.1):
+    - libwebp/core
+  - libwebp/demux (0.6.1):
+    - libwebp/core
+  - libwebp/dsp (0.6.1):
+    - libwebp/core
+  - libwebp/enc (0.6.1):
+    - libwebp/core
+  - libwebp/mux (0.6.1):
+    - libwebp/core
+  - libwebp/utils (0.6.1):
+    - libwebp/core
+  - libwebp/webp (0.6.1)
+  - SDWebImage/Core (4.4.2)
+  - SDWebImage/WebP (4.4.2):
+    - libwebp (~> 0.5)
+    - SDWebImage/Core
+  - SVProgressHUD (2.2.5)
+  - TextFieldEffects (1.4.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage
+  - ALCameraViewController
+  - AVScanner
+  - SDWebImage/WebP
+  - SVProgressHUD
+  - TextFieldEffects
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
+    - ALCameraViewController
+    - AVScanner
+    - libwebp
+    - SDWebImage
+    - SVProgressHUD
+    - TextFieldEffects
+
+SPEC CHECKSUMS:
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
+  ALCameraViewController: 6398a9282057f709b87a1ecc52a83b48028ade64
+  AVScanner: fa972e55f0ec9cae354e7df87865cd324b527985
+  libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
+
+PODFILE CHECKSUM: d6629a0b1b29fb78bed11074140e601b6a7982a7
+
+COCOAPODS: 1.5.3

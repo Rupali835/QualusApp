@@ -17,6 +17,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        self.window!.backgroundColor = UIColor.clear
+        
+        UINavigationBar.appearance().barTintColor = UIColor.lightGreen
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        
+         let result = UserDefaults.standard.value(forKey: "UserData")
+        
+   
+        
+        if result != nil
+        {
+            let result = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
+        
+            let Role = result["role"] as! String
+            if Role == "6"
+            {
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
+                let managevc = ManagementViewController.init(nibName: "ManagementViewController", bundle: nil)
+                let navigationController = self.window?.rootViewController as! UINavigationController
+                navigationController.setViewControllers([managevc], animated: true)
+
+            }else if Role == "3"
+            {
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
+                let yourViewController: ProjectInfoVc = storyboard.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
+                let navigationController = self.window?.rootViewController as! UINavigationController
+                navigationController.setViewControllers([yourViewController], animated: true)
+            }
+        }
+        
+        
         return true
     }
 
