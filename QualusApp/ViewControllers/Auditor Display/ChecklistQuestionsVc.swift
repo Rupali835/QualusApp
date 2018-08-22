@@ -16,12 +16,14 @@ class ImgeFromCam{
     var CamImag : UIImage!
     var ImagName: String!
     var ImgURL : String!
+    var ImgPicTime: String!
     
-    init(Index : Int, Img : UIImage,ImgName: String, ImgUrl: String) {
+    init(Index : Int, Img : UIImage,ImgName: String, ImgUrl: String,ImgPicTime: String) {
         self.indexCell = Index
         self.CamImag = Img
         self.ImagName = ImgName
         self.ImgURL = ImgUrl
+        self.ImgPicTime = ImgPicTime
     }
 }
 
@@ -41,12 +43,10 @@ class AnswerChecklist {
 class AnsImage
 {
     var q_id : String!
-    var se_img_time : String!
     var se_img_url : String!
     
-    init(QueId: String, ImgTime: String, ImgUrl : String) {
+    init(QueId: String, ImgUrl : String) {
         self.q_id = QueId
-        self.se_img_time = ImgTime
         self.se_img_url = ImgUrl
     }
 }
@@ -104,7 +104,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     var deletindex          : Int = 0
     var withHUD             : Bool!
     var minimumSize         : CGSize = CGSize(width: 60, height: 60)
-    var date =  Date()
+   
     var Latitude : String = ""
     var Longitude : String = ""
     var locationManager: CLLocationManager = CLLocationManager()
@@ -125,6 +125,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     var M_Ticket_Status = String()
     var m_cImageArrFromCam = [ImgeFromCam]()
     var SelectedIndexArr = [ImgeFromCam]()
+    var AnswerImgArr = [AnyObject]()
     var ImgUrl : URL!
     var bCameraStatus = Bool(false)
     var Branchid : String!
@@ -136,6 +137,9 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     var StartTimr : String!
     var EndTime : String!
     var gettingImg : UIImage!
+    var RandomQueId :  String!
+    var b_randomQueImg = Bool(false)
+    
     var croppingParameters: CroppingParameters {
         return CroppingParameters(isEnabled: croppingEnabled, allowResizing: allowResizing, allowMoving: allowMoving, minimumSize: minimumSize)
     }
@@ -169,7 +173,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         
         LocationDaraArr = LocationData.cLocationData.fetchOfflineLocation()!
         
-      
+          self.AnswerImgArr.removeAll(keepingCapacity: false)
         
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         cSubmitChecklist.user_role = lcDict["role"] as! String
@@ -311,6 +315,15 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         return self.SelectedIndexArr.count
     }
     
+    func getDate() -> String
+    {
+        var date =  Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd, hh:mm:ss"
+        let lcDate = formatter.string(from: date)
+        return lcDate
+    }
+    
    @objc func SubmitQuetions(sender: UIButton)
    {
 
@@ -334,18 +347,13 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    
-    
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd, hh:mm:ss"
-    let DATE = formatter.string(from: date)
-    print(DATE)
-    self.StartTimr = DATE
+    self.StartTimr = self.getDate()
     
     let lcDict = QuestionArray[sender.tag]
     
     m_cAnswerChecklistObj.q_type = lcDict["c_q_type"] as! String
     var AnsListDict = [String: Any]()
+    var AnsImage = [String: Any]()
     var TicketDict = [String: Any]()
     let QueMarks = lcDict["c_q_marks"] as! String
     let Qstr = lcDict["c_q_question"] as! String
@@ -369,7 +377,8 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         let countImg = self.GetArrcount(indexValue: sender.tag)
         
             self.bCameraStatus = false
-            if cell.btnNO.tag == 2
+           // if cell.btnNO.tag == 2
+           if cell.btnNO.isSelected
             {
                 
                 if cell.txtRemarks.text == ""
@@ -414,24 +423,47 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
             }
             
             AnsListDict["ans"] = m_cAnswerChecklistObj.ans
-            AnsListDict["answered_time"] = DATE
+            AnsListDict["answered_time"] = self.getDate()
             AnsListDict["input"] = "0"
             AnsListDict["marks_obtained"] = m_cAnswerChecklistObj.marks_obtained
             AnsListDict["max_marks"] = m_cAnswerChecklistObj.max_marks
             AnsListDict["photo_status"] = m_cAnswerChecklistObj.photo_status
             AnsListDict["q_id"] = m_cAnswerChecklistObj.q_id
             AnsListDict["q_type"] = m_cAnswerChecklistObj.q_type
-            AnsListDict["remark"] = String(describing: cell.txtRemarks.text)
+        
+        if cell.txtRemarks.text != ""
+        {
+             AnsListDict["remark"] = "\(cell.txtRemarks.text!)"
+        }else{
+            AnsListDict["remark"] = ""
+        }
+        
             
             self.AnsChecklistArr.append(AnsListDict)
+    
+        var lcDict = [String: String]()
         
+        for lcSelectedArr in SelectedIndexArr
+        {
+            lcDict["q_id"] = m_cAnswerChecklistObj.q_id
+            lcDict["se_img_time"]  = lcSelectedArr.ImgPicTime
+            lcDict["se_img_url"] = lcSelectedArr.ImagName
+            self.AnswerImgArr.append(lcDict as AnyObject)
+        }
+        print(self.AnswerImgArr)
+        cSubmitChecklist.m_ticket_status = "0"
         let Random : Int = Int(arc4random_uniform(UInt32(self.QuestionArray.count))+1)
-        print(Random)
+        print("Random Num",Random)
         if Random == sender.tag
         {
+           self.RandomQueId = m_cAnswerChecklistObj.q_id
+            print("RandQueId", self.RandomQueId)
            self.OpenRandomQue()
         }
        
+        cell.backView.backgroundColor = UIColor(red:1.00, green:0.89, blue:0.77, alpha:1.0)
+        cell.backView.isUserInteractionEnabled = false
+        cell.btnViewPhotos.isUserInteractionEnabled = true
             
         }else{
             let indexpath = IndexPath(row: sender.tag, section: 0)
@@ -454,7 +486,8 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
             }
             
             m_cAnswerChecklistObj.marks_obtained = QueMarks
-            
+            cSubmitChecklist.m_ticket_status = "0"
+        
         if m_cAnswerChecklistObj.q_type == "3"
          {
             
@@ -532,24 +565,47 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     }
         
        AnsListDict["ans"] = "10"
-       AnsListDict["answered_time"] = DATE
-       AnsListDict["input"] = String(describing: cell.txtAnswer.text)
-        AnsListDict["marks_obtained"] = m_cAnswerChecklistObj.marks_obtained
+       AnsListDict["answered_time"] = self.getDate()
+       AnsListDict["input"] = "\(cell.txtAnswer.text!)"
+       AnsListDict["marks_obtained"] = m_cAnswerChecklistObj.marks_obtained
         AnsListDict["max_marks"] = m_cAnswerChecklistObj.max_marks
         AnsListDict["photo_status"] = m_cAnswerChecklistObj.photo_status
         AnsListDict["q_id"] = m_cAnswerChecklistObj.q_id
         AnsListDict["q_type"] = m_cAnswerChecklistObj.q_type
-        AnsListDict["remark"] = String(describing: cell.txtRemark.text)
+        
+        if cell.txtRemark.text != ""
+        {
+            AnsListDict["remark"] = "\(cell.txtRemark.text!)"
+        }else{
+            AnsListDict["remark"] = ""
+        }
+        
             
-            self.AnsChecklistArr.append(AnsListDict)
+        self.AnsChecklistArr.append(AnsListDict)
+        
+        var lcDict = [String: String]()
+        
+        for lcSelectedArr in SelectedIndexArr
+        {
+            lcDict["q_id"] = m_cAnswerChecklistObj.q_id
+            lcDict["se_img_time"]  = lcSelectedArr.ImgPicTime
+            lcDict["se_img_url"] = lcSelectedArr.ImagName
+            self.AnswerImgArr.append(lcDict as AnyObject)
+        }
+        print(self.AnswerImgArr)
         
         let Random : Int = Int(arc4random_uniform(UInt32(self.QuestionArray.count))+1)
-        print(Random)
+        print("Random Num",Random)
         if Random == sender.tag
         {
+            self.RandomQueId = m_cAnswerChecklistObj.q_id
+            print("RandQueId", self.RandomQueId)
             self.OpenRandomQue()
         }
         
+         cell.backView.backgroundColor = UIColor(red:1.00, green:0.89, blue:0.77, alpha:1.0)
+        cell.backView.isUserInteractionEnabled = false
+        cell.btnViewPics.isUserInteractionEnabled = true
     }
    
     
@@ -613,10 +669,20 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
                 print("lcfilename=\(lcFileName)")
                 self?.ImageArr.append(image!)
                 print(sender.tag)
-                let lcImageFromCam = ImgeFromCam(Index: sender.tag, Img: image!, ImgName: lcFileName, ImgUrl: lcFileName)
                 
-                self?.m_cImageArrFromCam.append(lcImageFromCam)
+                if (self?.b_randomQueImg)!
+                {
+                    print("RandQueId", self?.RandomQueId)
+                    let lcRandomImg = AnsImage(QueId: (self?.RandomQueId)!, ImgUrl: lcFileName)
+                    self?.m_cAnsImage.append(lcRandomImg)
+                    
+                }else{
+                    let lcImageFromCam = ImgeFromCam(Index: sender.tag, Img: image!, ImgName: lcFileName, ImgUrl: lcFileName, ImgPicTime: (self?.getDate())!)
+                    self?.m_cImageArrFromCam.append(lcImageFromCam)
+                    
+                }
                 
+             
                 self?.SelectedIndexArr.removeAll(keepingCapacity: false)
                 
                 for lcImagefromCam in (self?.m_cImageArrFromCam)!
@@ -669,6 +735,12 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
             }
             self?.collView.reloadData()
             self?.dismiss(animated: true, completion: nil)
+            
+            if (self?.b_randomQueImg)!
+            {
+                self?.OpenRandomQue()
+            }
+          
         }
         present(cameraViewController, animated: true, completion: nil)
         
@@ -693,12 +765,10 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     
     @objc func btnNA_Click(sender: DLRadioButton)
     {
-          self.view.endEditing(true)
-        
+        self.view.endEditing(true)
         let cell = GetIndexPath(sender: sender)
         cell.btnNA.tag = 3
         m_cAnswerChecklistObj.ans = "0"
-        
     }
     
   func GetIndexPath(sender: DLRadioButton) -> ChecklistQuetionCell
@@ -735,21 +805,26 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func setRandomQue(_ sender: Any)
     {
+        popUp.dismiss(true)
+        self.b_randomQueImg = true
         OpenCamera(sender: btnCamRabdom)
     }
     
     @IBAction func btnSubmitRandomQue_Click(_ sender: Any)
     {
+        self.b_randomQueImg = false
         popUp.dismiss(true)
     }
     func setFilled_ChecklistData()
     {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd, hh:mm:ss"
-        let DATE = formatter.string(from: date)
-        print(DATE)
-        self.EndTime = DATE
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd, hh:mm:ss"
+//        let DATE = formatter.string(from: date)
+//        print(DATE)
+//        self.EndTime = DATE
+//
         
+        self.EndTime = self.getDate()
         var Score : String!
         var OutOfLoc : String!
         LocationDaraArr = LocationData.cLocationData.fetchOfflineLocation()!
@@ -760,6 +835,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         var lcMarkObtained: Float = 0.0
         var lcmaxmarks: Float = 0.0
         var lcFinalMarks: Float = 0.0
+        var lcFinalmaxmarks: Float = 0.0
         
         for lcAnsChecklist in self.AnsChecklistArr
         {
@@ -768,12 +844,13 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
             lcFinalMarks = lcFinalMarks + lcMarkObtained
           let lcmax_marks = lcAnsChecklist["max_marks"] as! String
             lcmaxmarks = Float(lcmax_marks)!
-            lcmaxmarks += lcmaxmarks
+            lcFinalmaxmarks = lcFinalmaxmarks + lcmaxmarks
         }
-        print("UpperNum", lcFinalMarks)
-        print("LowerNum", lcmaxmarks)
         
-        let perCent = 100 * lcFinalMarks / lcmaxmarks
+        print("UpperNum", lcFinalMarks)
+        print("LowerNum", lcFinalmaxmarks)
+        
+        let perCent = 100 * (lcFinalMarks / lcFinalmaxmarks)
         
         self.Percent = String(perCent)
         
@@ -821,6 +898,8 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
 
         }
         
+        let lcQueIdArr = self.m_cAnsImage.map {$0.q_id}
+        let lcQueImgArr = self.m_cAnsImage.map {$0.se_img_url}
         
         let Filled_Checklist : [String: Any] =
             [
@@ -833,8 +912,8 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
              "out_of_loc" : OutOfLoc,
              "p_id" : self.ProjId,
              "percentage" : self.Percent,
-             "rand_q_id" : "",
-             "rand_q_photo" : "",
+             "rand_q_id" : json(from: lcQueIdArr),
+             "rand_q_photo" : json(from: lcQueImgArr),
              "score" : Score,
              "start_time" : self.StartTimr
             ]
@@ -849,12 +928,14 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         cSubmitChecklist.checklist_answer = json(from: self.AnsChecklistArr)
         cSubmitChecklist.m_ticket_data = json(from: self.TicketDataArr)
         cSubmitChecklist.filled_checklist = json(from: self.FilledChecklistArr)
+        cSubmitChecklist.answer_image = json(from: AnswerImgArr)
         
        let uploadUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/upload_filled_checklist"
+       
         
         let Param : [String: Any] =
             [ "totalImages" : cSubmitChecklist.totalImages,
-              "filled_checklist" : cSubmitChecklist.filled_checklist,
+              "filled_checklist" : cSubmitChecklist.filled_checklist!,
               "checklist_answer" : cSubmitChecklist.checklist_answer,
               "answer_image" : cSubmitChecklist.answer_image,
               "m_ticket_status" : cSubmitChecklist.m_ticket_status,
@@ -862,42 +943,61 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
               "user_id" : cSubmitChecklist.user_id,
               "user_role" : cSubmitChecklist.user_role,
               "com_id" : cSubmitChecklist.com_id,
-              "Images" : cSubmitChecklist.Images
+        
             ]
         print("Param", Param)
-        
-      //     let lcImageFromCam = ImgeFromCam(Index: sender.tag, Img: image!, ImgName: lcFileName, ImgUrl: lcFileName)
-        
-        
-//        Alamofire.upload(
-//            multipartFormData: { multipartFormData in
-//
-//                if self.ImgUrl != nil
-//                {
-//                    let data = UIImageJPEGRepresentation(self.ImgUrl,0.0)
-//                    multipartFormData.append(data!, withName: "Images", fileName: self.fileName, mimeType: "image/jpeg")
-//
-//                }
-//
-//                for (key, val) in Param {
-//                    multipartFormData.append((val as AnyObject).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue).rawValue)!, withName: key)
-//                }
-//        },
-//            to: uploadUrl,
-//            encodingCompletion: { encodingResult in
-//                switch encodingResult {
-//                case .success(let upload, _, _):
-//                    upload.responseJSON { response in
-//                        if let jsonResponse = response.result.value as? [String: Any] {
-//                            print(jsonResponse)
-//
-//                        }
-//                    }
-//
-//                case .failure(let encodingError):
-//                    print(encodingError)
-//                }
-//        })
+    
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                
+                if self.m_cImageArrFromCam.isEmpty
+                {
+                    print("no Image for upload")
+                    self.cSubmitChecklist.Images = "NF"
+                }else{
+                    
+                    for (index,lcImage) in self.m_cImageArrFromCam.enumerated()
+                    {
+                        let image = lcImage.CamImag
+                            print(index)
+                        let data = UIImageJPEGRepresentation(image!,0.0)
+                        multipartFormData.append(data!, withName: "Images" + String(format:"%d",index), fileName: lcImage.ImagName, mimeType: "image/jpeg")
+                        
+                    }
+                }
+            
+                for (key, val) in Param {
+                    multipartFormData.append((val as AnyObject).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue).rawValue)!, withName: key)
+                }
+        },
+            
+            usingThreshold : SessionManager.multipartFormDataEncodingMemoryThreshold,
+            to : uploadUrl,
+            method: .post)
+        { (result) in
+            
+            
+            
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (Progress) in
+                    print("Upload Progress: \(Progress.fractionCompleted)")
+                })
+                
+                upload.responseJSON { response in
+                    
+                    if let JSON = response.result.value as? [String: Any] {
+                        print("Response : ",JSON)
+
+                    }
+                }
+                
+            case .failure(let encodingError):
+                print(encodingError)
+            }
+            
+        }
      
     }
     
@@ -938,9 +1038,9 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     
     func random(Index:Int) -> Int
     {
-      //  OpenRandomQue()
+      
         return Int(arc4random())
-     //   return Int(arc4random_uniform(UInt32(Index)))
+     
     }
     
 }

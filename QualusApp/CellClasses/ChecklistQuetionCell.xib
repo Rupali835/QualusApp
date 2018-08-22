@@ -67,7 +67,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="FJV-bk-V2b" firstAttribute="top" secondItem="108-H6-2pI" secondAttribute="top" id="3TV-1M-VPL"/>
                                     <constraint firstItem="10Z-ua-vfs" firstAttribute="width" secondItem="9AD-kf-q1d" secondAttribute="width" id="6VO-Ez-43k"/>
@@ -124,7 +124,7 @@
                                         <state key="normal" title="Click here to take photo"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="npa-xM-ain" firstAttribute="leading" secondItem="TLl-Yk-oGG" secondAttribute="leading" id="Cim-D4-ibN"/>
                                     <constraint firstAttribute="bottom" secondItem="Tyf-Cq-rey" secondAttribute="bottom" constant="8" id="Jn9-bb-ffv"/>

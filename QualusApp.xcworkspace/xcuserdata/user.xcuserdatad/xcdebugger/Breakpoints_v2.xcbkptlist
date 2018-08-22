@@ -170,7 +170,7 @@
                   moduleName = "QualusApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/user/Desktop/KSPL/QualusApp%202/QualusApp/ViewControllers/Auditor%20Display/CheckListByLocationVc.swift"
-                  timestampString = "556113931.718612"
+                  timestampString = "556550253.611853"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "158"
@@ -185,7 +185,7 @@
                   moduleName = "QualusApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/user/Desktop/KSPL/QualusApp%202/QualusApp/ViewControllers/Auditor%20Display/CheckListByLocationVc.swift"
-                  timestampString = "556113931.722046"
+                  timestampString = "556550253.615479"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "158"
@@ -193,38 +193,6 @@
                   offsetFromSymbolStart = "7556">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QualusApp/ViewControllers/Auditor Display/ChecklistQuestionsVc.swift"
-            timestampString = "556113930.8573821"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
-            landmarkName = "SubmitQuetions(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QualusApp/ViewControllers/Auditor Display/ChecklistQuestionsVc.swift"
-            timestampString = "556113930.857911"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "545"
-            endingLineNumber = "545"
-            landmarkName = "SubmitQuetions(sender:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

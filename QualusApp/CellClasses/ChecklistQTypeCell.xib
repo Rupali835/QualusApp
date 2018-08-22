@@ -87,7 +87,6 @@
                                         <state key="normal" title="Click here to take photo"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="1Xm-IW-1OG" firstAttribute="top" secondItem="mRj-NL-e8S" secondAttribute="top" constant="5" id="0LP-nB-SeS"/>
                                     <constraint firstAttribute="height" constant="40" id="ZTb-9x-eeO"/>
