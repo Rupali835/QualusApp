@@ -65,7 +65,6 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
         cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: -1, height: 1)
         cView.layer.shadowRadius = 1
-        
     }
     
     func getRandomColor() -> UIColor{
@@ -92,7 +91,6 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
             self.QuetionArr = JSON["Questions"] as! [AnyObject]
             
             self.tblChecklist.reloadData()
-            
         }
     }
     
@@ -138,20 +136,18 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
             for lcDict in self.QuetionArr
             {
                 let cidQues = lcDict["c_id"] as! String
-                
                 if cid == cidQues
                 {
                     questionArr.append(lcDict)
                 }
             }
             
-            
             QuestionVc.ProjId = self.projectId
             QuestionVc.ClassificationId = self.ClassId
             QuestionVc.QuestionArray = questionArr
             QuestionVc.QrStr = self.QrString
             QuestionVc.CheckListArr = self.checklistArr
-            self.navigationController?.pushViewController(QuestionVc, animated: true)
+        self.navigationController?.pushViewController(QuestionVc, animated: true)
         }
         else{
             
@@ -159,7 +155,6 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
             
             let lcDict = self.checklistArr[indexPath.row]
             let cid = lcDict["c_id"] as! String
-            
             var questionArr = [AnyObject]()
             
             for lcDict in self.QuetionArr
@@ -175,13 +170,7 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
             QueBarcodeVc.ClassificationId = self.ClassId
             QueBarcodeVc.QuestionArray = questionArr
             QueBarcodeVc.QrStr = self.QrString
-            
             self.navigationController?.pushViewController(QueBarcodeVc, animated: true)
-            
-            
         }
     }
-    
-    
-    
 }

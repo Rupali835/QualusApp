@@ -62,8 +62,6 @@ class MtickectData
     var p_id : String!
     var pb_id : String!
     var q_id : String!
-    
-
 }
 
 class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableViewDelegate, imageUploadDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate
@@ -73,6 +71,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         print("Result")
     }
     
+    @IBOutlet var viewLastScanner: UIView!
     @IBOutlet weak var lblRandomQue: UILabel!
     @IBOutlet var viewRandomQuestion: UIView!
     @IBOutlet var viewImagesChecklist: UIView!
@@ -139,6 +138,10 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     var gettingImg : UIImage!
     var RandomQueId :  String!
     var b_randomQueImg = Bool(false)
+    var Random : Int!
+    var date = Date()
+    var SecQrStr : String = ""
+    var QrCodeStrSec : String = ""
     
     var croppingParameters: CroppingParameters {
         return CroppingParameters(isEnabled: croppingEnabled, allowResizing: allowResizing, allowMoving: allowMoving, minimumSize: minimumSize)
@@ -180,6 +183,51 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         cSubmitChecklist.com_id = lcDict["com_id"] as! String
         cSubmitChecklist.user_id = lcDict["user_id"] as! String
 
+        ClsfitnArr = ClassificationData.cDataClassification.fetchOfflineClassification()!
+        
+        ClsQueArr = ClassificationData.cDataClassification.fetchOfflineClsQueData()!
+        
+        for (index, _) in ClsfitnArr.enumerated()
+        {
+            let classEnt = ClsfitnArr[index] as! FetchClassification
+            if ClassificationId == classEnt.class_id
+            {
+                for (index, _) in ClsQueArr.enumerated()
+                {
+                    let classQueEnt = ClsQueArr[index] as! FetchQueData
+                    if classEnt.class_id == classQueEnt.class_id
+                    {
+                        print("successs get")
+                        
+                        let random : Int = Int(arc4random_uniform(UInt32(self.QuestionArray.count))+1)
+                        print("Random Num", random)
+                        self.Random = random
+                    }
+                }
+            }
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd, hh:mm:ss"
+        let DATE = formatter.string(from: date)
+        print(DATE)
+        self.StartTimr = DATE
+        
+          let QRString = UserDefaults.standard.string(forKey: "QRCode")
+        
+        if self.QrCodeStrSec != ""
+        {
+            if self.QrCodeStrSec == QRString
+            {
+                setFilled_ChecklistData()
+                
+            }else
+            {
+                self.toast.isShow("Location is not match")
+            }
+
+        }
+        
     }
 
 
@@ -326,28 +374,6 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     
    @objc func SubmitQuetions(sender: UIButton)
    {
-
-    ClsfitnArr = ClassificationData.cDataClassification.fetchOfflineClassification()!
-    
-    ClsQueArr = ClassificationData.cDataClassification.fetchOfflineClsQueData()!
-    
-    for (index, _) in ClsfitnArr.enumerated()
-    {
-        let classEnt = ClsfitnArr[index] as! FetchClassification
-        if ClassificationId == classEnt.class_id
-        {
-            for (index, _) in ClsQueArr.enumerated()
-            {
-                let classQueEnt = ClsQueArr[index] as! FetchQueData
-                if classEnt.class_id == classQueEnt.class_id
-                {
-                    print("successs get")
-                }
-            }
-        }
-    }
-    
-    self.StartTimr = self.getDate()
     
     let lcDict = QuestionArray[sender.tag]
     
@@ -452,9 +478,8 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         }
         print(self.AnswerImgArr)
         cSubmitChecklist.m_ticket_status = "0"
-        let Random : Int = Int(arc4random_uniform(UInt32(self.QuestionArray.count))+1)
-        print("Random Num",Random)
-        if Random == sender.tag
+       
+        if self.Random == sender.tag
         {
            self.RandomQueId = m_cAnswerChecklistObj.q_id
             print("RandQueId", self.RandomQueId)
@@ -594,9 +619,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         }
         print(self.AnswerImgArr)
         
-        let Random : Int = Int(arc4random_uniform(UInt32(self.QuestionArray.count))+1)
-        print("Random Num",Random)
-        if Random == sender.tag
+        if self.Random == sender.tag
         {
             self.RandomQueId = m_cAnswerChecklistObj.q_id
             print("RandQueId", self.RandomQueId)
@@ -797,8 +820,15 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func btnDone_OnClick(_ sender: Any)
     {
-        setFilled_ChecklistData()
-       sendData()
+        popUp.contentView = viewLastScanner
+        popUp.maskType = .dimmed
+        popUp.shouldDismissOnBackgroundTouch = false
+        popUp.shouldDismissOnContentTouch = false
+        popUp.showType = .slideInFromRight
+        popUp.dismissType = .slideOutToLeft
+        popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
+
+
     }
     
 // MARK: EXTRA - METHODS
@@ -817,14 +847,16 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     }
     func setFilled_ChecklistData()
     {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd, hh:mm:ss"
-//        let DATE = formatter.string(from: date)
-//        print(DATE)
-//        self.EndTime = DATE
-//
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd, hh:mm:ss"
+        let DATE = formatter.string(from: date)
+        print(DATE)
+        self.EndTime = DATE
         
-        self.EndTime = self.getDate()
+        var lcQueId : String = ""
+        var lcQueImg : String = ""
+        
+    //    self.EndTime = self.getDate()
         var Score : String!
         var OutOfLoc : String!
         LocationDaraArr = LocationData.cLocationData.fetchOfflineLocation()!
@@ -898,9 +930,13 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
 
         }
         
-        let lcQueIdArr = self.m_cAnsImage.map {$0.q_id}
-        let lcQueImgArr = self.m_cAnsImage.map {$0.se_img_url}
-        
+        for (index, lCImage) in self.m_cAnsImage.enumerated()
+        {
+             lcQueId = lCImage.q_id
+             lcQueImg = lCImage.se_img_url
+        }
+       
+       
         let Filled_Checklist : [String: Any] =
             [
              "b_id" : Branchid,
@@ -912,12 +948,13 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
              "out_of_loc" : OutOfLoc,
              "p_id" : self.ProjId,
              "percentage" : self.Percent,
-             "rand_q_id" : json(from: lcQueIdArr),
-             "rand_q_photo" : json(from: lcQueImgArr),
+             "rand_q_id" :   lcQueId,
+             "rand_q_photo" : lcQueImg,
              "score" : Score,
              "start_time" : self.StartTimr
             ]
         self.FilledChecklistArr.append(Filled_Checklist)
+        sendData()
        
     }
     
@@ -947,56 +984,64 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
             ]
         print("Param", Param)
     
+//        Alamofire.request(uploadUrl, method: .post, parameters: Param).responseJSON { (resp) in
+//            print(resp)
+//        }
+        
         Alamofire.upload(
             multipartFormData: { multipartFormData in
-                
+
                 if self.m_cImageArrFromCam.isEmpty
                 {
                     print("no Image for upload")
                     self.cSubmitChecklist.Images = "NF"
                 }else{
-                    
-                    for (index,lcImage) in self.m_cImageArrFromCam.enumerated()
-                    {
-                        let image = lcImage.CamImag
-                            print(index)
-                        let data = UIImageJPEGRepresentation(image!,0.0)
-                        multipartFormData.append(data!, withName: "Images" + String(format:"%d",index), fileName: lcImage.ImagName, mimeType: "image/jpeg")
-                        
-                    }
+
+
+
+        for (index, lCImage) in self.m_cImageArrFromCam.enumerated()
+        {
+            let image = lCImage.CamImag
+            print(index)
+            let data = UIImageJPEGRepresentation(image!,0.0)
+            multipartFormData.append(data!, withName: "images" + String(format:"%d",index), fileName: lCImage.ImagName, mimeType: "image/jpeg")
+        }
+
+
                 }
-            
+
                 for (key, val) in Param {
                     multipartFormData.append((val as AnyObject).data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue).rawValue)!, withName: key)
                 }
         },
-            
+
             usingThreshold : SessionManager.multipartFormDataEncodingMemoryThreshold,
             to : uploadUrl,
             method: .post)
         { (result) in
-            
-            
-            
+
+
+
             switch result {
             case .success(let upload, _, _):
-                
+
                 upload.uploadProgress(closure: { (Progress) in
                     print("Upload Progress: \(Progress.fractionCompleted)")
                 })
-                
-                upload.responseJSON { response in
-                    
-                    if let JSON = response.result.value as? [String: Any] {
-                        print("Response : ",JSON)
 
+
+                upload.responseJSON { resp in
+
+                    if let JSON = resp.result.value as? [String: Any] {
+                        print("Response : ",JSON)
+                    
                     }
                 }
-                
+
             case .failure(let encodingError):
                 print(encodingError)
             }
-            
+
         }
      
     }
@@ -1036,11 +1081,34 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+   func setSecQr(secQrStr: String)
+    {
+       
+        if secQrStr != ""
+        {
+            
+            self.QrCodeStrSec = secQrStr
+        }else{
+            let scannerVc = storyboard?.instantiateViewController(withIdentifier: "ScannerVc") as! ScannerVc
+               scannerVc.valForFilledChecklist = 0
+            self.navigationController?.pushViewController(scannerVc, animated: true)
+        }
+    }
+ 
+    @IBAction func btnLastYes_click(_ sender: Any)
+    {
+        popUp.dismiss(true)
+       setSecQr(secQrStr: self.SecQrStr)
+    }
+    
+    @IBAction func btnLastNo_click(_ sender: Any)
+    {
+        popUp.dismiss(true)
+    }
+    
     func random(Index:Int) -> Int
     {
-      
-        return Int(arc4random())
-     
+      return Int(arc4random())
     }
     
 }

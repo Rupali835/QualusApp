@@ -34,8 +34,6 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         self.tblSubmitedList.rowHeight = UITableViewAutomaticDimension
         self.getdata()
         
-        
-        
     }
 
     private func initUi()
@@ -55,7 +53,7 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
 
     func getdata()
     {
-        let listUrl = "http://kanishkagroups.com/Qualus/index.php/Android/Checklist/get_7_day_submitted_checklist"
+        let listUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/get_7_day_submitted_checklist"
         let listParam = ["user_id" : self.UserId,
                          "user_role" : self.UserRole]
         
@@ -78,11 +76,11 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         if self.CheckListArr.count > 0
         {
             return self.CheckListArr.count
+        }else{
+            self.toast.isShow("No any submitted checklist")
+            return 0
         }
-        
-        self.toast.isShow("No any submitted checklist")
-        return 0
-    
+     
     }
     
     func GetLocationData(cLocationId: String, cell: SubmitedChecklistCell)
@@ -107,7 +105,7 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
                {
                   let BuildingEnt = BuildingArr[index] as! FetchBuilding
                     let BranchId = BuildingEnt.branch_id
-                print("BranchId =", BranchId)
+              //  print("BranchId =", BranchId)
                     if branch_id == BranchId
                     {
                        let b_name = BuildingEnt.b_name

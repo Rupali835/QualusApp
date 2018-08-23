@@ -26,6 +26,7 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
     var U_id : String = ""
     var locationManager: CLLocationManager = CLLocationManager()
     var LocationDaraArr = [AnyObject]()
+    var valForFilledChecklist : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,51 +88,61 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
         self.showvc = bShowVC
     }
     
-//   override func viewWillAppear(_ animated: Bool) {
-//        //self.showvc = true
-//
-//}
     // Be careful with retain cycle
     lazy var barcodeDidCaptured: (_ codeObject: AVMetadataMachineReadableCodeObject) -> Void = { [unowned self] codeObject in
         let string = codeObject.stringValue!
         print(string)
-        self.showvc = true
-        for (index, _) in self.LocationDaraArr.enumerated()
-        {
-            let locationEnt = self.LocationDaraArr[index] as! FetchLocation
         
-            if self.PId == locationEnt.p_id!
-            {
-                if locationEnt.l_barcode == string
-                {
-        if self.showvc == true
+        if self.valForFilledChecklist == 0
         {
-            if (locationEnt.l_latitude == "NF") || (locationEnt.l_longitude == "NF")
-            {
-                self.setLocation(QR: string)
-            }else
-            {
-                self.toast.isShow("Location Found")
-                let checklistVc = self.storyboard?.instantiateViewController(withIdentifier: "CheckListByLocationVc") as! CheckListByLocationVc
-                
-               self.showvc = false
-                checklistVc.setQrString(cQr: string, ProjId: self.PId, Showvc: self.showvc)
-                self.navigationController?.pushViewController(checklistVc, animated: true)
-                
-            }
+            let c_filledChecklist = self.storyboard?.instantiateViewController(withIdentifier: "ChecklistQuestionsVc") as! ChecklistQuestionsVc
+            c_filledChecklist.SecQrStr = string
+            c_filledChecklist.setSecQr(secQrStr: string)
+            self.navigationController?.pushViewController(c_filledChecklist, animated: true)
+        }else{
            
-        }else{ 
             
-            self.toast.isShow("Location Found")
+            UserDefaults.standard.set(string, forKey: "QRCode")
             
-            let cMaverickTikt = self.storyboard?.instantiateViewController(withIdentifier: "GenarateMaverickTicketVc") as! GenarateMaverickTicketVc
-            cMaverickTikt.setQrString(cQr: string)
-           cMaverickTikt.showVc = true
-            self.navigationController?.pushViewController(cMaverickTikt, animated: true)
-        }
+            self.showvc = true
+            for (index, _) in self.LocationDaraArr.enumerated()
+            {
+                let locationEnt = self.LocationDaraArr[index] as! FetchLocation
+                
+                if self.PId == locationEnt.p_id!
+                {
+                    if locationEnt.l_barcode == string
+                    {
+                        if self.showvc == true
+                        {
+                            if (locationEnt.l_latitude == "NF") || (locationEnt.l_longitude == "NF")
+                            {
+                                self.setLocation(QR: string)
+                            }else
+                            {
+                                self.toast.isShow("Location Found")
+                                let checklistVc = self.storyboard?.instantiateViewController(withIdentifier: "CheckListByLocationVc") as! CheckListByLocationVc
+                                
+                                self.showvc = false
+                                checklistVc.setQrString(cQr: string, ProjId: self.PId, Showvc: self.showvc)
+                                self.navigationController?.pushViewController(checklistVc, animated: true)
+                                
+                            }
+                            
+                        }else{
+                            
+                            self.toast.isShow("Location Found")
+                            
+                            let cMaverickTikt = self.storyboard?.instantiateViewController(withIdentifier: "GenarateMaverickTicketVc") as! GenarateMaverickTicketVc
+                            cMaverickTikt.setQrString(cQr: string)
+                            cMaverickTikt.showVc = true
+                            self.navigationController?.pushViewController(cMaverickTikt, animated: true)
+                        }
+                    }
                 }
             }
         }
+       
     }
     
     

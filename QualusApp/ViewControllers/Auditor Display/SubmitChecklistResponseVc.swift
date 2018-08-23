@@ -53,26 +53,26 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
         cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: 0, height: 0)
         cView.layer.shadowRadius = 1
-        
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         self.getData()
     }
+    
     func getData()
     {
         var param : [String:String]
-        if show == true
-        {
-            param = ["fc_id" : self.fcid,
-                         "user_role" : self.A_Srole]
-        }else{
+//        if show == true
+//        {
+//            param = ["fc_id" : self.fcid,
+//                         "user_role" : self.A_Srole]
+//        }else{
          param = ["fc_id" : self.fcid,
                          "user_role" : self.UserRole]
-        }
+      //  }
         
-        let respUrl = "http://kanishkagroups.com/Qualus/index.php/Android/Checklist/get_filled_checklist_data"
+        let respUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/get_filled_checklist_data"
         Alamofire.request(respUrl, method: .post, parameters: param).responseJSON { (fetchData) in
             print(fetchData)
             let JSON = fetchData.result.value as? [String: AnyObject]
@@ -197,8 +197,6 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
             return cell
             
         }
-       
-      
       
     }
 
