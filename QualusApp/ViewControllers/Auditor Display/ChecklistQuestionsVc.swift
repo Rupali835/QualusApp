@@ -183,28 +183,23 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         cSubmitChecklist.com_id = lcDict["com_id"] as! String
         cSubmitChecklist.user_id = lcDict["user_id"] as! String
 
-        ClsfitnArr = ClassificationData.cDataClassification.fetchOfflineClassification()!
+//        ClsfitnArr = ClassificationData.cDataClassification.fetchOfflineClassification()!
         
         ClsQueArr = ClassificationData.cDataClassification.fetchOfflineClsQueData()!
         
-        for (index, _) in ClsfitnArr.enumerated()
+        for (_, valClassEnt) in ClsQueArr.enumerated()
         {
-            let classEnt = ClsfitnArr[index] as! FetchClassification
+            let classEnt = valClassEnt as! FetchQueData
+            
             if ClassificationId == classEnt.class_id
             {
-                for (index, _) in ClsQueArr.enumerated()
-                {
-                    let classQueEnt = ClsQueArr[index] as! FetchQueData
-                    if classEnt.class_id == classQueEnt.class_id
-                    {
-                        print("successs get")
-                        
-                        let random : Int = Int(arc4random_uniform(UInt32(self.QuestionArray.count))+1)
-                        print("Random Num", random)
-                        self.Random = random
-                    }
-                }
+              print("successs get")
+            
+            let random : Int = Int(arc4random_uniform(UInt32(self.QuestionArray.count))+1)
+                 print("Random Num", random)
+                 self.Random = random
             }
+
         }
         
         let formatter = DateFormatter()
@@ -531,8 +526,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
                 return
             }
             
-           
-            let InputVal = cell.txtAnswer.text
+           let InputVal = cell.txtAnswer.text
             
             if InputVal != ""
             {
@@ -765,6 +759,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
             }
           
         }
+        
         present(cameraViewController, animated: true, completion: nil)
         
     }

@@ -22,7 +22,6 @@ class ticketdetailsTableViewCell: UITableViewCell,UICollectionViewDataSource,UIC
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var lblNoImage: UILabel!
 
-    
     var arrImges = [String]()
     var delegate: imgaeSelectionProtocal?
     

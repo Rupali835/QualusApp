@@ -11,8 +11,6 @@ import UIKit
 class LargImageCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var largImage: UIImageView!
-   
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

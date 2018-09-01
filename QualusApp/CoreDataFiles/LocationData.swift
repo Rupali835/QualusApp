@@ -25,7 +25,7 @@ class LocationData: NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
         
-        let loctUrl = "http://kanishkaconsultancy.com/Qualus-FM-Android/fetchAllLocations.php"
+        let loctUrl = "http://kanishkaconsultancy.com/Qualus-FM-AndroidV2/fetchAllLocations.php"
         let lctParam = ["u_Id" : lcUID,
                         "u_type" : lcRole]
         
@@ -61,7 +61,7 @@ class LocationData: NSObject
                     
                     
                     appDel.saveContext()
-                   print("Location data save")
+             //      print("Location data save")
                     
                 }
                 
@@ -163,7 +163,7 @@ class LocationData: NSObject
         let contx = appDel.persistentContainer.viewContext
         do{
             let DataArr = try contx.fetch(FetchLocation.fetchRequest()) as [AnyObject]
-            print("Count=\(DataArr.count) \(DataArr)")
+       //     print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()
             {
@@ -181,7 +181,7 @@ class LocationData: NSObject
         let contx = appDel.persistentContainer.viewContext
         do{
             let DataArr = try contx.fetch(FetchBranches.fetchRequest()) as [AnyObject]
-            print("Count=\(DataArr.count) \(DataArr)")
+           // print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()
             {
@@ -199,7 +199,7 @@ class LocationData: NSObject
         let contx = appDel.persistentContainer.viewContext
         do{
             let DataArr = try contx.fetch(FetchBuilding.fetchRequest()) as [AnyObject]
-            print("Count=\(DataArr.count) \(DataArr)")
+           // print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()
             {

@@ -77,10 +77,9 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         {
             return self.CheckListArr.count
         }else{
-            self.toast.isShow("No any submitted checklist")
+          //  self.toast.isShow("No any submitted checklist")
             return 0
         }
-     
     }
     
     func GetLocationData(cLocationId: String, cell: SubmitedChecklistCell)

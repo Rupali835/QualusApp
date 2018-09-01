@@ -43,13 +43,6 @@ class GetSelectedTicketDetailsViewController: UIViewController,imgaeSelectionPro
         lblTciketNo.text = "Ticket No"+""+Ticket.mt_id
         tableview.registerCellNib(TicketDetaIsTableViewCell.self)
         tableview.registerCellNib(ticketdetailsTableViewCell.self)
-       
-        //core data
-        let user = Ticket.assigned_to
-        let request = NSFetchRequest<FetchUserList>.init(entityName: "FetchUserList")
-        let response = try! context.fetch(request)
-        userArray = response
-        print(userArray.count)
         NFCheck()
         dataDisplay()
         Arrimage = [#imageLiteral(resourceName: "binocular"),#imageLiteral(resourceName: "checklist"),#imageLiteral(resourceName: "branch1"),#imageLiteral(resourceName: "location"),#imageLiteral(resourceName: "Office"),#imageLiteral(resourceName: "stopwatch"),#imageLiteral(resourceName: "user"),#imageLiteral(resourceName: "user"),#imageLiteral(resourceName: "chat"),#imageLiteral(resourceName: "write"),#imageLiteral(resourceName: "ticket"),#imageLiteral(resourceName: "ticket"),#imageLiteral(resourceName: "camera")]

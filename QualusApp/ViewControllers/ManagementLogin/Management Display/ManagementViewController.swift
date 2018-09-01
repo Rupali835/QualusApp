@@ -25,7 +25,8 @@ class ManagementViewController: UIViewController {
     @IBOutlet var myProfileView: UIView!
     @IBOutlet var Moreview: UIView!
     
-    //MARK:VARIABLES
+//MARK:VARIABLES
+    
     var UserRole : String!
     var UserId : String!
     var User_Logein : String!
@@ -36,7 +37,7 @@ class ManagementViewController: UIViewController {
     var score: Int!
     var totalquestionsasked: Int!
     var percentagecorrect: Int!
-    
+    var toast = JYToast()
     let manager: Alamofire.SessionManager = {
         return Alamofire.SessionManager.default
     }()
@@ -71,22 +72,25 @@ class ManagementViewController: UIViewController {
         let image = UIImage(named: "more (3)")
         var rightButton = UIButton(type: .system)
         rightButton.setImage(image, for: .normal)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         rightButton.addTarget(self, action: #selector(openTicketVC), for: .touchUpInside)
         let buttonitem = UIBarButtonItem(customView: rightButton)
         
         let img1 = UIImage(named: "logout")
         let rightbutton1 = UIButton(type: .system)
         rightbutton1.setImage(img1, for: .normal)
+        rightbutton1.frame = CGRect(x: 0, y: 0, width: 40, height: 20)
         rightbutton1.addTarget(self, action: #selector(logout), for: .touchUpInside)
         let buttonitem1 = UIBarButtonItem(customView: rightbutton1)
         
-        let img2 = UIImage(named: "username")
+        let img2 = UIImage(named: "user")
         let rightbutton2 = UIButton(type: .system)
+          rightbutton2.frame = CGRect(x: 0, y: 0, width: 40, height: 20)
         rightbutton2.setImage(img2, for: .normal)
         rightbutton2.addTarget(self, action: #selector(Userdetails), for: .touchUpInside)
         let buttonitem2 = UIBarButtonItem(customView: rightbutton2)
         
-        navigationItem.rightBarButtonItems = [buttonitem, buttonitem1, buttonitem2]
+       navigationItem.rightBarButtonItems = [buttonitem, buttonitem1, buttonitem2]
         
     }
     
@@ -106,7 +110,7 @@ class ManagementViewController: UIViewController {
     
     @objc func logout()
     {
-        let alert = UIAlertController(title: "Qualus", message: "Are you sure to Logout", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Qualus", message: "Are you sure to Logout", preferredStyle: .alert)
         let Yesaction = UIAlertAction(title: "Yes", style: .default, handler: { (okaction) in
             self.UserLogout()
         })
@@ -134,15 +138,31 @@ class ManagementViewController: UIViewController {
         }
     }
     
+    func UserRoleCheck()
+        
+    {
+        if UserRole == "6"
+        {
+            self.lblname.text = userName
+            self.lblUserRoll.text = "Management"
+            
+        }else if UserRole == "1"
+        {
+            self.lblname.text = userName
+            self.lblUserRoll.text = "SuperAdmin"
+            
+        }else if UserRole == "8"
+        {
+            self.lblname.text = userName
+            self.lblUserRoll.text = "Admin"
+        }
+    }
+    
     @objc func Userdetails()
     {
         Moreview.isHidden = true
         myProfileView.isHidden = false
-        if UserRole == "6"
-        {
-            self.lblname.text = userName
-            self.lblUserRoll.text = "Auditor"
-        }
+        UserRoleCheck()
         popUp.contentView = myProfileView
         popUp.dismiss(true)
         popUp.maskType = .dimmed
@@ -171,12 +191,18 @@ class ManagementViewController: UIViewController {
         let ManagePara = ["user_id": UserId! ,"role": UserRole!]
         
         OperationQueue.main.addOperation {
+            SVProgressHUD.setDefaultMaskType(.custom)
+            SVProgressHUD.setBackgroundColor(UIColor.gray)
+            SVProgressHUD.setBackgroundLayerColor(UIColor.white)
             SVProgressHUD.show()
         }
+        
         manager.request(strurl, method: .post, parameters: ManagePara, encoding: URLEncoding.default, headers: nil).responseData(completionHandler: { (response) in
             if let data = response.result.value
             {
-                OperationQueue.main.addOperation {
+                OperationQueue.main.addOperation
+                    {
+                        
                     SVProgressHUD.dismiss()
                 }
                 do{
@@ -228,7 +254,8 @@ class ManagementViewController: UIViewController {
     //MARK:ACTIONS
     
     
-    @IBAction func MavrikTicketClicked(_ sender: Any) {
+    @IBAction func MavrikTicketClicked(_ sender: Any)
+    {
         popUp.dismiss(true)
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mavTicket = storyboard.instantiateViewController(withIdentifier: "MaverickTicketViewVc") as! MaverickTicketViewVc
@@ -236,11 +263,14 @@ class ManagementViewController: UIViewController {
         
      }
     
-    @IBAction func TicketTillDatePEndingClicked(_ sender: UIButton) {
+    @IBAction func TicketTillDatePEndingClicked(_ sender: UIButton)
+    {
         if sender.tag == 1
         {
             if lblTicketTodayCount.text! == "0"
-            {}else{
+            {
+                self.toast.isShow("No data found")
+            }else{
                 let pendingTicketVc = PendingTicketViewController.loadNib()
                 pendingTicketVc.ticketType = sender.tag
                 self.navigationController?.pushViewController(pendingTicketVc, animated: true)
@@ -248,14 +278,18 @@ class ManagementViewController: UIViewController {
         }else if sender.tag == 2
         {
             if lblTicketGenAndClosedCount.text! == "0"
-            {}else{
+            {
+               self.toast.isShow("No data found")
+            }else{
                 let pendingTicketVc = PendingTicketViewController.loadNib()
                 pendingTicketVc.ticketType = sender.tag
                 self.navigationController?.pushViewController(pendingTicketVc, animated: true)
             }
         }else if sender.tag == 3{
             if lblTicketPendingCount.text! == "0"
-            {}else{
+            {
+                self.toast.isShow("No data found")
+            }else{
                 let pendingTicketVc = PendingTicketViewController.loadNib()
                 pendingTicketVc.ticketType = sender.tag
                 self.navigationController?.pushViewController(pendingTicketVc, animated: true)
@@ -269,7 +303,9 @@ class ManagementViewController: UIViewController {
         if sender.tag == 2
         {
             if lblAuditorChecklistCont.text! == "0"
-            {}
+            {
+                self.toast.isShow("No checklist found")
+            }
             else{
                 let checklistvc = ChecklistViewController.loadNib()
                 checklistvc.checkListType = sender.tag
@@ -278,7 +314,9 @@ class ManagementViewController: UIViewController {
         }else {
             
             if lblSupervisiorChecklistCount.text! == "0"
-            {}else{
+            {
+                self.toast.isShow("No checklist found")
+            }else{
                 let checklistvc = ChecklistViewController.loadNib()
                 checklistvc.checkListType = sender.tag
                 self.navigationController?.pushViewController(checklistvc, animated: true)

@@ -84,7 +84,6 @@ class TodayFilledChecklistVC: UIViewController {
             }
         }
         
-        
     }
     
     

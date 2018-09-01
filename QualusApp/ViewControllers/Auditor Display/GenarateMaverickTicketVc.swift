@@ -250,8 +250,8 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
             self.txtActionPlan.text = ""
             self.txtEnterObservation.text = ""
             let MTVc = MaverickTicketViewVc()
-            //self.navigationController?.popToViewController(MTVc, animated: true)
-            self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.backToViewController(viewController: MaverickTicketViewVc.self)
+
 
         } )
         
@@ -261,12 +261,8 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     }
 
    
-   
-    
     //MARK: ACTIONS
 
-    
-    
     @IBAction func btnCamera_Click(_ sender: Any)
     {
 
@@ -360,9 +356,8 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     }
 
     @IBAction func cancledClicked(_ sender: Any) {
-//        let mavrikvc = MaverickTicketViewVc()
-//        self.navigationController?.popToViewController(mavrikvc, animated: true)
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.backToViewController(viewController: MaverickTicketViewVc.self)
+
     }
     
     
@@ -432,6 +427,19 @@ extension GenarateMaverickTicketVc: UICollectionViewDelegate,UICollectionViewDat
     }
 
 }
+extension UINavigationController {
+    
+    func backToViewController(viewController: Swift.AnyClass) {
+        
+        for element in viewControllers as Array {
+            if element.isKind(of: viewController) {
+                self.popToViewController(element, animated: true)
+                break
+            }
+        }
+    }
+}
+
 
 
 

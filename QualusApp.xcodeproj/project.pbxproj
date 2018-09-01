@@ -78,6 +78,8 @@
 		CE0F660C20AD48F200B8F026 /* LoginPageVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F660B20AD48F200B8F026 /* LoginPageVc.swift */; };
 		CE0F661220AD4B4C00B8F026 /* JYToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F661120AD4B4C00B8F026 /* JYToast.swift */; };
 		CE0F661D20AD51C800B8F026 /* AbbrevationVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F661C20AD51C800B8F026 /* AbbrevationVc.swift */; };
+		CE12B14F213037410062F87C /* ChecklistRespImageInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12B14D213037410062F87C /* ChecklistRespImageInputCell.swift */; };
+		CE12B150213037410062F87C /* ChecklistRespImageInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE12B14E213037410062F87C /* ChecklistRespImageInputCell.xib */; };
 		CE13040F20B8182800E7E61E /* UserDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13040E20B8182800E7E61E /* UserDataList.swift */; };
 		CE2149D320C1812D00D47754 /* SubmitedChecklistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2149D120C1812D00D47754 /* SubmitedChecklistCell.swift */; };
 		CE2149D420C1812D00D47754 /* SubmitedChecklistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2149D220C1812D00D47754 /* SubmitedChecklistCell.xib */; };
@@ -195,6 +197,8 @@
 		CE0F660B20AD48F200B8F026 /* LoginPageVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageVc.swift; sourceTree = "<group>"; };
 		CE0F661120AD4B4C00B8F026 /* JYToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JYToast.swift; sourceTree = "<group>"; };
 		CE0F661C20AD51C800B8F026 /* AbbrevationVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbbrevationVc.swift; sourceTree = "<group>"; };
+		CE12B14D213037410062F87C /* ChecklistRespImageInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistRespImageInputCell.swift; sourceTree = "<group>"; };
+		CE12B14E213037410062F87C /* ChecklistRespImageInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistRespImageInputCell.xib; sourceTree = "<group>"; };
 		CE13040E20B8182800E7E61E /* UserDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataList.swift; sourceTree = "<group>"; };
 		CE2149D120C1812D00D47754 /* SubmitedChecklistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitedChecklistCell.swift; sourceTree = "<group>"; };
 		CE2149D220C1812D00D47754 /* SubmitedChecklistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmitedChecklistCell.xib; sourceTree = "<group>"; };
@@ -454,14 +458,10 @@
 		CE0F661B20AD519400B8F026 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE7BCF02213946C6008F7F52 /* ManagementLogin */,
 				CE0F660B20AD48F200B8F026 /* LoginPageVc.swift */,
 				CE0F661C20AD51C800B8F026 /* AbbrevationVc.swift */,
 				5832DE4520FF57D700483655 /* Auditor Display */,
-				58453EB020FDED340044CBFA /* Management Display */,
-				58064D862112DA900083A726 /* AudSup checklist */,
-				580B3C8F210067250052376A /* Pending_Tickets */,
-				58091A9D2105A4C600401FB7 /* PendingDetailsOfTicket */,
-				580B00B32109B15B00E587F5 /* ChecklistDetails */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -491,6 +491,18 @@
 				CE62698921254C5700C38FCE /* ImgeUploadForChecklist.swift */,
 			);
 			path = CameraFiles;
+			sourceTree = "<group>";
+		};
+		CE7BCF02213946C6008F7F52 /* ManagementLogin */ = {
+			isa = PBXGroup;
+			children = (
+				58453EB020FDED340044CBFA /* Management Display */,
+				58064D862112DA900083A726 /* AudSup checklist */,
+				580B3C8F210067250052376A /* Pending_Tickets */,
+				58091A9D2105A4C600401FB7 /* PendingDetailsOfTicket */,
+				580B00B32109B15B00E587F5 /* ChecklistDetails */,
+			);
+			path = ManagementLogin;
 			sourceTree = "<group>";
 		};
 		CE8251FD20AD5516000C8586 /* TPkeyboard! */ = {
@@ -535,6 +547,8 @@
 				CE51B9D0212167B100500224 /* QueTypeOneBarcodeCell.xib */,
 				CE51B9D3212167D000500224 /* QueTypeTwoBarcodeCell.swift */,
 				CE51B9D4212167D000500224 /* QueTypeTwoBarcodeCell.xib */,
+				CE12B14D213037410062F87C /* ChecklistRespImageInputCell.swift */,
+				CE12B14E213037410062F87C /* ChecklistRespImageInputCell.xib */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -657,6 +671,7 @@
 				CE0F65FC20AD452E00B8F026 /* Main.storyboard in Resources */,
 				580B3C96210067A40052376A /* getTicketCollectionViewCell.xib in Resources */,
 				CED78C1620B5966D00A62817 /* ProjectNameCell.xib in Resources */,
+				CE12B150213037410062F87C /* ChecklistRespImageInputCell.xib in Resources */,
 				58D71F76210743AE008CEE10 /* TicketImagesCVC.xib in Resources */,
 				CE5DC17720C29FFA0014D0FC /* ChecklistResponceCell.xib in Resources */,
 			);
@@ -785,6 +800,7 @@
 				5832DE5920FF57D700483655 /* MaverickTicketViewVc.swift in Sources */,
 				580B00B92109C90C00E587F5 /* checkListDataModel.swift in Sources */,
 				CE0F660C20AD48F200B8F026 /* LoginPageVc.swift in Sources */,
+				CE12B14F213037410062F87C /* ChecklistRespImageInputCell.swift in Sources */,
 				CEF1934420B92C48001567ED /* ScannerVc.swift in Sources */,
 				CE01FE8521196DA400BEBB8B /* ImageCell.swift in Sources */,
 				5832DE5E20FF585000483655 /* ManagemnetDataModel.swift in Sources */,

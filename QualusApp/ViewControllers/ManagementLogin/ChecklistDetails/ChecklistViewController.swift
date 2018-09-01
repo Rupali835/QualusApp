@@ -37,7 +37,6 @@ class ChecklistViewController: UIViewController {
 
     }
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
@@ -144,8 +143,6 @@ class ChecklistViewController: UIViewController {
         dateFormatter.dateFormat = "h:mm a"
         return  dateFormatter.string(from: Time!)
     }
-    
-    
 }
 
 extension ChecklistViewController: UICollectionViewDelegate,UICollectionViewDataSource
@@ -200,12 +197,25 @@ extension ChecklistViewController: UICollectionViewDelegate,UICollectionViewData
   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
      
+        // if checklist by supervior = 2 , auditor =  3
+        
         let fCID = list[indexPath.row].fc_id
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SubmitChecklistResponseVc") as! SubmitChecklistResponseVc
+        
+        if checkListType == 1  //sup
+        {
+            nextViewController.A_Srole = "2"
+            
+        }else{
+            nextViewController.A_Srole = "3"
+        }
+        
         nextViewController.setFcid(fcId: fCID)
-        nextViewController.show = false
+        nextViewController.show = true
         self.navigationController?.pushViewController(nextViewController, animated: true)
+        
+
       }
     
     

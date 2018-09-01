@@ -23,7 +23,7 @@ class MapLocation : NSObject
         let param : [String : Any] = ["user_id" : UserId]
         
         Alamofire.request(Url, method: .post, parameters: param).responseJSON { (resp) in
-            print(resp)
+       //     print(resp)
            
             if let JSON = resp.result.value
             {
@@ -39,7 +39,7 @@ class MapLocation : NSObject
                     mapLocationEnt.u_id = lcdict["u_id"] as? String
                     mapLocationEnt.p_id = lcdict["p_id"] as? String
                     appDel.saveContext()
-                    print("Save Map Location")
+              //      print("Save Map Location")
                 }
             }
         }
@@ -66,7 +66,7 @@ class MapLocation : NSObject
         let contx = appDel.persistentContainer.viewContext
         do{
             let DataArr = try contx.fetch(FetchMapLocation.fetchRequest()) as [AnyObject]
-            print("Count=\(DataArr.count) \(DataArr)")
+      //      print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()
             {

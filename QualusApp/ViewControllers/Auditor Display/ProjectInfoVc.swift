@@ -202,5 +202,8 @@ class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionVie
     @IBAction func btnSync_Click(_ sender: Any)
     {
         self.btnTicket_Click(sender)
+        
+       
+        
     }
 }

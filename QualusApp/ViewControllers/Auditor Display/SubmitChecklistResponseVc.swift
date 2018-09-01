@@ -18,7 +18,7 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
     var UserRole : String = ""
     var RespArr = [AnyObject]()
     private var toast : JYToast!
-    var show : Bool!                 // bool to check which ticket should
+    var show = Bool(false)                 // bool to check which ticket should
     var A_Srole : String!
     
     
@@ -63,14 +63,14 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
     func getData()
     {
         var param : [String:String]
-//        if show == true
-//        {
-//            param = ["fc_id" : self.fcid,
-//                         "user_role" : self.A_Srole]
-//        }else{
+        if show == true
+        {
+            param = ["fc_id" : self.fcid,
+                         "user_role" : self.A_Srole]
+        }else{
          param = ["fc_id" : self.fcid,
                          "user_role" : self.UserRole]
-      //  }
+        }
         
         let respUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/get_filled_checklist_data"
         Alamofire.request(respUrl, method: .post, parameters: param).responseJSON { (fetchData) in
@@ -89,7 +89,7 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
         {
             return self.RespArr.count
         }else{
-            self.toast.isShow("No any submitted checklist")
+            
             return 0
         }
     }

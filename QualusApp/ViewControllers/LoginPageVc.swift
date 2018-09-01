@@ -35,9 +35,9 @@ class LoginPageVc: UIViewController {
              AbbrevationVcCall()
         }
        
-        self.txtUserNm.text = "rupali@kspl.com"
-        self.txtPasswordFld.text = "Rupali@kspl"
-      
+//        self.txtUserNm.text = "rupali@kspl.com"
+//        self.txtPasswordFld.text = "Rupali@kspl"
+//
         
     }
 
@@ -103,21 +103,20 @@ class LoginPageVc: UIViewController {
                     MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
                     
                     LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: {(sucess) -> Void in
-                        if sucess
-                        {
-                            
+                         if sucess{
                             self.setViewFromRole(Role: Role)
+                            
                         } else {
                             
                             print("false")
                         }
-                        
+                       
+
                     })
                     
                     ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
                         if sucess
                         {
-                            
                             self.setViewFromRole(Role: Role)
                             
                         } else {
@@ -149,7 +148,8 @@ class LoginPageVc: UIViewController {
     
     func setViewFromRole(Role: String)
     {
-        if Role == "6"
+        if (Role == "6") || (Role == "1") || (Role == "8")
+
         {
             let managevc = ManagementViewController.init(nibName: "ManagementViewController", bundle: nil)
             self.navigationController?.pushViewController(managevc, animated: true)
@@ -166,7 +166,7 @@ class LoginPageVc: UIViewController {
         let alertPassword = UIAlertController(title: varTitle, message: varMessage, preferredStyle: .actionSheet)
         
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-            print("Ok")
+           // print("Ok")
         })
         
         alertPassword.addAction(okAction)

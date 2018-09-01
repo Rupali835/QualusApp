@@ -37,6 +37,7 @@ class ImageDisplayViewController: UIViewController,UICollectionViewDelegate,UICo
         cell.largImage.sd_setImage(with: finalurl, placeholderImage: #imageLiteral(resourceName: "placeholder"))
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         return CGSize(width: collectionView.frame.width-60, height: collectionView.frame.height-60)

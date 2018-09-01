@@ -106,11 +106,8 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        
         let cell = numberCollview.dequeueReusableCell(withReuseIdentifier: "barcodeNumberCell", for: indexPath) as! barcodeNumberCell
-        
         self.designView(cView: cell.backView)
-        
         let lcNum: String = numberArr[indexPath.item] as! String
         
         if ((indexPath.row == 9) || (indexPath.row == 11))
@@ -123,14 +120,12 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         }
         
         cell.btnNumber.tag = indexPath.row
-  
         return cell
     }
 
    func SubmitBarcode()
     {
-      
-            if (barcodeStr.characters.count == 10)
+        if (barcodeStr.characters.count == 10)
             {
 //                if self.MapLocationDataArr.isEmpty == false
 //                {

@@ -21,9 +21,10 @@ class MaverickTicketViewVc: UIViewController
     var ProjArr = [AnyObject]()
     var LocationDataArr: [AnyObject]!
     var cShowVc = Bool(false)
-    
+    var cChecklistVC =  ChecklistViewController()
     var toast = JYToast()
     var popUp : KLCPopup!
+    
     
     @IBOutlet weak var tblTicket: UITableView!
     @IBOutlet weak var tblProject: UITableView!
@@ -44,7 +45,7 @@ class MaverickTicketViewVc: UIViewController
     }
     
     
-    //MARK:FUNCTIONS
+//MARK:FUNCTIONS
     
     func loadTable()
     {
@@ -56,7 +57,6 @@ class MaverickTicketViewVc: UIViewController
         tblTicket.separatorStyle = .none
         tblTicket.registerCellNib(MaverickTicketCell.self)
         tblProject.registerCellNib(LocationCell.self)
-        
     }
     
    
@@ -102,6 +102,7 @@ class MaverickTicketViewVc: UIViewController
         }
     }
     
+
     //MARK:ACTIONS
    
     @IBAction func AddMavrikTicketClicked(_ sender: Any) {
@@ -145,6 +146,11 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
         case tblTicket:
             let cell = tblTicket.dequeueReusableCell(withIdentifier: "MaverickTicketCell", for: indexPath) as! MaverickTicketCell
             let lcDict = TicketArr[indexPath.row]
+            
+            let PID = lcDict["p_id"] as! String
+            let LID = lcDict["l_id"] as! String
+            cChecklistVC.getdetails(u_id: self.userId, p_id: PID, l_id: LID)
+            
             designCell(cView: cell.backView)
             let tiktNum = (lcDict["mt_id"] as! String)
             cell.lblTicketNumber.text = "Ticket Number : \(tiktNum) "
@@ -162,7 +168,7 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
             }
             cell.lblTiktObservation.text = (lcDict["mt_subject"] as! String)
             cell.lblSpace.text = (lcDict["l_space"] as! String)
-            cell.lblTiktLocation.text = (lcDict["l_id"] as! String)
+            cell.lblTiktLocation.text = LID
             cell.lblTiktProject.text = (lcDict["p_name"] as! String)
             cell.lblTiktBranch.text = (lcDict["pb_name"] as! String)
             let AssignTo = (lcDict["assigned_to"] as! String)
@@ -191,7 +197,6 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
                  cell.lblRemarkBySupervisor.text = "Status Pending"
             }
             
-           
             let lcImagNameArr = lcDict["mt_photo"] as! [String]
             if lcImagNameArr.isEmpty == true
             {
@@ -199,7 +204,6 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
             }
             
             cell.btnViewPhotos.tag = indexPath.row
-            
             cell.btnViewPhotos.addTarget(self, action:  #selector(ViewPhoto_Click(sender:)), for: .touchUpInside)
             return cell
             
@@ -242,36 +246,37 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
         }else{
             print("No Images")
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        popUp.dismiss(true)
-        ProjArr = ProjectVc.cProjectData.FeatchProjectsDataOffline()!
-        
-        let projEnt = ProjArr[indexPath.row] as! FeatchProjects
-        let pId = projEnt.p_id
-        let CameraFlag = projEnt.p_camera
-        if CameraFlag == "0"  // no camera
+        if tableView == tblProject
         {
-            let cBarcode = storyboard?.instantiateViewController(withIdentifier: "BarCodeVc") as! BarCodeVc
-            cBarcode.showvc = cShowVc
-            cBarcode.pId = pId!
+            popUp.dismiss(true)
+            ProjArr = ProjectVc.cProjectData.FeatchProjectsDataOffline()!
             
-            self.navigationController?.pushViewController(cBarcode, animated: true)
-            
-            
-        }else
-        {
-            let cScanner = storyboard?.instantiateViewController(withIdentifier: "ScannerVc") as! ScannerVc
-            cScanner.showvc = cShowVc
-            cScanner.PId = pId!
-            self.navigationController?.pushViewController(cScanner, animated: true)
+            let projEnt = ProjArr[indexPath.row] as! FeatchProjects
+            let pId = projEnt.p_id
+            let CameraFlag = projEnt.p_camera
+            if CameraFlag == "0"  // no camera
+            {
+                let cBarcode = storyboard?.instantiateViewController(withIdentifier: "BarCodeVc") as! BarCodeVc
+                cBarcode.showvc = cShowVc
+                cBarcode.pId = pId!
+                
+                self.navigationController?.pushViewController(cBarcode, animated: true)
+                
+            }else
+            {
+                let cScanner = storyboard?.instantiateViewController(withIdentifier: "ScannerVc") as! ScannerVc
+                cScanner.showvc = cShowVc
+                cScanner.PId = pId!
+                self.navigationController?.pushViewController(cScanner, animated: true)
+                
+            }
             
         }
-        
+       
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

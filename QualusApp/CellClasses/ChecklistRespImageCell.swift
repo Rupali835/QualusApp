@@ -12,6 +12,8 @@ class ChecklistRespImageCell: UITableViewCell {
 
     @IBOutlet weak var backView: UIView!
     
+    @IBOutlet weak var viewInputStr: UIView!
+    @IBOutlet weak var viewBtnYesNo: UIView!
     @IBOutlet weak var lblQuetionNum: UILabel!
     
     @IBOutlet weak var lblQuetion: UILabel!

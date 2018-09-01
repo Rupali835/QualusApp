@@ -23,7 +23,7 @@ class ClassificationData : NSObject
 
         let clsficationUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/get_active_classifications"
         Alamofire.request(clsficationUrl, method: .get, parameters: nil).responseJSON { (resp) in
-            print(resp)
+         //   print(resp)
             
             if let JSON = resp.result.value
             {
@@ -58,7 +58,7 @@ class ClassificationData : NSObject
             }
             
         }
-        print("Save classification data")
+    //    print("Save classification data")
     }
     
     func fetchOfflineClassification() -> [AnyObject]?

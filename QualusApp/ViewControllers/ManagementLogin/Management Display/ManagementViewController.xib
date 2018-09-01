@@ -39,7 +39,7 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jyf-Ba-3Qk">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjS-pQ-y9m" customClass="gradient" customModule="QualusApp" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjS-pQ-y9m">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mavrick Ticket " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pb-Ft-iW0">
@@ -83,7 +83,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="0.8963238441780822" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.6705882352941176" green="0.27843137254901962" blue="0.73725490196078436" alpha="0.8963238441780822" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Gx2-62-cUS" secondAttribute="trailing" constant="5" id="8v6-wB-Hol"/>
                                                 <constraint firstAttribute="bottom" secondItem="Gx2-62-cUS" secondAttribute="bottom" constant="10" id="93t-Ng-6hE"/>
@@ -121,7 +121,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="0.90443065068493156" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.36078431372549019" green="0.41960784313725491" blue="0.75294117647058822" alpha="0.90443065068493156" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="8gj-Ia-RjJ" secondAttribute="bottom" constant="10" id="5ct-Ko-YNV"/>
                                                 <constraint firstItem="xds-O7-EpT" firstAttribute="centerX" secondItem="CKU-Rg-vYQ" secondAttribute="centerX" id="Jnv-bx-dJc"/>
@@ -159,7 +159,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.04296875" green="0.46835982802499998" blue="0.31881666180000001" alpha="0.9041898544520548" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.25882352941176467" green="0.6470588235294118" blue="0.96078431372549022" alpha="0.9041898544520548" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="sxU-PG-4xd" secondAttribute="trailing" constant="5" id="Dzz-MC-5go"/>
                                                 <constraint firstItem="N25-He-b7Z" firstAttribute="top" secondItem="rwn-KF-ybK" secondAttribute="top" constant="10" id="Rx1-Zk-uWR"/>
@@ -342,17 +342,6 @@
                                 <constraint firstItem="9F1-99-aRN" firstAttribute="leading" secondItem="PjS-pQ-y9m" secondAttribute="leading" constant="10" id="vuf-M4-1Mj"/>
                                 <constraint firstItem="9F1-99-aRN" firstAttribute="top" secondItem="yVa-cB-O9W" secondAttribute="bottom" constant="15" id="zKP-aM-IaQ"/>
                             </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="ThirdColour">
-                                    <color key="value" red="0.2274509804" green="0.65098039220000004" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="firstcolour">
-                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="secondColour">
-                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <constraints>
@@ -376,7 +365,7 @@
             <point key="canvasLocation" x="-1378" y="49"/>
         </view>
         <view contentMode="scaleToFill" id="zr6-Pd-Fkg">
-            <rect key="frame" x="0.0" y="0.0" width="316" height="240"/>
+            <rect key="frame" x="0.0" y="0.0" width="316" height="283"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  My Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f25-Uz-uuM">
@@ -463,7 +452,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="qEq-On-scu"/>
-            <point key="canvasLocation" x="-948" y="-152"/>
+            <point key="canvasLocation" x="-948" y="-151.5"/>
         </view>
         <view contentMode="scaleToFill" id="Kk7-AJ-4vG" userLabel="MoreView">
             <rect key="frame" x="0.0" y="0.0" width="316" height="97"/>

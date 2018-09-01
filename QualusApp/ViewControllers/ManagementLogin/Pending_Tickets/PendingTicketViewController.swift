@@ -59,6 +59,9 @@ class PendingTicketViewController: UIViewController {
                           "com_id": com_id!]
         print(T_get_para)
         OperationQueue.main.addOperation {
+            SVProgressHUD.setDefaultMaskType(.custom)
+            SVProgressHUD.setBackgroundColor(UIColor.gray)
+            SVProgressHUD.setBackgroundLayerColor(UIColor.white)
             SVProgressHUD.show()
         }
         manager.request(ticketUrl, method: .post, parameters: T_get_para, encoding: URLEncoding.default, headers: nil).responseData { (resp) in
@@ -94,7 +97,7 @@ class PendingTicketViewController: UIViewController {
 extension PendingTicketViewController: UICollectionViewDelegate,UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(arrpendingTicket.count)
+      
         return arrpendingTicket.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
