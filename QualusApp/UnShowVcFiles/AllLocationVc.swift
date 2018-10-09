@@ -47,15 +47,13 @@ class AllLocationVc: UIViewController {
         let context = appDel.persistentContainer.viewContext
         
         let loctUrl = "http://kanishkaconsultancy.com/Qualus-FM-Android/fetchAllLocations.php"
-        let lctParam = ["u_Id" : "150",
-                        "u_type" : "3"]
+     //   let lctParam = ["u_Id" : "150",
+      //                  "u_type" : "3"]
         
-        
-//        let lctParam = ["u_Id" : self.User_id,
-//                        "u_type" : self.UsrRole]
+               let lctParam = ["u_Id" : self.User_id,                        "u_type" : self.UsrRole]
 //
         Alamofire.request(loctUrl, method: .post, parameters: lctParam).responseJSON { (fetchData) in
-            print(fetchData)
+         
             
             if let JSON = fetchData.result.value
             {

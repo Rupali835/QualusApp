@@ -11,8 +11,10 @@ target 'QualusApp' do
 	pod 'ALCameraViewController'
 	pod ‘AlamofireImage’
 	pod 'SDWebImage/WebP'
-
-	
+	pod 'Firebase/Core'
+	pod 'Firebase/Messaging'
+	pod 'Firebase/Database'		
+		
 
   # Pods for QualusApp
 
@@ -23,6 +25,11 @@ target 'QualusApp' do
  	pod 'SVProgressHUD'
  	pod ‘AlamofireImage’
 	pod 'SDWebImage/WebP'
+	pod 'Firebase/Core'
+	pod 'Firebase/Messaging'
+	pod 'Firebase/Database'	
+	
+	
 
  
 

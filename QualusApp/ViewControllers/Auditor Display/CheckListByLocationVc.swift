@@ -12,7 +12,7 @@ import Alamofire
 class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
    
-    var userRole : String!
+    var userRole : String = ""
     var QrString : String!
     var LocationDaraArr = [AnyObject]()
    // var Lid : String = ""
@@ -21,18 +21,24 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
     var ClassId : String!
     var projectId : String!
     var showVC = Bool()
+    private var toast : JYToast!
     
     @IBOutlet weak var tblChecklist: UITableView!
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CheckListByLocationVc.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+        
+        
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         self.userRole = lcDict["role"] as! String
-        print("Role", self.userRole)
+     
         tblChecklist.dataSource = self
         tblChecklist.delegate = self
-        
+        toast = JYToast()
         tblChecklist.registerCellNib(LocationCell.self)
         
         LocationDaraArr = LocationData.cLocationData.fetchOfflineLocation()!
@@ -51,11 +57,16 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
 
+    @objc func back(sender: UIBarButtonItem) {
+       let vc = storyboard?.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func setQrString(cQr: String, ProjId: String, Showvc: Bool)
     {
         self.QrString = cQr
         self.projectId = ProjId
-        self.showVC = Showvc    // false
+        self.showVC = Showvc    // if from barcode = true or from scanner = false
     }
    
     func designCell(cView : UIView)
@@ -78,25 +89,37 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
     
     func getChecklist(lcl_Id: String,rollId: String )
     {
-        let checklistUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/get_checklist_by_location"
+        let checklistUrl = "https://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/get_checklist_by_location"
         let checklistParam = ["l_id" : lcl_Id,
                               "user_role" : rollId]
+    
         
           Alamofire.request(checklistUrl, method: .post, parameters: checklistParam).responseJSON { (fetchData) in
-        
             print(fetchData)
-            let JSON = fetchData.result.value as! [String: AnyObject]
-            
-            self.checklistArr = JSON["Checklist"] as! [AnyObject]
-            self.QuetionArr = JSON["Questions"] as! [AnyObject]
-            
-            self.tblChecklist.reloadData()
+
+           switch fetchData.result
+           {
+           case .success(let JSON):
+             let JSON = fetchData.result.value as! [String: AnyObject]
+
+             self.checklistArr = JSON["Checklist"] as! [AnyObject]
+             self.QuetionArr = JSON["Questions"] as! [AnyObject]
+
+             self.tblChecklist.reloadData()
+            break
+
+           case .failure(let error):
+            print(error)
+            self.toast.isShow("something went wrong")
+            break
+            }
+        
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return checklistArr.count
-    }
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -169,6 +192,7 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
             QueBarcodeVc.ProjId = self.projectId
             QueBarcodeVc.ClassificationId = self.ClassId
             QueBarcodeVc.QuestionArray = questionArr
+            QueBarcodeVc.CheckListArr = self.checklistArr
             QueBarcodeVc.QrStr = self.QrString
             self.navigationController?.pushViewController(QueBarcodeVc, animated: true)
         }

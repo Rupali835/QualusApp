@@ -158,17 +158,12 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
             self.designCell(cView: cell.backView)
             
             let ImgArr = lcDict["ans_image"] as! [AnyObject]
-            print(ImgArr)
-            
             self.BindImages(cImagesArr: ImgArr, cell: cell)
             
          let indexNumber = indexPath.row + 1
             cell.lblQuetionNum.text = "Q" + String(indexNumber)
-            
-            
             cell.lblQuetion.text = lcDict["question"] as! String
             cell.lblRespRemark.text = lcDict["remark"] as! String
-            
             
             let ansQ = lcDict["answer"] as! String
             
@@ -177,7 +172,6 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
                 cell.imgYes.image = UIImage(named: "selectRadioBtn")
                 cell.imgNo.image = UIImage(named: "UnselectRadioBtn")
                 cell.imgNA.image = UIImage(named: "UnselectRadioBtn")
-                
             }
             
             if ansQ == "0"
@@ -228,14 +222,11 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
                             }else if cell.img4.image == nil{
                                 cell.img4.image = img
                                 
-                            }
-
+                    }
                 }
-                
-                
-            }
-        }
-    }
+             }
+         }
+     }
   
-}
+  }
 }

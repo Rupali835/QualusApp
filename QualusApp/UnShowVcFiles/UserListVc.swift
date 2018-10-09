@@ -31,10 +31,10 @@ class UserListVc: UIViewController {
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
         
-        let userUrl = "http://kanishkagroups.com/Qualus/index.php/Android/Login/get_assigned_project_wise_user"
+        let userUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/get_assigned_project_wise_user"
         let param = ["user_id" : "150"]
         Alamofire.request(userUrl, method: .post, parameters: param).responseJSON { (userData) in
-            print(userData)
+          
             let Json = userData.result.value
             
             self.mainArr = Json as! [AnyObject]
@@ -66,7 +66,7 @@ class UserListVc: UIViewController {
             for (index, value) in DataArr.enumerated()
             {
                 let userEnt = DataArr[index] as! FetchUserList
-                print("user_full_name", userEnt.full_name!)
+           //     print("user_full_name", userEnt.full_name!)
             }
             
         }catch{
@@ -80,7 +80,7 @@ class UserListVc: UIViewController {
         let contx = appDel.persistentContainer.viewContext
         do{
             let DataArr = try contx.fetch(FetchUserList.fetchRequest()) as [AnyObject]
-            print("Count=\(DataArr.count) \(DataArr)")
+       //     print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()
             {

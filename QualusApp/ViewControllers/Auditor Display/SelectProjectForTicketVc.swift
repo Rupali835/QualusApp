@@ -24,7 +24,7 @@ class SelectProjectForTicketVc: UIViewController, UITableViewDataSource, UITable
         tblProject.dataSource = self
         tblProject.registerCellNib(LocationCell.self)
         tblProject.separatorStyle = .none
-        print("Projects",ProjNmArr)
+      
         
         for (index, value) in ProjNmArr.enumerated()
         {

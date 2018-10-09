@@ -24,6 +24,7 @@ class MaverickTicketViewVc: UIViewController
     var cChecklistVC =  ChecklistViewController()
     var toast = JYToast()
     var popUp : KLCPopup!
+    var cSubmitCheck : SubmittedChecklistVc!
     
     
     @IBOutlet weak var tblTicket: UITableView!
@@ -149,7 +150,7 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
             
             let PID = lcDict["p_id"] as! String
             let LID = lcDict["l_id"] as! String
-            cChecklistVC.getdetails(u_id: self.userId, p_id: PID, l_id: LID)
+            
             
             designCell(cView: cell.backView)
             let tiktNum = (lcDict["mt_id"] as! String)
@@ -168,7 +169,8 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
             }
             cell.lblTiktObservation.text = (lcDict["mt_subject"] as! String)
             cell.lblSpace.text = (lcDict["l_space"] as! String)
-            cell.lblTiktLocation.text = LID
+            self.GetLocationData(cLocationId: LID, cell: cell)
+
             cell.lblTiktProject.text = (lcDict["p_name"] as! String)
             cell.lblTiktBranch.text = (lcDict["pb_name"] as! String)
             let AssignTo = (lcDict["assigned_to"] as! String)
@@ -220,7 +222,7 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
             cell.lblFirstLetter.backgroundColor = getRandomColor()
             return cell
         default:
-            print("default")
+            
             return UITableViewCell()
             
         }
@@ -231,11 +233,20 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
     {
         let lcDict = TicketArr[sender.tag]
         let lcImagNameArr = lcDict["mt_photo"] as! [String]
+        let Fc_id = lcDict["fc_id"] as! String
         var imgPathArr = [String]()
         for lcImageName in lcImagNameArr
         {
-            let ImgURl = "http://kanishkagroups.com/Qualus/uploads/ticket_images/\(lcImageName)"
-            imgPathArr.append(ImgURl)
+            let ImgURL : String!
+            if Fc_id == "0"
+            {
+                ImgURL = "http://kanishkagroups.com/Qualus/uploads/ticket_images/\(lcImageName)"   // fc_id = 0
+                
+            }else
+            {
+                ImgURL = "http://kanishkagroups.com/Qualus/uploads/answer_images/\(lcImageName)"
+            }
+            imgPathArr.append(ImgURL)
         }
         
         if lcImagNameArr.count > 0{
@@ -286,7 +297,7 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
         case tblProject:
             return 50
         default:
-            print("not match")
+            
             return 0
         }
         
@@ -311,6 +322,51 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
 //            Ticket.t_close_remark  = "Not Provided"
 //        }
 //    }
+    
+    
+    func GetLocationData(cLocationId: String, cell: MaverickTicketCell)
+    {
+        let LocationDataArr = LocationData.cLocationData.fetchOfflineLocation()!
+        
+        for (index, _) in LocationDataArr.enumerated()
+        {
+            let locationEnt = LocationDataArr[index] as! FetchLocation
+            
+            if locationEnt.l_id ==  cLocationId
+            {
+                let l_floor = locationEnt.l_floor
+                let branch_id = locationEnt.branch_id
+                let L_room = locationEnt.l_room
+                let L_wing = locationEnt.l_wing
+                
+                
+                let BuildingArr = LocationData.cLocationData.fetchOfflineBuilding()!
+                
+                for (index, _) in BuildingArr.enumerated()
+                {
+                    let BuildingEnt = BuildingArr[index] as! FetchBuilding
+                    let BranchId = BuildingEnt.branch_id
+                    //  print("BranchId =", BranchId)
+                    if branch_id == BranchId
+                    {
+                        let b_name = BuildingEnt.b_name
+                        
+                        if L_room != "NF"
+                        {
+                            cell.lblTiktLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + b_name!
+                        }
+                        if L_wing != "NF"
+                        {
+                            cell.lblTiktLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + "Wing:" + L_wing! + "," + b_name!
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+    }
+
 
 }
 

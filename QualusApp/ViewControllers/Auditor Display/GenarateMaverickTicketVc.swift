@@ -34,7 +34,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     let toolBar             = UIToolbar()
     var DateStr             : String!
     var popUp               : KLCPopup!
-    var showVc              : Bool!                 // bool to check which ticket should 
+    var showVc              : Bool!        // bool to check which ticket should
     var toast               = JYToast()
 
     
@@ -60,6 +60,11 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(GenarateMaverickTicketVc.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+        
         popUp = KLCPopup()
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         self.userId = lcDict["user_id"] as! String
@@ -77,10 +82,8 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         LocationDaraArr = LocationData.cLocationData.fetchOfflineLocation()!
         imageCollection.registerCellNib(TicketImagesCVC.self)
         createDatePicker()
-
-        print("show vc barcode/scanner\(showVc)")
         
-        if self.showVc == false // camera Not allowed
+        if self.showVc == false // camera Not allowed // ticket from barcode
         {
             imageCollection.isHidden = true
             btnAddImg.isHidden = true
@@ -91,13 +94,18 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
             imageCollection.isHidden = false
             btnAddImg.isHidden = false
             stackViewTopHIghtConstrains.constant = 10
-            backViewHeight.constant = 450
+            backViewHeight.constant = 450 // ticket from qr code
         }
 
         
     }
     
     //MARK: FUNCTIONS
+    
+    @objc func back(sender: UIBarButtonItem) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MaverickTicketViewVc") as! MaverickTicketViewVc
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     
     func createDatePicker()
@@ -192,7 +200,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     func getLocation()
     {
         LocationDaraArr = LocationData.cLocationData.fetchOfflineLocation()!
-          print("locations")
+        
         for (index, _) in LocationDaraArr.enumerated()
         {
             let locationEnt = LocationDaraArr[index] as! FetchLocation
@@ -212,7 +220,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     
     func Add_MaverickTikt(Pid: String, PbId : String, Lid : String, Userid : String, ComId : String)
     {
-        print("Data")
+    
         var jsonimgString = json(from: self.imgArr)
         let imageCount = String(self.ImageArr.count)
 
@@ -242,7 +250,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         let Alert: UIAlertController = UIAlertController(title: "Alert", message: MessgaStr, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default, handler: { action in
-            print("OK Action")
+    
             self.imgArr.removeAll(keepingCapacity: false)
             self.filePathArr.removeAll(keepingCapacity: false)
             self.ImageArr.removeAll(keepingCapacity: false)
@@ -307,7 +315,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
                                 print("fileURL=\(fileURL)")
                                 self?.filePath = fileURL.path
                                 try data.write(to: fileURL)
-                                print("file saved")
+                                
                             } catch {
                                 print("error saving file:", error)
                             }

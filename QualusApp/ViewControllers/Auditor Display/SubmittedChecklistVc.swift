@@ -63,7 +63,7 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
             let JSON = fetchData.result.value as? [String: AnyObject]
             
             self.CheckListArr = JSON!["filled_checklist"] as! [AnyObject]
-            print("Ticket List", self.CheckListArr)
+           
             self.tblSubmitedList.reloadData()
             
         }
@@ -128,8 +128,22 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tblSubmitedList.dequeueReusableCell(withIdentifier: "SubmitedChecklistCell", for: indexPath) as! SubmitedChecklistCell
+       
+         let lcDict = CheckListArr[indexPath.row]
+        let string = lcDict["start_time"] as! String
         
-        let lcDict = CheckListArr[indexPath.row]
+        let dateFormatter = DateFormatter()
+        let tempLocale = dateFormatter.locale // save locale temporarily
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateFo = dateFormatter.date(from: string)!
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.locale = tempLocale // reset the locale
+        let dateString = dateFormatter.string(from: dateFo)
+
+        
+        
+       
         self.designCell(cView: cell.backView)
     
         cell.lblChecklistNm.text = lcDict["c_name"] as! String
@@ -138,7 +152,8 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.GetLocationData(cLocationId: l_id, cell: cell)
         
-        cell.lblDate.text = lcDict["start_time"] as! String
+        cell.lblDate.text = dateString
+        
         let Percent = lcDict["percent"] as! String
         
         cell.lblPercent.text = Percent  + "%"
@@ -165,13 +180,11 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         let lcDict = CheckListArr[indexPath.row]
         
         self.FcId = lcDict["fc_id"] as! String
-        print("FcId", self.FcId)
+       
         let respVc = storyboard?.instantiateViewController(withIdentifier: "SubmitChecklistResponseVc") as! SubmitChecklistResponseVc
         
         respVc.setFcid(fcId: self.FcId)
         self.navigationController?.pushViewController(respVc, animated: true)
-        
-        
-    }
+        }
 
 }

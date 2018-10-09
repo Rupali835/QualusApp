@@ -10,27 +10,108 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
+
 class SplashScreenVc: UIViewController {
 
   
+    @IBOutlet weak var fullbackImg: UIImageView!
     @IBOutlet weak var backView: UIView!
     
     @IBOutlet weak var MyImg: UIImageView!
     var ComId : String = ""
     let urlpath = "http://kanishkagroups.com/Qualus/uploads/company_logo/"
     var ImgPath : String!
-    
+    var Userrole : String = ""
+    var userId : String = ""
+    let manager = Alamofire.SessionManager.default
+    private var toast : JYToast!
+   
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.SplashData()
         
-        // Do any additional setup after loading the view.
-    }
+        if isConnectedToNetwork()
+        {
+            manager.session.configuration.timeoutIntervalForRequest = 120
+            toast = JYToast()
+            self.SplashData()
+            
+            let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
+        }else{
+            self.toast.isShow("No internet connection")
+        }
+        
+    
+      }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setViewController(user_id : String, Role : String)
+    {
+        
+        if Role == "3"
+        {
+            ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
+                if sucess
+                {
+                    LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: { (success) -> Void
+                        in
+                        if success
+                        {
+                            userDataList.cUserData.getUserList(user_id: user_id)
+                            ClassificationData.cDataClassification.fetchClassifictnData()
+                            MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
+                        }else
+                        {
+                            print("false")
+                            
+                        }
+                        
+                    })
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        
+                        let ProjVc = self.storyboard?.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
+                        self.navigationController?.pushViewController(ProjVc, animated: true)
+                    }
+                    
+                } else {
+                    
+                    print("false")
+                }
+                
+            })
+        }
+        
+        if (Role == "6") || (Role == "1") || (Role == "8")
+            
+        {
+            LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: {(sucess) -> Void in
+                if sucess{
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        
+                        let managevc = ManagementViewController.init(nibName: "ManagementViewController", bundle: nil)
+                        self.navigationController?.pushViewController(managevc, animated: true)
+                    }
+               
+                } else {
+                    
+                    print("false")
+                }
+                
+                
+            })
+         
+        }
+        
+//        userDataList.cUserData.getUserList(user_id: user_id)
+//        ClassificationData.cDataClassification.fetchClassifictnData()
+//        MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
+        
+        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.hidesBackButton = true
     }
     
     func setComId(Com_id : String)
@@ -42,18 +123,36 @@ class SplashScreenVc: UIViewController {
     {
         let SplashUrl = "http://kanishkaconsultancy.com/Qualus-FM-Android/get_company_data.php"
         let Splashparam = ["com_id" : "36"]
-        print(Splashparam)
-        
-        Alamofire.request(SplashUrl, method: .post, parameters: Splashparam).responseJSON { (dataResult) in
-            print(dataResult)
-            let data = dataResult.result.value
-            let dict  = data as! [AnyObject]
+       
+        manager.request(SplashUrl, method: .post, parameters: Splashparam).responseJSON { (dataResult) in
+           
             
-            self.ImgPath = dict[0]["com_logo"] as! String
-            let name = dict[0]["com_name"] as! String
-            print("Img", self.ImgPath)
-            print("name", name)
-            self.img()
+            switch dataResult.result
+            {
+            case .success(let data):
+                    let data = dataResult.result.value
+                    let dict  = data as! [AnyObject]
+                    
+                    self.ImgPath = dict[0]["com_logo"] as! String
+                    let name = dict[0]["com_name"] as! String
+                  
+                    self.img()
+
+                break
+                
+            case .failure(let error):
+                if error._code == NSURLErrorTimedOut
+                {
+                  self.toast.isShow("Network error")
+                }
+                
+                if error._code == errSecNetworkFailure
+                {
+                    self.toast.isShow("Network error")
+                }
+                break
+            }
+            
         }
         
     }
@@ -62,7 +161,7 @@ class SplashScreenVc: UIViewController {
     {
         let strImg = urlpath + self.ImgPath
         Alamofire.request(strImg, method: .get).responseImage { (resp) in
-            print(resp)
+           
             if let img = resp.result.value{
                 
                 DispatchQueue.main.async {

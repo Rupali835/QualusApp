@@ -54,7 +54,6 @@ class ManagementViewController: UIViewController {
         super.viewDidLoad()
         popUp = KLCPopup()
         
-        
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         UserRole = lcDict["role"] as! String
         UserId = lcDict["user_id"] as! String

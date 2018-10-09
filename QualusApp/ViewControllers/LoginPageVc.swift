@@ -35,10 +35,6 @@ class LoginPageVc: UIViewController {
              AbbrevationVcCall()
         }
        
-//        self.txtUserNm.text = "rupali@kspl.com"
-//        self.txtPasswordFld.text = "Rupali@kspl"
-//
-        
     }
 
     override func awakeFromNib()
@@ -62,7 +58,7 @@ class LoginPageVc: UIViewController {
         else{
             self.com_id = "0"
         }
-        let LoginUrl = "http://kanishkagroups.com/Qualus/index.php/Android/Login/userLogin"
+        let LoginUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/userLogin"
         let loginParam : [String: AnyObject] = [
             
             "com_id" :  self.com_id as AnyObject,
@@ -84,47 +80,20 @@ class LoginPageVc: UIViewController {
                 let strResult = dict["msg"] as! String
                 if strResult == "SUCCESS"
                 {
-                    
                     let UserData = dict["data"] as! [String: AnyObject]
                     print(UserData)
                     UserDefaults.standard.set(UserData, forKey: "UserData")
                     UserDefaults.standard.synchronize()
-                    let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
-                    //print(lcDict)
+
+                    
+                    UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
                     
                     let user_id = UserData["user_id"] as! String
-                    let name = UserData["full_name"] as! String
                     let Role = UserData["role"] as! String
-                    let UserLoginStatus = UserData["user_logged_in"] as! String
                     self.ComId = UserData["com_id"] as! String
-                    
-                    userDataList.cUserData.getUserList(cUserNm: user_id, cRole: Role, user_id: user_id)
-                    ClassificationData.cDataClassification.fetchClassifictnData()
-                    MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
-                    
-                    LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: {(sucess) -> Void in
-                         if sucess{
-                            self.setViewFromRole(Role: Role)
-                            
-                        } else {
-                            
-                            print("false")
-                        }
-                       
-
-                    })
-                    
-                    ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
-                        if sucess
-                        {
-                            self.setViewFromRole(Role: Role)
-                            
-                        } else {
-                            
-                            print("false")
-                        }
-                        
-                    })
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
+                    vc.setViewController(user_id: user_id, Role: Role)
+                    self.navigationController?.pushViewController(vc, animated: true)
                     
                 }
                 else if strResult == "aleardy loggedin"
@@ -139,27 +108,9 @@ class LoginPageVc: UIViewController {
             }else{
                 self.toast.isShow("No data found")
             }
-            
-            
         }
-        
-        
     }
     
-    func setViewFromRole(Role: String)
-    {
-        if (Role == "6") || (Role == "1") || (Role == "8")
-
-        {
-            let managevc = ManagementViewController.init(nibName: "ManagementViewController", bundle: nil)
-            self.navigationController?.pushViewController(managevc, animated: true)
-            
-        }else if Role == "3"
-        {
-            let ProjVc = self.storyboard?.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
-            self.navigationController?.pushViewController(ProjVc, animated: true)
-        }
-    }
     
     
     func funShowAlert(_ varTitle: String, _ varMessage: String){
@@ -205,7 +156,7 @@ class LoginPageVc: UIViewController {
     
     func getAbbrevation()
     {
-        let AbbrUrl = "http://kanishkagroups.com/Qualus/index.php/Android/Login/get_com_id_by_abbr"
+        let AbbrUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/get_com_id_by_abbr"
         let Abbrparam = ["com_abbr" : self.AbbrevationNm!]
     
         Alamofire.request(AbbrUrl, method: .post, parameters: Abbrparam).responseJSON { (ApiResult) in
@@ -257,10 +208,8 @@ class LoginPageVc: UIViewController {
         
         self.ComId = "0"
         alert.addTextField()
-        
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
-        
         present(alert, animated: true)
     }
     

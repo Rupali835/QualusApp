@@ -8,52 +8,160 @@
 
 import UIKit
 import CoreData
+import Firebase
+import UserNotifications
+import FirebaseMessaging
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate,UNUserNotificationCenterDelegate  {
 
     var window: UIWindow?
+    var FCMToken: String!
+    var Notificationcount = Int(0)
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
         self.window!.backgroundColor = UIColor.clear
-        
         UINavigationBar.appearance().barTintColor = UIColor.lightGreen
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         
-         let result = UserDefaults.standard.value(forKey: "UserData")
-        
-   
-        
+        Notificationcount = 0
+        FirebaseApp.configure()
+
+       if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        Messaging.messaging().delegate = self
+
+         } else {
+            
+            let settings: UIUserNotificationSettings =
+                
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            
+            application.registerUserNotificationSettings(settings)
+            
+        }
+    application.registerForRemoteNotifications()
+    Messaging.messaging().delegate = self
+    registerForPushNotifications()
+    
+    let result = UserDefaults.standard.value(forKey: "UserData")
         if result != nil
         {
             let result = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         
             let Role = result["role"] as! String
-            if Role == "6"
-            {
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
-                let managevc = ManagementViewController.init(nibName: "ManagementViewController", bundle: nil)
-                let navigationController = self.window?.rootViewController as! UINavigationController
-                navigationController.setViewControllers([managevc], animated: true)
-
-            }else if Role == "3"
-            {
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
-                let yourViewController: ProjectInfoVc = storyboard.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
-                let navigationController = self.window?.rootViewController as! UINavigationController
-                navigationController.setViewControllers([yourViewController], animated: true)
-            }
-        }
+            let userid = result["user_id"] as! String
+            
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
+            let yourViewController: SplashScreenVc = storyboard.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
+            yourViewController.setViewController(user_id: userid, Role: Role)
+            let navigationController = self.window?.rootViewController as! UINavigationController
+         navigationController.setViewControllers([yourViewController], animated: true)
+            
+       }
         
-        
-        return true
+    return true
     }
 
+    func application(received remoteMessage: MessagingRemoteMessage)
+    {
+        print(remoteMessage.appData)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        // Print full message.
+        
+        print("message recived")
+        
+        Notificationcount = Notificationcount + 1
+        
+        UIApplication.shared.applicationIconBadgeNumber = Notificationcount
+        
+        print(userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+        
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String)
+        
+    {
+        print("Firebase registration token: \(fcmToken)")
+        self.FCMToken = fcmToken
+ 
+    }
+    
+    
+    func getNotificationSettings() {
+        
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            
+            print("Notification settings: \(settings)")
+            
+            guard settings.authorizationStatus == .authorized else { return }
+            
+            
+        }
+        
+    }
+    
+    func registerForPushNotifications() {
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            
+            (granted, error) in
+            
+            print("Permission granted: \(granted)")
+            
+            guard granted else { return }
+            
+            self.getNotificationSettings()
+            
+        }
+        
+    }
+    
+    func application(_ application: UIApplication,
+                     
+                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        print("Failed to register: \(error)")
+        
+    }
+    
+    // Receive displayed notifications for iOS 10 devices.
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        let userInfo = notification.request.content.userInfo
+        print(userInfo)
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        print(userInfo)
+        guard
+            let aps = userInfo[AnyHashable("aps")] as? NSDictionary,
+            let alert = aps["alert"] as? NSDictionary,
+            let title = alert["title"] as? String
+            else {
+                // handle any error here
+                return
+        }
+    }
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

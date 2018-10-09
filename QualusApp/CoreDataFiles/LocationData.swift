@@ -25,7 +25,7 @@ class LocationData: NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
         
-        let loctUrl = "http://kanishkaconsultancy.com/Qualus-FM-AndroidV2/fetchAllLocations.php"
+        let loctUrl = "http://kanishkaconsultancy.com/Qualus-FM-Android/fetchAllLocations.php"
         let lctParam = ["u_Id" : lcUID,
                         "u_type" : lcRole]
         
@@ -107,12 +107,12 @@ class LocationData: NSObject
         do{
             let DataArr = try context.fetch(FetchLocation.fetchRequest()) as [AnyObject]
             
-//            for (index, value) in DataArr.enumerated()
-//            {
-//                let locationEnt = DataArr[index] as! FetchLocation
-//                
-//                print("L_name", locationEnt.l_id!)
-//            }
+            for (index, value) in DataArr.enumerated()
+            {
+                let locationEnt = DataArr[index] as! FetchLocation
+                
+                print("L_name", locationEnt.l_id!)
+            }
             
             return DataArr
             
@@ -164,12 +164,14 @@ class LocationData: NSObject
         do{
             let DataArr = try contx.fetch(FetchLocation.fetchRequest()) as [AnyObject]
        //     print("Count=\(DataArr.count) \(DataArr)")
+          
             
             for (index, _) in DataArr.enumerated()
             {
                 let ProjectsEntity = DataArr[index] as! FetchLocation
                 contx.delete(ProjectsEntity)
             }
+            
         }catch{
             
         }

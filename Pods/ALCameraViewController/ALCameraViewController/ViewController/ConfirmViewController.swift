@@ -31,7 +31,7 @@ public class ConfirmViewController: UIViewController, UIScrollViewDelegate {
 	public var onComplete: CameraViewCompletion?
 
 	let asset: PHAsset?
-	let image: UIImage?
+	let image: UIImage!
 	
 	public init(image: UIImage, croppingParameters: CroppingParameters) {
 		self.croppingParameters = croppingParameters

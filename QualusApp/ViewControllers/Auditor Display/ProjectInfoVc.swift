@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import AVScanner
 
-class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
+class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     @IBOutlet weak var projectCollView: UICollectionView!
     @IBOutlet weak var ticketView: UIView!
@@ -34,20 +34,50 @@ class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionVie
         self.ticketView.isHidden = self.m_bTicketView
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         self.UserRole = lcDict["role"] as! String
-        print("Role", self.UserRole)
         self.UserNm = lcDict["full_name"] as! String
         self.UserId = lcDict["user_id"] as! String
         self.User_Logein = lcDict["user_logged_in"] as! String
         self.designCell(cView: ticketView)
-        projectCollView.delegate = self
-        projectCollView.dataSource = self
         projectDataArr = ProjectVc.cProjectData.FeatchProjectsDataOffline()!
-        print("Projects",projectDataArr)
+        //        print("Projects",projectDataArr)
         self.projectCollView.reloadData()
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+       
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+      
+        self.projectCollView.collectionViewLayout = layout
+ 
+        projectCollView.delegate = self
+        projectCollView.dataSource = self
+        
+        self.navigationItem.hidesBackButton = true
+    }
     
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //2
+        return CGSize(width: (self.projectCollView.frame.size.width - 30) / 2, height: 165)
+    }
+    
+    //3
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+    }
+    
+    // 4
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10.0
+    }
+    
+
     func designCell(cView : UIView)
     {
         cView.layer.masksToBounds = false
@@ -56,6 +86,8 @@ class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionVie
         cView.layer.shadowOffset = CGSize(width: 0, height: 0)
         cView.layer.shadowRadius = 1
    }
+    
+    // MARK : COLLECTIONVIEW METHODS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -118,7 +150,7 @@ class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionVie
         
     }
     
-    
+  
     @IBAction func btnUserProfile_Click(_ sender: Any)
     {
         self.cUserProfile.view.frame =  self.view.bounds
@@ -156,7 +188,7 @@ class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionVie
         let logouturl = "http://kanishkaconsultancy.com/Qualus-FM-Android/logout.php"
         let logParam = ["user_id" : self.UserId]
         Alamofire.request(logouturl, method: .post, parameters: logParam).responseString { (logDATA) in
-            print(logDATA)
+           
             
             if self.User_Logein == "0"
             {
@@ -202,6 +234,14 @@ class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionVie
     @IBAction func btnSync_Click(_ sender: Any)
     {
         self.btnTicket_Click(sender)
+        
+        userDataList.cUserData.getUserList(user_id: self.UserId)
+        ClassificationData.cDataClassification.fetchClassifictnData()
+        MapLocation.cMapLocationData.fetchMapLocation(UserId: self.UserId)
+        
+        LocationData.cLocationData.fetchData(lcUID: self.UserId, lcRole: self.UserRole, arg: true) { (success) in
+           
+        }
         
        
         

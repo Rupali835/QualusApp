@@ -36,6 +36,8 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     var Longitude : String = ""
     var L_id : String = ""
     var U_id : String = ""
+    var secondBarCode : String = ""
+    var setSecondBarcode : Int!
     
     override func viewDidLoad()
     {   super.viewDidLoad()
@@ -70,8 +72,13 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let lastLocation: CLLocation = locations[locations.count - 1]
         
+        let ent = FetchLocation.self
+        
         self.Latitude = String(format: "%.6f", lastLocation.coordinate.latitude)
         self.Longitude = String(format: "%.6f", lastLocation.coordinate.longitude)
+       
+        UserDefaults.standard.set(self.Latitude, forKey: "lat")
+        UserDefaults.standard.set(self.Longitude, forKey: "long")
         
     }
 
@@ -139,23 +146,21 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                             {
                                 if showvc == true
                                 {
-                                    print(locationEnt.l_latitude)
-                                    print(locationEnt.l_longitude)
+                           
                                     if (locationEnt.l_latitude == "NF") || (locationEnt.l_longitude == "NF")
                                     {
                                         self.setLocation()
                                     }else{
-                                        self.toast.isShow("Location Found")
+                                        
+                                        let checklistVc = storyboard?.instantiateViewController(withIdentifier: "CheckListByLocationVc") as! CheckListByLocationVc
+                                        
+                                        checklistVc.setQrString(cQr: barcodeStr, ProjId: self.pId, Showvc: showvc)
+                                        self.navigationController?.pushViewController(checklistVc, animated: true)
                                     }
-                                    
-                                    let checklistVc = storyboard?.instantiateViewController(withIdentifier: "CheckListByLocationVc") as! CheckListByLocationVc
-                                    
-                                    checklistVc.setQrString(cQr: barcodeStr, ProjId: self.pId, Showvc: showvc)
-                                    self.navigationController?.pushViewController(checklistVc, animated: true)
-                                    break
+                                    //break
                                 }else{
                                     
-                                    self.toast.isShow("Location Found")
+    //                                self.toast.isShow("Location Found")
                                     
                                     let cMaverickTikt = storyboard?.instantiateViewController(withIdentifier: "GenarateMaverickTicketVc") as! GenarateMaverickTicketVc
                                     cMaverickTikt.setQrString(cQr: barcodeStr)
@@ -165,13 +170,12 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                                 }
                             }else
                             {
-                                print("Enter barcode not matching")
                                 self.toast.isShow("No such location found")
                             }
                         }
                         else
                         {
-                            self.toast.isShow("Location Found")
+                            //self.toast.isShow("Location Found")
                         }
                         
                     }
@@ -258,9 +262,34 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             lblZero.text = txtNum as? String
              barcodeStr += lblZero.text!
         }
-    
-        print("Barcode", barcodeStr)
         
+        if setSecondBarcode == 0
+        {
+            self.secondBarCode = barcodeStr
+            
+            if self.secondBarCode.count == 10
+            {
+                let LAT = UserDefaults.standard.value(forKey: "lat")
+                let LONG = UserDefaults.standard.value(forKey: "long")
+                
+                let secstr = UserDefaults.standard.string(forKey: "barcodeStr")
+                if self.secondBarCode == secstr!
+                {
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChecklistQueForBarcodeVC") as! ChecklistQueForBarcodeVC
+                    vc.sendToserver(secStr: self.secondBarCode, lat: LAT as! String, long: LONG as! String)
+                    
+                     self.view.removeFromSuperview()
+                }
+            }
+            
+         
+        }
+        
+        print(barcodeStr)
+        if barcodeStr.count == 10
+        {
+            UserDefaults.standard.setValue(barcodeStr, forKeyPath: "barcodeStr")
+        }
      
     }
     
@@ -284,9 +313,9 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                                             "lat" : self.Latitude,
                                             "long" : self.Longitude]
         
-        print(Param)
+      
         Alamofire.request(url, method: .post, parameters: Param).responseJSON { (resp) in
-            print(resp)
+         
             
         }
     
@@ -294,9 +323,9 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
    func backSpace()
    {
-    print(barcodeStr)
+ 
     let result = String(barcodeStr.dropLast())
-    print(result)
+  
     
     barcodeStr = result
     
@@ -339,7 +368,7 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         }else if lblOne.text != ""
         {
             lblOne.text = ""
-    }
+         }
     
 }
     

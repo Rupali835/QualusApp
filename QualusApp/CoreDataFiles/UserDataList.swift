@@ -15,7 +15,7 @@ class userDataList : NSObject
     
      static let cUserData = userDataList()
     
-    func getUserList(cUserNm: String, cRole: String, user_id: String)
+    func getUserList(user_id: String)
     {
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext

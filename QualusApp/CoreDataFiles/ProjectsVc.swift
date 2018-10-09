@@ -33,7 +33,7 @@ class ProjectVc : NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
     
-        let fetchUrl = "http://kanishkaconsultancy.com/Qualus-FM-AndroidV2/fetchProjects.php"
+        let fetchUrl = "http://kanishkaconsultancy.com/Qualus-FM-Android/fetchProjects.php"
     
         let fetchParam = [ "u_Id" : usernm,
                         "u_type" : user_role ]
@@ -79,7 +79,7 @@ class ProjectVc : NSObject
     ProjectsEntity.p_inactive_time    = lcDict["p_inactive_time"] as? String
     
     appDel.saveContext()
-  //      print("Data save", ProjectsEntity)
+      
    
     }
       completion(arg)

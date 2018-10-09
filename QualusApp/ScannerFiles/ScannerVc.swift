@@ -27,6 +27,8 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
     var locationManager: CLLocationManager = CLLocationManager()
     var LocationDaraArr = [AnyObject]()
     var valForFilledChecklist : Int!
+    var firstQR : String = ""
+    var SecondQR : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +61,10 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
         
         self.Longitude = String(format: "%.6f", lastLocation.coordinate.longitude)
         
-    }
+      UserDefaults.standard.set(self.Latitude, forKey: "lat")
+      UserDefaults.standard.set(self.Longitude, forKey: "long")
+      
+      }
     
    
     private func initUi()
@@ -67,9 +72,7 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
         toast = JYToast()
     }
    
-    deinit {
-        print("deinit")
-    }
+   
     
     // MARK: - Prepare viewDidLoad
     
@@ -83,9 +86,9 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
     }
     
     func GetData(pid: String, bShowVC: Bool)
-   {
+    {
         self.PId = pid
-        self.showvc = bShowVC
+        self.showvc = bShowVC     // from ProjectInfoVc
     }
     
     // Be careful with retain cycle
@@ -95,16 +98,30 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
         
         if self.valForFilledChecklist == 0
         {
-            let c_filledChecklist = self.storyboard?.instantiateViewController(withIdentifier: "ChecklistQuestionsVc") as! ChecklistQuestionsVc
-            c_filledChecklist.SecQrStr = string
-            c_filledChecklist.setSecQr(secQrStr: string)
-            self.navigationController?.pushViewController(c_filledChecklist, animated: true)
-        }else{
+            if self.firstQR != ""
+            {
+                let LAT = UserDefaults.standard.value(forKey: "lat")
+                let LONG = UserDefaults.standard.value(forKey: "long")
+                
+                print(self.firstQR)
+                if self.firstQR == string
+                {
+                    print("get")
+                   
+                    let cQvc = self.storyboard?.instantiateViewController(withIdentifier: "ChecklistQuestionsVc") as! ChecklistQuestionsVc
+                    cQvc.sendDataToServer(checklocation : true, lat: LAT as! String, long: LONG as! String, secqr: string)
            
-            
+                     self.view.removeFromSuperview()
+                }
+            }
+        }else{
+
+        
             UserDefaults.standard.set(string, forKey: "QRCode")
+            let data = UserDefaults.standard.value(forKey: "QRCode")
+            self.firstQR = data as! String
+            print(self.firstQR)
             
-            self.showvc = true
             for (index, _) in self.LocationDaraArr.enumerated()
             {
                 let locationEnt = self.LocationDaraArr[index] as! FetchLocation
@@ -167,9 +184,8 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
                                       "lat" : self.Latitude,
                                       "long" : self.Longitude]
         
-        print(Param)
+        
         Alamofire.request(url, method: .post, parameters: Param).responseJSON { (resp) in
-            print(resp)
             
         }
         
