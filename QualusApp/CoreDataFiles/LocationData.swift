@@ -1,10 +1,3 @@
-//
-//  LocationData.swift
-//  QualusApp
-//
-//  Created by user on 25/05/18.
-//  Copyright © 2018 user. All rights reserved.
-//
 
 import Foundation
 import Alamofire
@@ -44,7 +37,6 @@ class LocationData: NSObject
                 
                 for lcData in self.LocationArr
                 {
-                    
                     let locationEntity = FetchLocation(context: context)
                     locationEntity.l_id = lcData["l_id"] as? String
                     locationEntity.l_barcode = lcData["l_barcode"] as? String
@@ -107,6 +99,8 @@ class LocationData: NSObject
         do{
             let DataArr = try context.fetch(FetchLocation.fetchRequest()) as [AnyObject]
             
+     
+            
             for (index, value) in DataArr.enumerated()
             {
                 let locationEnt = DataArr[index] as! FetchLocation
@@ -164,8 +158,7 @@ class LocationData: NSObject
         do{
             let DataArr = try contx.fetch(FetchLocation.fetchRequest()) as [AnyObject]
        //     print("Count=\(DataArr.count) \(DataArr)")
-          
-            
+           
             for (index, _) in DataArr.enumerated()
             {
                 let ProjectsEntity = DataArr[index] as! FetchLocation

@@ -68,6 +68,7 @@ class ChecklistViewController: UIViewController {
     func gettingChecklist()
     {
         let checklistUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Reports/get_monthly_checklist_monitor_data"
+        
         let checklistPara = ["type": String(checkListType),
                              "role": URole!,
                              "user_id": UId!,

@@ -11,6 +11,8 @@ import CoreData
 import Firebase
 import UserNotifications
 import FirebaseMessaging
+import IQKeyboardManager
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate,UNUserNotificationCenterDelegate  {
@@ -21,7 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate,UNUserNo
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+    
+        IQKeyboardManager.shared().isEnabled = true
+    
+    
         self.window!.backgroundColor = UIColor.clear
         UINavigationBar.appearance().barTintColor = UIColor.lightGreen
         UINavigationBar.appearance().tintColor = UIColor.white

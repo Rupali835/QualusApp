@@ -57,6 +57,7 @@
 		58453EB320FDED630044CBFA /* ManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58453EB120FDED630044CBFA /* ManagementViewController.swift */; };
 		58453EB420FDED630044CBFA /* ManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58453EB220FDED630044CBFA /* ManagementViewController.xib */; };
 		585ED8922142597C006B0DCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 585ED8912142597C006B0DCC /* GoogleService-Info.plist */; };
+		5886E3BE217F0720001F4EEA /* EmpMaverickTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5886E3BD217F0720001F4EEA /* EmpMaverickTicketVC.swift */; };
 		58A2331E20FE14E6000A1C21 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331620FE14E6000A1C21 /* UIView.swift */; };
 		58A2331F20FE14E6000A1C21 /* UIColor+Customcolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331720FE14E6000A1C21 /* UIColor+Customcolor.swift */; };
 		58A2332020FE14E6000A1C21 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331820FE14E6000A1C21 /* UICollectionView.swift */; };
@@ -182,6 +183,7 @@
 		58453EB120FDED630044CBFA /* ManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementViewController.swift; sourceTree = "<group>"; };
 		58453EB220FDED630044CBFA /* ManagementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagementViewController.xib; sourceTree = "<group>"; };
 		585ED8912142597C006B0DCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5886E3BD217F0720001F4EEA /* EmpMaverickTicketVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpMaverickTicketVC.swift; sourceTree = "<group>"; };
 		58A2331620FE14E6000A1C21 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		58A2331720FE14E6000A1C21 /* UIColor+Customcolor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Customcolor.swift"; sourceTree = "<group>"; };
 		58A2331820FE14E6000A1C21 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
@@ -394,6 +396,14 @@
 			path = "Management Display";
 			sourceTree = "<group>";
 		};
+		5886E3BC217F06F4001F4EEA /* EmployeeLogin */ = {
+			isa = PBXGroup;
+			children = (
+				5886E3BD217F0720001F4EEA /* EmpMaverickTicketVC.swift */,
+			);
+			path = EmployeeLogin;
+			sourceTree = "<group>";
+		};
 		58A2331520FE14E6000A1C21 /* Commons Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +487,7 @@
 		CE0F661B20AD519400B8F026 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5886E3BC217F06F4001F4EEA /* EmployeeLogin */,
 				CE8B4EC0213EAEDE006B2B0D /* CSR  */,
 				CE7BCF02213946C6008F7F52 /* ManagementLogin */,
 				CE0F660B20AD48F200B8F026 /* LoginPageVc.swift */,
@@ -644,7 +655,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = user;
 				TargetAttributes = {
 					CE0F65F220AD452E00B8F026 = {
@@ -727,6 +738,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -742,6 +754,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -841,6 +854,7 @@
 				CE8644CA21147D1300E47E42 /* DLRadioButton.m in Sources */,
 				5832DE5120FF57D700483655 /* SubmittedChecklistVc.swift in Sources */,
 				580B3C92210067430052376A /* PendingTicketViewController.swift in Sources */,
+				5886E3BE217F0720001F4EEA /* EmpMaverickTicketVC.swift in Sources */,
 				CE5C36C220BC2EFF002518BB /* barcodeNumberCell.swift in Sources */,
 				CE82520820AD5516000C8586 /* TPKeyboardAvoidingTableView.m in Sources */,
 				5832DE5820FF57D700483655 /* SubmitChecklistResponseVc.swift in Sources */,
@@ -906,6 +920,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -913,6 +928,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -964,6 +980,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -971,6 +988,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1010,11 +1028,11 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = QualusApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.qualus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e3f3ce52-b5a0-4404-8632-413c7dec463b";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = QualusDevlomentCertificate;
 				SWIFT_OBJC_BRIDGING_HEADER = Bridge_Header.h;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -1032,11 +1050,11 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = QualusApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.qualus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e3f3ce52-b5a0-4404-8632-413c7dec463b";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = QualusDevlomentCertificate;
 				SWIFT_OBJC_BRIDGING_HEADER = Bridge_Header.h;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";

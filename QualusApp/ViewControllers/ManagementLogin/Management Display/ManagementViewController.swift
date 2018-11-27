@@ -75,7 +75,7 @@ class ManagementViewController: UIViewController {
         rightButton.addTarget(self, action: #selector(openTicketVC), for: .touchUpInside)
         let buttonitem = UIBarButtonItem(customView: rightButton)
         
-        let img1 = UIImage(named: "logout")
+        let img1 = UIImage(named: "power-signal")
         let rightbutton1 = UIButton(type: .system)
         rightbutton1.setImage(img1, for: .normal)
         rightbutton1.frame = CGRect(x: 0, y: 0, width: 40, height: 20)
@@ -123,10 +123,9 @@ class ManagementViewController: UIViewController {
     {
         let url = "http://kanishkaconsultancy.com/Qualus-FM-Android/logout.php"
         let para = ["user_id":UserId!]
-        //print(para)
         
         Alamofire.request(url, method: .post, parameters: para, encoding: URLEncoding.default, headers: nil).responseString { (resp) in
-            print(resp)
+            
             UserDefaults.standard.removeObject(forKey: "UserData")
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginPageVc") as! LoginPageVc

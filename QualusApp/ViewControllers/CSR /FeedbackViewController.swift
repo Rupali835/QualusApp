@@ -40,7 +40,7 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
         UIDevice.current.setValue(value, forKey: "orientation")
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
         let check = UserDefaults.standard.object(forKey: "checkVC")
-     //   print(check!)
+        print(check!)
         Password = UserDefaults.standard.object(forKey: "pwd") as! String
 
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]

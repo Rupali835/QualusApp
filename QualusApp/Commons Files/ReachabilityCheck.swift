@@ -24,6 +24,10 @@ func isConnectedToNetwork() -> Bool {
         return false
     }
     let isReachable = flags.contains(.reachable)
+    
+   // let isReach = Bool(true)
+    
+    
     //(flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
     let needsConnection = flags.contains(.connectionRequired)
     //(flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0

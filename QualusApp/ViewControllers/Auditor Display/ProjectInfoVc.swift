@@ -242,8 +242,5 @@ class ProjectInfoVc: UIViewController, UICollectionViewDelegate, UICollectionVie
         LocationData.cLocationData.fetchData(lcUID: self.UserId, lcRole: self.UserRole, arg: true) { (success) in
            
         }
-        
-       
-        
     }
 }

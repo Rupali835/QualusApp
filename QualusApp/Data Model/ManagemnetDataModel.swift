@@ -1,10 +1,4 @@
-//
-//  ManagemnetDataModel.swift
-//  QualusApp
-//
-//  Created by Prajakta Bagade on 7/18/18.
-//  Copyright © 2018 user. All rights reserved.
-//
+
 import UIKit
 import Foundation
 

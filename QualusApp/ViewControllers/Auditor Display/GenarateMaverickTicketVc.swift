@@ -1,10 +1,4 @@
-//
-//  GenarateMaverickTicketVc.swift
-//  QualusApp
-//
-//  Created by user on 25/05/18.
-//  Copyright © 2018 user. All rights reserved.
-//
+
 
 import UIKit
 import ALCameraViewController
@@ -94,10 +88,8 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
             imageCollection.isHidden = false
             btnAddImg.isHidden = false
             stackViewTopHIghtConstrains.constant = 10
-            backViewHeight.constant = 450 // ticket from qr code
+            backViewHeight.constant = 450  // ticket from qr code
         }
-
-        
     }
     
     //MARK: FUNCTIONS
@@ -110,7 +102,6 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     
     func createDatePicker()
     {
-        
         DatePicker.datePickerMode = .date
         let currentdate = Date()
         DatePicker.minimumDate = currentdate //customer not allowed to set privious date of privious month
@@ -131,8 +122,8 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         self.DateStr = self.convertDateFormater(dateFormatter.string(from: DatePicker.date))
         lbldate.text = DateStr
         self.view.endEditing(true)
-       
     }
+    
     func convertDateFormater(_ date: String) -> String
     {
         let dateFormatter = DateFormatter()
@@ -140,7 +131,6 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         let date = dateFormatter.date(from: date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return  dateFormatter.string(from: date!)
-        
     }
     
     func setQrString(cQr: String)
@@ -155,7 +145,6 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: -1, height: 1)
         cView.layer.shadowRadius = 1
-        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView)
@@ -188,6 +177,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         
     }
     
+   
     func json(from object:Any) -> String? {
         guard let data = try? JSONSerialization.data(withJSONObject:  object, options: []) else
         {
@@ -258,7 +248,9 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
             self.txtActionPlan.text = ""
             self.txtEnterObservation.text = ""
             let MTVc = MaverickTicketViewVc()
+        
         self.navigationController?.backToViewController(viewController: MaverickTicketViewVc.self)
+            
 
 
         } )
@@ -274,7 +266,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     @IBAction func btnCamera_Click(_ sender: Any)
     {
 
-   let cameraViewController = CameraViewController(croppingParameters: croppingParameters, allowsLibraryAccess: libraryEnabled){ [weak self] image, asset in
+     let cameraViewController = CameraViewController(croppingParameters: croppingParameters, allowsLibraryAccess: libraryEnabled){ [weak self] image, asset in
             var lcFileName: String!
             weak var weakSelf = self
             
@@ -357,20 +349,15 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
                 getLocation()
 
             }
-
         }
-        
-        
     }
 
     @IBAction func cancledClicked(_ sender: Any) {
         self.navigationController?.backToViewController(viewController: MaverickTicketViewVc.self)
-
     }
     
-    
-    
-    @IBAction func deleteImageClicked(_ sender: Any) {
+    @IBAction func deleteImageClicked(_ sender: Any)
+    {
         popUp.dismiss(true)
         ImageArr.remove(at: deletindex)
         imgArr.remove(at: deletindex)
@@ -379,10 +366,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         {
             btnAddImg.isHidden = false
         }
-        
     }
-    
-    
 }
 
 
@@ -410,6 +394,7 @@ extension GenarateMaverickTicketVc: UICollectionViewDelegate,UICollectionViewDat
     
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
     {
         return 5.0

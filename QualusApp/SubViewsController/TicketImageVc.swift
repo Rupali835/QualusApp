@@ -1,44 +1,30 @@
-//
-//  TicketImageVc.swift
-//  QualusApp
-//
-//  Created by user on 24/05/18.
-//  Copyright © 2018 user. All rights reserved.
-//
 
 import UIKit
 import Alamofire
 import AlamofireImage
 
+
 class TicketImageVc: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
 {
    
-    
     @IBOutlet weak var ImageCollView: UICollectionView!
     @IBOutlet weak var backView: UIView!
     
     var showImg = UIImageView()
     var ImgArr = [String]()
     //var ticketImg : String = ""
-    
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
         ImageCollView.delegate = self
         ImageCollView.dataSource = self
-       
     }
 
     func SetImage(DataArr : [String])
     {
         self.ImgArr = DataArr
         self.ImageCollView.reloadData()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
     }
     
     func img(lcURl: String, cell: TicketImaheCell)
@@ -52,8 +38,6 @@ class TicketImageVc: UIViewController, UICollectionViewDataSource, UICollectionV
                         cell.TiktImage.image = img
                 }
             }
-
-
         }
     }
 
@@ -70,7 +54,7 @@ class TicketImageVc: UIViewController, UICollectionViewDataSource, UICollectionV
         
         return cell
         
-    }
+     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
@@ -82,6 +66,28 @@ class TicketImageVc: UIViewController, UICollectionViewDataSource, UICollectionV
         present(cFullScreen, animated: true, completion: nil)
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //2
+        return CGSize(width: (self.ImageCollView.frame.size.width - 30) / 2, height: 165)
+    }
+    
+    //3
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 15, bottom: 10, right: 15)
+    }
+    
+    // 4
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5.0
+    }
+    
     
     @IBAction func BtnOk_Click(_ sender: Any)
     {

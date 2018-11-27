@@ -62,7 +62,6 @@ class SplashScreenVc: UIViewController {
                         }else
                         {
                             print("false")
-                            
                         }
                         
                     })
@@ -73,7 +72,6 @@ class SplashScreenVc: UIViewController {
                     }
                     
                 } else {
-                    
                     print("false")
                 }
                 
@@ -97,9 +95,63 @@ class SplashScreenVc: UIViewController {
                     print("false")
                 }
                 
-                
             })
          
+        }
+        
+        
+        if Role == "7"
+            
+        {
+            LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: {(sucess) -> Void in
+                if sucess{
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                      
+                    let CSRVc = self.storyboard?.instantiateViewController(withIdentifier: "CSRViewController") as! CSRViewController
+                        UserDefaults.standard.set(passwd.self, forKey: "pwd")
+                    self.navigationController?.pushViewController(CSRVc, animated: true)
+                      
+                    }
+                    
+                } else {
+                    
+                    print("false")
+                }
+                
+            })
+            
+        }
+        
+        if Role == "4"
+        {
+            ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
+                if sucess
+                {
+                    LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: { (success) -> Void
+                        in
+                        if success
+                        {
+                            userDataList.cUserData.getUserList(user_id: user_id)
+                            ClassificationData.cDataClassification.fetchClassifictnData()
+                            MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
+                        }else
+                        {
+                            print("false")
+                        }
+                        
+                    })
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        
+                        let ProjVc = self.storyboard?.instantiateViewController(withIdentifier: "MaverickTicketViewVc") as! MaverickTicketViewVc
+                        self.navigationController?.pushViewController(ProjVc, animated: true)
+                    }
+                    
+                } else {
+                    print("false")
+                }
+                
+            })
         }
         
 //        userDataList.cUserData.getUserList(user_id: user_id)

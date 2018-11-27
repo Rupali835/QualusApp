@@ -1,10 +1,4 @@
-//
-//  CheckListByLocationVc.swift
-//  QualusApp
-//
-//  Created by user on 26/05/18.
-//  Copyright © 2018 user. All rights reserved.
-//
+
 
 import UIKit
 import Alamofire

@@ -13,7 +13,8 @@ target 'QualusApp' do
 	pod 'SDWebImage/WebP'
 	pod 'Firebase/Core'
 	pod 'Firebase/Messaging'
-	pod 'Firebase/Database'		
+	pod 'Firebase/Database'	
+    pod 'IQKeyboardManager'	
 		
 
   # Pods for QualusApp
@@ -27,7 +28,8 @@ target 'QualusApp' do
 	pod 'SDWebImage/WebP'
 	pod 'Firebase/Core'
 	pod 'Firebase/Messaging'
-	pod 'Firebase/Database'	
+	pod 'Firebase/Database'
+    pod 'IQKeyboardManager'
 	
 	
 

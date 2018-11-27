@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SVProgressHUD
 
 class MaverickTicketViewVc: UIViewController
 {
@@ -25,8 +26,11 @@ class MaverickTicketViewVc: UIViewController
     var toast = JYToast()
     var popUp : KLCPopup!
     var cSubmitCheck : SubmittedChecklistVc!
+    var cUserProfile : UserProfileVc!
+    var userLogin : String = ""
     
     
+    @IBOutlet weak var btnLogout: UIBarButtonItem!
     @IBOutlet weak var tblTicket: UITableView!
     @IBOutlet weak var tblProject: UITableView!
     @IBOutlet var selectProjectView: UIView!
@@ -40,13 +44,44 @@ class MaverickTicketViewVc: UIViewController
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         Userrole = lcDict["role"] as! String
         userId = lcDict["user_id"] as! String
-        getMaverickTicket()
+        userLogin = lcDict["user_logged_in"] as! String
+     
         ProjArr = ProjectVc.cProjectData.FeatchProjectsDataOffline()!
+        
+        if Userrole == "4"
+        {
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        }else{
+            self.navigationItem.leftBarButtonItem?.isEnabled = false
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.clear
+            self.navigationItem.hidesBackButton = true
+            let newBackButton = UIBarButtonItem(title: "<Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MaverickTicketViewVc.back(sender:)))
+            self.navigationItem.leftBarButtonItem = newBackButton
+        }
         
     }
     
+    @objc func back(sender: UIBarButtonItem) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 //MARK:FUNCTIONS
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+           getMaverickTicket()
+        tblProject.reloadData()
+    }
+    
+    override func awakeFromNib()
+    {
+        self.cUserProfile = self.storyboard?.instantiateViewController(withIdentifier: "UserProfileVc") as! UserProfileVc
+        
+        self.cTiktImgVc = self.storyboard?.instantiateViewController(withIdentifier: "TicketImageVc") as! TicketImageVc
+    }
+    
     
     func loadTable()
     {
@@ -106,21 +141,96 @@ class MaverickTicketViewVc: UIViewController
 
     //MARK:ACTIONS
    
-    @IBAction func AddMavrikTicketClicked(_ sender: Any) {
-        
-           popUp.contentView = selectProjectView
-            popUp.maskType = .dimmed
-            popUp.shouldDismissOnBackgroundTouch = true
-            popUp.shouldDismissOnContentTouch = false
-            popUp.showType = .slideInFromRight
-            popUp.dismissType = .slideOutToLeft
-            popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
-            tblProject.reloadData()
+    @IBAction func AddMavrikTicketClicked(_ sender: Any)
+    {
+        popUp.contentView = selectProjectView
+        popUp.maskType = .dimmed
+        popUp.shouldDismissOnBackgroundTouch = true
+        popUp.shouldDismissOnContentTouch = false
+        popUp.showType = .slideInFromRight
+        popUp.dismissType = .slideOutToLeft
+        popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
+        tblProject.reloadData()
         
     }
     
+    @IBAction func btnUserProfile_click(_ sender: Any)
+    {
+        self.cUserProfile.view.frame =  self.view.bounds
+        self.view.addSubview(self.cUserProfile.view)
+        self.cUserProfile.view.clipsToBounds = true
+    }
     
+    @IBAction func btnSynk_click(_ sender: Any)
+    {
+        OperationQueue.main.addOperation {
+            
+            SVProgressHUD.show()
+        }
+        
+        getMaverickTicket()
+        
+        LocationData.cLocationData.fetchData(lcUID: self.userId, lcRole: self.Userrole, arg: true) { (success) in
+            userDataList.cUserData.getUserList(user_id: self.userId)
+            ClassificationData.cDataClassification.fetchClassifictnData()
+            MapLocation.cMapLocationData.fetchMapLocation(UserId: self.userId)
 
+            
+        }
+        
+        ProjectVc.cProjectData.fetchProjectList(usernm: self.userId, user_role: self.Userrole, arg: true) { (success) in
+            self.toast.isShow("Data is refresh")
+            OperationQueue.main.addOperation {
+                SVProgressHUD.dismiss()
+            }
+        }
+        
+        
+    }
+    
+    @IBAction func btbLogout_click(_ sender: Any)
+    {
+        let alert = UIAlertController(title: "Alert", message: "Are you sure to logout?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "YES", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            NSLog("Ok pressed")
+            self.logout()
+        }
+        let cancelAction = UIAlertAction(title: "NO", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func logout()
+    {
+        let logouturl = "http://kanishkaconsultancy.com/Qualus-FM-Android/logout.php"
+        let logParam = ["user_id" : self.userId]
+        Alamofire.request(logouturl, method: .post, parameters: logParam).responseString { (logDATA) in
+            
+            
+            if self.userLogin == "0"
+            {
+                UserDefaults.standard.removeObject(forKey: "UserData")
+                
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginPageVc") as! LoginPageVc
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let navigationController = appDelegate.window?.rootViewController as! UINavigationController
+                navigationController.setViewControllers([loginVC], animated: true)
+                self.navigationController?.popViewController(animated: true)
+                
+                
+            }else{
+                
+            }
+        }
+        
+    }
     
 }
 //MARK: EXTENSIONS
@@ -137,8 +247,6 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
         default:
             return 0
         }
-        
-        
         
     }
     
@@ -200,9 +308,13 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
             }
             
             let lcImagNameArr = lcDict["mt_photo"] as! [String]
+            
             if lcImagNameArr.isEmpty == true
             {
                 cell.btnViewPhotos.setTitle("No Images", for: .normal)
+            }else
+            {
+                cell.btnViewPhotos.setTitle("View Images", for: .normal)
             }
             
             cell.btnViewPhotos.tag = indexPath.row
@@ -231,17 +343,20 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
     
     @objc func ViewPhoto_Click(sender: UIButton)
     {
+        
         let lcDict = TicketArr[sender.tag]
         let lcImagNameArr = lcDict["mt_photo"] as! [String]
         let Fc_id = lcDict["fc_id"] as! String
         var imgPathArr = [String]()
+        
+        imgPathArr.removeAll(keepingCapacity: false)
+        
         for lcImageName in lcImagNameArr
         {
             let ImgURL : String!
             if Fc_id == "0"
             {
                 ImgURL = "http://kanishkagroups.com/Qualus/uploads/ticket_images/\(lcImageName)"   // fc_id = 0
-                
             }else
             {
                 ImgURL = "http://kanishkagroups.com/Qualus/uploads/answer_images/\(lcImageName)"
@@ -249,7 +364,8 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
             imgPathArr.append(ImgURL)
         }
         
-        if lcImagNameArr.count > 0{
+        if lcImagNameArr.count > 0
+        {
             self.cTiktImgVc.view.frame =  self.view.bounds
             self.cTiktImgVc.SetImage(DataArr: imgPathArr)
             self.view.addSubview(self.cTiktImgVc.view)
