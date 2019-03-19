@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 
+
 struct TicketMonitorData: Codable {
     var getTicketData : [getManageTicketDetails]
 }
@@ -38,19 +39,18 @@ struct getManageTicketDetails:Codable {
     var assignment_data : String
     var closed_by : String
     var closed_time : String
-    var t_close_action : String
-    var t_close_remark : String
-    var p_name : String
-    var pb_name : String
+    var t_close_action : String?
+    var t_close_remark : String?
+    var p_name : String?
+    var pb_name : String?
     var bb_id : String?
-    var l_space : String
-    var l_wing : String
-    var l_floor : String
-    var l_room : String
-    var b_name : String
+    var l_space : String?
+    var l_wing : String?
+    var l_floor : String?
+    var l_room : String?
+    var b_name : String?
     var added_by_name : String
     var assigned_to_name : String?
-    
 }
 
 

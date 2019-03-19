@@ -68,6 +68,7 @@ class LoginPageVc: UIViewController {
         
         
         Alamofire.request(LoginUrl, method: .post, parameters: loginParam).responseJSON { (LoginData) in
+            print(LoginData)
             
             OperationQueue.main.addOperation {
                 SVProgressHUD.dismiss()
@@ -85,7 +86,7 @@ class LoginPageVc: UIViewController {
                     UserDefaults.standard.set(UserData, forKey: "UserData")
                     UserDefaults.standard.synchronize()
 
-                    
+                    UserDefaults.standard.set(self.txtPasswordFld.text, forKey: "passwordd");
                     UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
                     
                     let user_id = UserData["user_id"] as! String
@@ -93,12 +94,12 @@ class LoginPageVc: UIViewController {
                     self.ComId = UserData["com_id"] as! String
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
                     vc.setViewController(user_id: user_id, Role: Role)
+                  //  vc.Password = self.txtPasswordFld.text!
                     self.navigationController?.pushViewController(vc, animated: true)
                     
                 }
                 else if strResult == "aleardy loggedin"
                 {
-                    
                     self.toast.isShow(ErrorMsgs.alredyLogin)
                 }
                 else if strResult == "nf"
@@ -110,8 +111,6 @@ class LoginPageVc: UIViewController {
             }
         }
     }
-    
-    
     
     func funShowAlert(_ varTitle: String, _ varMessage: String){
         let alertPassword = UIAlertController(title: varTitle, message: varMessage, preferredStyle: .actionSheet)

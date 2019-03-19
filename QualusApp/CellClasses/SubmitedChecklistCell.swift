@@ -13,6 +13,7 @@ class SubmitedChecklistCell: UITableViewCell {
     
     @IBOutlet weak var backView: UIView!
     
+    @IBOutlet weak var lblFilledBy: UILabel!
     @IBOutlet weak var lblChecklistNm: UILabel!
     
     @IBOutlet weak var lblPercent: UILabel!

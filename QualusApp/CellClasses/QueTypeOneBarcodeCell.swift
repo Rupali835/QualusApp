@@ -20,6 +20,8 @@ class QueTypeOneBarcodeCell: UITableViewCell {
     @IBOutlet weak var backView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
+
         // Initialization code
     }
 

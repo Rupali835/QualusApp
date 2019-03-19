@@ -31,11 +31,11 @@ class PendingTicketViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
-        UserRole = lcDict["role"] as! String
-        UserId = lcDict["user_id"] as! String
-        com_id = lcDict["com_id"] as! String
-        GetMonitorTickets()
+        UserRole = (lcDict["role"] as! String)
+        UserId = (lcDict["user_id"] as! String)
+        com_id = (lcDict["com_id"] as! String)
         setupcollectionView()
+        self.navigationController?.navigationItem.title = "Tickets till date pending"
     }
     
     
@@ -48,64 +48,40 @@ class PendingTicketViewController: UIViewController {
         collectionView.registerCellNib(getTicketCollectionViewCell.self)
         collectionView.reloadData()
     }
-    
-    func GetMonitorTickets()
-    {
-        let ticketUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Reports/get_ticket_monitor_data"
-        
-        let T_get_para = ["type":  String(ticketType),
-                          "role": UserRole!,
-                          "user_id":UserId!,
-                          "com_id": com_id!]
-        print(T_get_para)
-        OperationQueue.main.addOperation {
-            SVProgressHUD.setDefaultMaskType(.custom)
-            SVProgressHUD.setBackgroundColor(UIColor.gray)
-            SVProgressHUD.setBackgroundLayerColor(UIColor.white)
-            SVProgressHUD.show()
-        }
-        manager.request(ticketUrl, method: .post, parameters: T_get_para, encoding: URLEncoding.default, headers: nil).responseData { (resp) in
-          if let data1 = resp.result.value
-         {
-            OperationQueue.main.addOperation {
-                SVProgressHUD.dismiss()
-            }
-            do
-            {
-                let TicketModel = try JSONDecoder().decode(TicketMonitorData.self, from: data1)
-                self.arrpendingTicket = TicketModel.getTicketData
-                print("ticketModel", self.arrpendingTicket.count)
-                if self.arrpendingTicket.count == 0 {
-                    self.toast.isShow(ErrorMsgs.NOMavrikTicket)
-                }
-                self.collectionView.reloadData()
-            }catch
-            {
-                print(error)
-            }
-        
-         }
-        }
-
-    }
-
-    //MARK:ACTIONS
-
+ 
 }
 
 //MARK:EXTENSIONS
-extension PendingTicketViewController: UICollectionViewDelegate,UICollectionViewDataSource
+extension PendingTicketViewController: UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       
         return arrpendingTicket.count
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "getTicketCollectionViewCell", for: indexPath)as! getTicketCollectionViewCell
-        cell.lblBranch.text = "Branch:  - \(arrpendingTicket[indexPath.row].pb_name)"
-        cell.lblproject1.text = "Project: \(arrpendingTicket[indexPath.row].p_name)"
+        
+        let lcdata = arrpendingTicket[indexPath.row]
+        let Status = lcdata.status
+        
+        if Status == "0"
+        {
+            cell.lblticketnoandStatus.text = "Ticket No - \(lcdata.mt_id) (Pending)"
+        }
+        if Status == "1"
+        {
+            cell.lblticketnoandStatus.text = "Ticket No - \(lcdata.mt_id) (Open)"
+        }
+        if Status == "2"
+        {
+            cell.lblticketnoandStatus.text = "Ticket No - \(lcdata.mt_id) (Closed)"
+        }
+        
+        cell.lblBranch.text = "Branch:  - \(arrpendingTicket[indexPath.row].pb_name!)"
+        cell.lblproject1.text = "Project: \(arrpendingTicket[indexPath.row].p_name!)"
         cell.lblObservations.text = "Observations: \(arrpendingTicket[indexPath.row].mt_subject)"
-        cell.lblticketnoandStatus.text = "Ticket NO - \(arrpendingTicket[indexPath.row].mt_id)"
+      //  cell.lblticketnoandStatus.text = "Ticket NO - \(arrpendingTicket[indexPath.row].mt_id)"
         return cell
     }
     
@@ -116,6 +92,9 @@ extension PendingTicketViewController: UICollectionViewDelegate,UICollectionView
         
     }
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        <#code#>
+//    }
 }
 
 

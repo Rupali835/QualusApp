@@ -93,12 +93,17 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
 
            switch fetchData.result
            {
-           case .success(let JSON):
+           case .success(_):
              let JSON = fetchData.result.value as! [String: AnyObject]
 
              self.checklistArr = JSON["Checklist"] as! [AnyObject]
              self.QuetionArr = JSON["Questions"] as! [AnyObject]
 
+             if self.checklistArr.count == 0
+             {
+                Utilities.shared.centermsg(msg: "No checklist", view: self.view)
+             }
+             
              self.tblChecklist.reloadData()
             break
 
@@ -150,12 +155,19 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
             
             var questionArr = [AnyObject]()
             
+        
             for lcDict in self.QuetionArr
             {
                 let cidQues = lcDict["c_id"] as! String
                 if cid == cidQues
                 {
-                    questionArr.append(lcDict)
+                    let tempDic: NSMutableDictionary = lcDict.mutableCopy() as! NSMutableDictionary
+
+                    //lcDictData = lcDict.mutableCopy() as! [String : Bool]
+                    tempDic["isYesSelected"] = false
+                    tempDic["isNoSelected"]  = false
+                    tempDic["isNASelected"]  = false
+                    questionArr.append(tempDic as AnyObject)
                 }
             }
             

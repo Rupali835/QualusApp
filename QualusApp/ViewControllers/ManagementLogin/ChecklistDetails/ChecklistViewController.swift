@@ -40,9 +40,9 @@ class ChecklistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
-        URole = lcDict["role"] as! String
-        UId = lcDict["user_id"] as! String
-        UcomId = lcDict["com_id"] as! String
+        URole = (lcDict["role"] as! String)
+        UId = (lcDict["user_id"] as! String)
+        UcomId = (lcDict["com_id"] as! String)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerCellNib(checklistCollectionViewCell.self)
@@ -154,6 +154,7 @@ extension ChecklistViewController: UICollectionViewDelegate,UICollectionViewData
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.className(checklistCollectionViewCell.self), for: indexPath) as! checklistCollectionViewCell
+        
         cell.checklistName.text = list[indexPath.row].c_name
         cell.lblpercentage.text = list[indexPath.row].percent+"%"
         
@@ -161,39 +162,34 @@ extension ChecklistViewController: UICollectionViewDelegate,UICollectionViewData
         let p_id = list[indexPath.row].p_id
         let l_id = list[indexPath.row].l_id
         getdetails(u_id: u_id, p_id: p_id, l_id: l_id)
-        cell.generatedby.text = Name
-        cell.projName.text = projectName
+        cell.generatedby.text = "Filled by \(Name!)"
         cell.locName.text = locationName
         
         //cell.createdDate.text  // cell.startTime.text  // cell.endtime.text
         let Date = list[indexPath.row].created_time.split(separator: " ")
         let startTime  = list[indexPath.row].start_time.split(separator: " ")
-        let endTime = list[indexPath.row].end_time.split(separator: " ")
-
+       
         let CreatedDate: String = String(Date[0])
-        cell.createdDate.text = convertDateFormater(CreatedDate)
-        let eTime: String = String(endTime[1])
-        cell.endtime.text = convertTimeFormatter(eTime)
+        let convertDate = convertDateFormater(CreatedDate)
         let stime: String = String(startTime[1])
-        cell.startTime.text = convertTimeFormatter(stime)
+        let convertTime = convertTimeFormatter(stime)
         
-        let TicketScore = list[indexPath.row].score
+        cell.createdDate.text = "\(convertDate) \(convertTime)"
+
+       let TicketScore = list[indexPath.row].score
+        cell.score.textColor = UIColor.red
+        
         if TicketScore == "0"
         {
-            cell.score.text = "Fail"
-            cell.score.textColor = UIColor.red
+            cell.score.text = "(Fail)"
         }
         else if TicketScore == "2"
         {
-            cell.score.text = "Pass"
-            cell.score.textColor = UIColor.green
+            cell.score.text = "(Pass)"
         }else{
-            cell.score.text = "Average"
-            cell.score.textColor = UIColor.yellowdark
+            cell.score.text = "(Average)"
         }
-        
         return cell
-        
     }
   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -23,6 +23,8 @@ class ChecklistQTypeCell: UITableViewCell {
     @IBOutlet weak var btntakeImage: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

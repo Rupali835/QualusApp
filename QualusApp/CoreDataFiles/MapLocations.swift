@@ -50,7 +50,7 @@ class MapLocation : NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try context.fetch(FetchMapLocation.fetchRequest()) as [AnyObject]
+            let DataArr = try context.fetch(FetchMapLocation.fetchRequest()) as [FetchMapLocation]
             
             return DataArr
             
@@ -65,7 +65,7 @@ class MapLocation : NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchMapLocation.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchMapLocation.fetchRequest()) as [FetchMapLocation]
       //      print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()

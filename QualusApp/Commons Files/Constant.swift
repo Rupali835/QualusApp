@@ -16,6 +16,12 @@ struct constant {
     static let addUrl = "Tickets/add_maverick_ticket"
     static let todaysChecklist = "Reports/get_today_filled_checklist_monitor_data"
     
+    static let ticketsCount = "Reports/get_counts_for_auditor"
+    static let getMaverickticket = "Tickets/get_maverick_ticket_details"
+    static let imagePath = "http://kanishkagroups.com/Qualus/uploads/ticket_images/"
+    
+    static let ansImagePath = "http://kanishkagroups.com/Qualus/uploads/answer_images/"
+    
     
     
 }

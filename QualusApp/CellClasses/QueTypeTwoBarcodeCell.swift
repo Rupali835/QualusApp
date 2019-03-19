@@ -19,6 +19,8 @@ class QueTypeTwoBarcodeCell: UITableViewCell {
     @IBOutlet weak var lblQuetion: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

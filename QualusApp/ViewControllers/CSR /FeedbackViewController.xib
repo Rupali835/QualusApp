@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,7 +42,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gN2-Zn-0X6">
-                                    <rect key="frame" x="150" y="30" width="368" height="60"/>
+                                    <rect key="frame" x="150" y="30" width="367" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="nZX-5o-I5w"/>
                                     </constraints>
@@ -51,7 +51,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Rate our Service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6M-rK-4Ag">
-                                    <rect key="frame" x="227.5" y="110" width="213.5" height="30"/>
+                                    <rect key="frame" x="227" y="110" width="213.5" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="Eha-je-w1V"/>
                                     </constraints>
@@ -60,7 +60,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="fXB-HH-4CJ">
-                                    <rect key="frame" x="84" y="160" width="500" height="90"/>
+                                    <rect key="frame" x="83.5" y="160" width="500" height="90"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2BI-WB-Dao">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="90"/>
@@ -190,12 +190,12 @@
                                     </constraints>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cC-nv-8aF">
-                                    <rect key="frame" x="306" y="438" width="56" height="56"/>
+                                    <rect key="frame" x="305.5" y="438" width="56" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="GuF-84-vVe"/>
                                         <constraint firstAttribute="width" constant="56" id="h5C-1F-L13"/>
                                     </constraints>
-                                    <state key="normal" image="right1"/>
+                                    <state key="normal" image="submitBtn"/>
                                     <connections>
                                         <action selector="submitRemarkClicked:" destination="-1" eventType="touchUpInside" id="zv3-jd-vsK"/>
                                     </connections>
@@ -248,7 +248,7 @@
         <image name="good" width="60" height="60"/>
         <image name="grt" width="60" height="60"/>
         <image name="okay" width="60" height="60"/>
-        <image name="right1" width="60" height="60"/>
+        <image name="submitBtn" width="42" height="42"/>
         <image name="terrible" width="60" height="60"/>
     </resources>
 </document>

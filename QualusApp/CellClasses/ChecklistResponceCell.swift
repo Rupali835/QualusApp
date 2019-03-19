@@ -12,6 +12,8 @@ class ChecklistResponceCell: UITableViewCell {
 
     @IBOutlet weak var backView: UIView!
     
+    @IBOutlet weak var viewBtns: UIView!
+    @IBOutlet weak var lblAnswer: UILabel!
     @IBOutlet weak var lblQuetion: UILabel!
     @IBOutlet weak var lblQuetionNum: UILabel!
     

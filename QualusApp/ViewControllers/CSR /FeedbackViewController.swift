@@ -1,10 +1,3 @@
-//
-//  FeedbackViewController.swift
-//  QualusApp
-//
-//  Created by Prajakta Bagade on 8/4/18.
-//  Copyright © 2018 user. All rights reserved.
-//
 
 import UIKit
 import Alamofire
@@ -32,16 +25,19 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
     var toast = JYToast()
     var Password: String!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
+        
         UIDevice.current.setValue(value, forKey: "orientation")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+        
         let check = UserDefaults.standard.object(forKey: "checkVC")
         print(check!)
-        Password = UserDefaults.standard.object(forKey: "pwd") as! String
+        
+        Password = UserDefaults.standard.object(forKey: "passwordd") as! String
 
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         userid = lcDict["user_id"] as! String
@@ -58,11 +54,20 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
         
         
         var newBackButton = UIBarButtonItem()
-        newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.BackTapped))
+        newBackButton = UIBarButtonItem(title: "Select Project", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.BackTapped))
         self.navigationItem.leftBarButtonItem = newBackButton
         
         
         
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeLeft
+    }
+
+    
+     func shouldAutorotate() -> Bool {
+        return true
     }
     
     @objc func orientationDidChange(notification: NSNotification) {
@@ -73,7 +78,7 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
     {
         print("back button pressed")        // check wheter enter pwd is correct
         
-        let alert = UIAlertController.init(title: "Are you Sure, You want to go Back", message: "", preferredStyle: .alert )
+        let alert = UIAlertController.init(title: "Please enter a password for select another project", message: "", preferredStyle: .alert )
         alert.addTextField
             { (temp) in
                 temp.placeholder = "Enter password"
@@ -89,17 +94,18 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
                     var csrVC = storyboard.instantiateViewController(withIdentifier: "CSRViewController") as! CSRViewController
                     let bool: String = "false"
                     UserDefaults.standard.set(bool, forKey: "checkVC")
-                    self.navigationController?.pushViewController(csrVC, animated: true)
-                    //self.navigationController?.backToViewController(viewController: CSRViewController.self)
-
                     
+//                    UserDefaults.standard.removeObject(forKey: "UserData")
+//                    UserDefaults.standard.removeObject(forKey: "checkVC")
+ //                   UserDefaults.standard.removeObject(forKey: "passwordd")
+                    
+                    
+                    self.navigationController?.pushViewController(csrVC, animated: true)
                    
                 }else{
                     self.toast.isShow("Password Incorrect")
                 }
-           
-            
-            
+
         }
         let CancleAlert = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         
@@ -107,10 +113,6 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
         alert.addAction(CancleAlert)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
-    
-    
     
     func textViewDidBeginEditing(_ textView: UITextView)
     {
@@ -194,7 +196,7 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
             OperationQueue.main.addOperation {
                 SVProgressHUD.setDefaultMaskType(.custom)
                 SVProgressHUD.setBackgroundColor(UIColor.gray)
-                SVProgressHUD.setBackgroundLayerColor(UIColor.white)
+                SVProgressHUD.setBackgroundLayerColor(UIColor.clear)
                 SVProgressHUD.show()
             }
             if txtName.text == ""

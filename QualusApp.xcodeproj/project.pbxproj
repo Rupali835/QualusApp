@@ -26,7 +26,6 @@
 		58065C002108F93300126942 /* ImageDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58065BFE2108F93300126942 /* ImageDisplayViewController.xib */; };
 		58065C032108FA0A00126942 /* LargImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58065C012108FA0A00126942 /* LargImageCollectionViewCell.swift */; };
 		58065C042108FA0A00126942 /* LargImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58065C022108FA0A00126942 /* LargImageCollectionViewCell.xib */; };
-		58091AA12105D5F200401FB7 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 58091AA02105D5F200401FB7 /* KLCPopup.m */; };
 		580B00B62109B18C00E587F5 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B00B42109B18C00E587F5 /* ChecklistViewController.swift */; };
 		580B00B72109B18C00E587F5 /* ChecklistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580B00B52109B18C00E587F5 /* ChecklistViewController.xib */; };
 		580B00B92109C90C00E587F5 /* checkListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B00B82109C90C00E587F5 /* checkListDataModel.swift */; };
@@ -38,6 +37,13 @@
 		580B3C97210067A40052376A /* getTicketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B3C95210067A40052376A /* getTicketCollectionViewCell.swift */; };
 		580B3C9E2100EF0A0052376A /* SupervisorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B3C9C2100EF0A0052376A /* SupervisorTableViewCell.swift */; };
 		580B3C9F2100EF0A0052376A /* SupervisorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580B3C9D2100EF0A0052376A /* SupervisorTableViewCell.xib */; };
+		582308B9223A39F900BDE05C /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308B8223A39F900BDE05C /* AppStoryboard.swift */; };
+		582308BB223A3A3700BDE05C /* SuperAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 582308BA223A3A3700BDE05C /* SuperAdmin.storyboard */; };
+		582308BE223A427400BDE05C /* SuperAdminHomePageVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308BD223A427400BDE05C /* SuperAdminHomePageVc.swift */; };
+		582308C2223A58B000BDE05C /* TodayAuditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308C1223A58B000BDE05C /* TodayAuditorCell.swift */; };
+		582308C4223A58D500BDE05C /* TodaySupervisorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308C3223A58D500BDE05C /* TodaySupervisorCell.swift */; };
+		582308C6223A716600BDE05C /* AdminMaverickTicketsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308C5223A716600BDE05C /* AdminMaverickTicketsVc.swift */; };
+		582308C8223A95FF00BDE05C /* AdminChecklistsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308C7223A95FF00BDE05C /* AdminChecklistsVc.swift */; };
 		5832DE3B20FF163A00483655 /* AuditordetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE3920FF163A00483655 /* AuditordetailsCollectionViewCell.swift */; };
 		5832DE3C20FF163A00483655 /* AuditordetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5832DE3A20FF163A00483655 /* AuditordetailsCollectionViewCell.xib */; };
 		5832DE4320FF394600483655 /* GetSelectedTicketDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE4120FF394600483655 /* GetSelectedTicketDetailsViewController.swift */; };
@@ -67,8 +73,26 @@
 		58A2332420FE14E7000A1C21 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331C20FE14E6000A1C21 /* UIViewController.swift */; };
 		58A2332520FE14E7000A1C21 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331D20FE14E6000A1C21 /* UIView+Shadow.swift */; };
 		58C29F69215B769E005D183B /* ReachabilityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C29F68215B769E005D183B /* ReachabilityCheck.swift */; };
+		58C992602204695B00E56C5A /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C9925F2204695A00E56C5A /* KLCPopup.m */; };
+		58CB629922365A8000CF9E4A /* Cardview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB629822365A8000CF9E4A /* Cardview.swift */; };
+		58CB629B2236767B00CF9E4A /* MaverickTicketImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB629A2236767B00CF9E4A /* MaverickTicketImageCell.swift */; };
+		58CB629D2236819000CF9E4A /* OpenImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB629C2236819000CF9E4A /* OpenImageVC.swift */; };
+		58D23CC6223CDF8A0048D9FD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CC5223CDF8A0048D9FD /* Reachability.swift */; };
+		58D23CCD223CF4850048D9FD /* ToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CC8223CF4850048D9FD /* ToastWindow.swift */; };
+		58D23CCE223CF4850048D9FD /* UIView+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CC9223CF4850048D9FD /* UIView+Toast.swift */; };
+		58D23CCF223CF4850048D9FD /* ToastContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CCA223CF4850048D9FD /* ToastContainerVC.swift */; };
+		58D23CD0223CF4850048D9FD /* EasyToastConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CCB223CF4850048D9FD /* EasyToastConfiguration.swift */; };
+		58D23CD1223CF4850048D9FD /* QueueToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CCC223CF4850048D9FD /* QueueToast.swift */; };
+		58D23CD3223D052B0048D9FD /* TodaysFilledChecklistVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CD2223D052B0048D9FD /* TodaysFilledChecklistVc.swift */; };
+		58D2F9CA223ECAE7003D71BA /* DetailMaverickTickVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D2F9C9223ECAE6003D71BA /* DetailMaverickTickVc.swift */; };
 		58D71F75210743AE008CEE10 /* TicketImagesCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D71F73210743AE008CEE10 /* TicketImagesCVC.swift */; };
 		58D71F76210743AE008CEE10 /* TicketImagesCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D71F74210743AE008CEE10 /* TicketImagesCVC.xib */; };
+		58D8B86B2237B61500E5481B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8B86A2237B61500E5481B /* Utilities.swift */; };
+		58E8FC1B223FCD33000E8B58 /* AdminDetailMaverickTickVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8FC1A223FCD33000E8B58 /* AdminDetailMaverickTickVc.swift */; };
+		58F09926223278F9008FBBD4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F09925223278F8008FBBD4 /* GradientView.swift */; };
+		58F099282232A695008FBBD4 /* PendingMaverickTickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F099272232A695008FBBD4 /* PendingMaverickTickets.swift */; };
+		58F0992B2232A6DF008FBBD4 /* PendingMaverickTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F099292232A6DF008FBBD4 /* PendingMaverickTicketCell.swift */; };
+		58F0992C2232A6DF008FBBD4 /* PendingMaverickTicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58F0992A2232A6DF008FBBD4 /* PendingMaverickTicketCell.xib */; };
 		CE01FE8521196DA400BEBB8B /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01FE8421196DA400BEBB8B /* ImageCell.swift */; };
 		CE01FE872119BFCE00BEBB8B /* ClassificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01FE862119BFCE00BEBB8B /* ClassificationData.swift */; };
 		CE0C51A820B2D86500B12027 /* UserListVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0C51A720B2D86500B12027 /* UserListVc.swift */; };
@@ -150,8 +174,6 @@
 		58065BFE2108F93300126942 /* ImageDisplayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDisplayViewController.xib; sourceTree = "<group>"; };
 		58065C012108FA0A00126942 /* LargImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		58065C022108FA0A00126942 /* LargImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LargImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		58091A9F2105D5F200401FB7 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
-		58091AA02105D5F200401FB7 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
 		58091AA72105E0B300401FB7 /* Bridge_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge_Header.h; sourceTree = "<group>"; };
 		580B00B42109B18C00E587F5 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		580B00B52109B18C00E587F5 /* ChecklistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistViewController.xib; sourceTree = "<group>"; };
@@ -164,6 +186,13 @@
 		580B3C95210067A40052376A /* getTicketCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getTicketCollectionViewCell.swift; sourceTree = "<group>"; };
 		580B3C9C2100EF0A0052376A /* SupervisorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisorTableViewCell.swift; sourceTree = "<group>"; };
 		580B3C9D2100EF0A0052376A /* SupervisorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupervisorTableViewCell.xib; sourceTree = "<group>"; };
+		582308B8223A39F900BDE05C /* AppStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
+		582308BA223A3A3700BDE05C /* SuperAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SuperAdmin.storyboard; sourceTree = "<group>"; };
+		582308BD223A427400BDE05C /* SuperAdminHomePageVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAdminHomePageVc.swift; sourceTree = "<group>"; };
+		582308C1223A58B000BDE05C /* TodayAuditorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAuditorCell.swift; sourceTree = "<group>"; };
+		582308C3223A58D500BDE05C /* TodaySupervisorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySupervisorCell.swift; sourceTree = "<group>"; };
+		582308C5223A716600BDE05C /* AdminMaverickTicketsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMaverickTicketsVc.swift; sourceTree = "<group>"; };
+		582308C7223A95FF00BDE05C /* AdminChecklistsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminChecklistsVc.swift; sourceTree = "<group>"; };
 		5832DE3920FF163A00483655 /* AuditordetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditordetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		5832DE3A20FF163A00483655 /* AuditordetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuditordetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		5832DE4120FF394600483655 /* GetSelectedTicketDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSelectedTicketDetailsViewController.swift; sourceTree = "<group>"; };
@@ -193,8 +222,27 @@
 		58A2331C20FE14E6000A1C21 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		58A2331D20FE14E6000A1C21 /* UIView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		58C29F68215B769E005D183B /* ReachabilityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCheck.swift; sourceTree = "<group>"; };
+		58C9925E2204695A00E56C5A /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
+		58C9925F2204695A00E56C5A /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
+		58CB629822365A8000CF9E4A /* Cardview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cardview.swift; sourceTree = "<group>"; };
+		58CB629A2236767B00CF9E4A /* MaverickTicketImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaverickTicketImageCell.swift; sourceTree = "<group>"; };
+		58CB629C2236819000CF9E4A /* OpenImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenImageVC.swift; sourceTree = "<group>"; };
+		58D23CC5223CDF8A0048D9FD /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		58D23CC8223CF4850048D9FD /* ToastWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
+		58D23CC9223CF4850048D9FD /* UIView+Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Toast.swift"; sourceTree = "<group>"; };
+		58D23CCA223CF4850048D9FD /* ToastContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastContainerVC.swift; sourceTree = "<group>"; };
+		58D23CCB223CF4850048D9FD /* EasyToastConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyToastConfiguration.swift; sourceTree = "<group>"; };
+		58D23CCC223CF4850048D9FD /* QueueToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueToast.swift; sourceTree = "<group>"; };
+		58D23CD2223D052B0048D9FD /* TodaysFilledChecklistVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysFilledChecklistVc.swift; sourceTree = "<group>"; };
+		58D2F9C9223ECAE6003D71BA /* DetailMaverickTickVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMaverickTickVc.swift; sourceTree = "<group>"; };
 		58D71F73210743AE008CEE10 /* TicketImagesCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImagesCVC.swift; sourceTree = "<group>"; };
 		58D71F74210743AE008CEE10 /* TicketImagesCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketImagesCVC.xib; sourceTree = "<group>"; };
+		58D8B86A2237B61500E5481B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		58E8FC1A223FCD33000E8B58 /* AdminDetailMaverickTickVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDetailMaverickTickVc.swift; sourceTree = "<group>"; };
+		58F09925223278F8008FBBD4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		58F099272232A695008FBBD4 /* PendingMaverickTickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingMaverickTickets.swift; sourceTree = "<group>"; };
+		58F099292232A6DF008FBBD4 /* PendingMaverickTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingMaverickTicketCell.swift; sourceTree = "<group>"; };
+		58F0992A2232A6DF008FBBD4 /* PendingMaverickTicketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PendingMaverickTicketCell.xib; sourceTree = "<group>"; };
 		CE01FE8421196DA400BEBB8B /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		CE01FE862119BFCE00BEBB8B /* ClassificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationData.swift; sourceTree = "<group>"; };
 		CE0C51A720B2D86500B12027 /* UserListVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVc.swift; sourceTree = "<group>"; };
@@ -321,8 +369,8 @@
 		58091A9E2105D5F200401FB7 /* KLCPopup */ = {
 			isa = PBXGroup;
 			children = (
-				58091A9F2105D5F200401FB7 /* KLCPopup.h */,
-				58091AA02105D5F200401FB7 /* KLCPopup.m */,
+				58C9925E2204695A00E56C5A /* KLCPopup.h */,
+				58C9925F2204695A00E56C5A /* KLCPopup.m */,
 			);
 			path = KLCPopup;
 			sourceTree = "<group>";
@@ -349,6 +397,45 @@
 			path = Pending_Tickets;
 			sourceTree = "<group>";
 		};
+		582308B7223A39F900BDE05C /* StoryboardFile */ = {
+			isa = PBXGroup;
+			children = (
+				582308B8223A39F900BDE05C /* AppStoryboard.swift */,
+			);
+			path = StoryboardFile;
+			sourceTree = "<group>";
+		};
+		582308BC223A423F00BDE05C /* SuperAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				582308C0223A587500BDE05C /* Cells */,
+				582308BF223A585D00BDE05C /* ViewControllers */,
+				582308BA223A3A3700BDE05C /* SuperAdmin.storyboard */,
+			);
+			path = SuperAdmin;
+			sourceTree = "<group>";
+		};
+		582308BF223A585D00BDE05C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				582308BD223A427400BDE05C /* SuperAdminHomePageVc.swift */,
+				582308C5223A716600BDE05C /* AdminMaverickTicketsVc.swift */,
+				582308C7223A95FF00BDE05C /* AdminChecklistsVc.swift */,
+				58D23CD2223D052B0048D9FD /* TodaysFilledChecklistVc.swift */,
+				58E8FC1A223FCD33000E8B58 /* AdminDetailMaverickTickVc.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		582308C0223A587500BDE05C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				582308C1223A58B000BDE05C /* TodayAuditorCell.swift */,
+				582308C3223A58D500BDE05C /* TodaySupervisorCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		5832DE4520FF57D700483655 /* Auditor Display */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +453,9 @@
 				5832DE4F20FF57D700483655 /* ChecklistQuestionsVc.swift */,
 				5832DE5020FF57D700483655 /* ShowImgFullScreenVc.swift */,
 				CE51B9CD2121630200500224 /* ChecklistQueForBarcodeVC.swift */,
+				58F099272232A695008FBBD4 /* PendingMaverickTickets.swift */,
+				58CB629C2236819000CF9E4A /* OpenImageVC.swift */,
+				58D2F9C9223ECAE6003D71BA /* DetailMaverickTickVc.swift */,
 			);
 			path = "Auditor Display";
 			sourceTree = "<group>";
@@ -407,6 +497,8 @@
 		58A2331520FE14E6000A1C21 /* Commons Files */ = {
 			isa = PBXGroup;
 			children = (
+				58D8B86A2237B61500E5481B /* Utilities.swift */,
+				58D23CC5223CDF8A0048D9FD /* Reachability.swift */,
 				58C29F68215B769E005D183B /* ReachabilityCheck.swift */,
 				58048DA82101ACE90076474D /* gradient.swift */,
 				58A2331620FE14E6000A1C21 /* UIView.swift */,
@@ -420,6 +512,18 @@
 				58A2331D20FE14E6000A1C21 /* UIView+Shadow.swift */,
 			);
 			path = "Commons Files";
+			sourceTree = "<group>";
+		};
+		58D23CC7223CF4850048D9FD /* EasyToast */ = {
+			isa = PBXGroup;
+			children = (
+				58D23CC8223CF4850048D9FD /* ToastWindow.swift */,
+				58D23CC9223CF4850048D9FD /* UIView+Toast.swift */,
+				58D23CCA223CF4850048D9FD /* ToastContainerVC.swift */,
+				58D23CCB223CF4850048D9FD /* EasyToastConfiguration.swift */,
+				58D23CCC223CF4850048D9FD /* QueueToast.swift */,
+			);
+			path = EasyToast;
 			sourceTree = "<group>";
 		};
 		7B23ED1C86695A1ACA53828E /* Frameworks */ = {
@@ -452,6 +556,7 @@
 		CE0F65F520AD452E00B8F026 /* QualusApp */ = {
 			isa = PBXGroup;
 			children = (
+				582308B7223A39F900BDE05C /* StoryboardFile */,
 				CE8644C721147CEE00E47E42 /* Third_Party */,
 				5832DE5C20FF581000483655 /* Data Model */,
 				58A2331520FE14E6000A1C21 /* Commons Files */,
@@ -477,6 +582,8 @@
 		CE0F661020AD4B2E00B8F026 /* Third Library */ = {
 			isa = PBXGroup;
 			children = (
+				58F09925223278F8008FBBD4 /* GradientView.swift */,
+				58D23CC7223CF4850048D9FD /* EasyToast */,
 				58091A9E2105D5F200401FB7 /* KLCPopup */,
 				CE8251FD20AD5516000C8586 /* TPkeyboard! */,
 				CE0F661120AD4B4C00B8F026 /* JYToast.swift */,
@@ -527,6 +634,7 @@
 		CE7BCF02213946C6008F7F52 /* ManagementLogin */ = {
 			isa = PBXGroup;
 			children = (
+				582308BC223A423F00BDE05C /* SuperAdmin */,
 				58453EB020FDED340044CBFA /* Management Display */,
 				58064D862112DA900083A726 /* AudSup checklist */,
 				580B3C8F210067250052376A /* Pending_Tickets */,
@@ -580,6 +688,9 @@
 				CE51B9D4212167D000500224 /* QueTypeTwoBarcodeCell.xib */,
 				CE12B14D213037410062F87C /* ChecklistRespImageInputCell.swift */,
 				CE12B14E213037410062F87C /* ChecklistRespImageInputCell.xib */,
+				58F099292232A6DF008FBBD4 /* PendingMaverickTicketCell.swift */,
+				58F0992A2232A6DF008FBBD4 /* PendingMaverickTicketCell.xib */,
+				58CB629A2236767B00CF9E4A /* MaverickTicketImageCell.swift */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -587,6 +698,7 @@
 		CE8644C721147CEE00E47E42 /* Third_Party */ = {
 			isa = PBXGroup;
 			children = (
+				58CB629822365A8000CF9E4A /* Cardview.swift */,
 				CE8644C921147D1300E47E42 /* DLRadioButton.h */,
 				CE8644C821147D1300E47E42 /* DLRadioButton.m */,
 			);
@@ -690,8 +802,10 @@
 				58048DB12101EB1A0076474D /* ticketdetailsTableViewCell.xib in Resources */,
 				580B00BD2109E76E00E587F5 /* checklistCollectionViewCell.xib in Resources */,
 				CE5C36BB20BC01EB002518BB /* ChecklistQuetionCell.xib in Resources */,
+				582308BB223A3A3700BDE05C /* SuperAdmin.storyboard in Resources */,
 				CE8B4ECA213EAEDE006B2B0D /* locationsCollectionViewCell.xib in Resources */,
 				CE51B9D6212167D000500224 /* QueTypeTwoBarcodeCell.xib in Resources */,
+				58F0992C2232A6DF008FBBD4 /* PendingMaverickTicketCell.xib in Resources */,
 				CE2149D420C1812D00D47754 /* SubmitedChecklistCell.xib in Resources */,
 				580B3C93210067430052376A /* PendingTicketViewController.xib in Resources */,
 				58048DB9210364650076474D /* ImageCollectionViewCell.xib in Resources */,
@@ -739,6 +853,7 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -755,6 +870,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -798,33 +914,39 @@
 				58048DB02101EB1A0076474D /* ticketdetailsTableViewCell.swift in Sources */,
 				CE0F65FF20AD452E00B8F026 /* QualusApp.xcdatamodeld in Sources */,
 				CE8B4EC6213EAEDE006B2B0D /* CSRViewController.swift in Sources */,
-				58091AA12105D5F200401FB7 /* KLCPopup.m in Sources */,
 				CE01FE872119BFCE00BEBB8B /* ClassificationData.swift in Sources */,
 				5832DE5620FF57D700483655 /* SplashScreenVc.swift in Sources */,
 				58A2332020FE14E6000A1C21 /* UICollectionView.swift in Sources */,
 				58048DB8210364650076474D /* ImageCollectionViewCell.swift in Sources */,
 				58A2332420FE14E7000A1C21 /* UIViewController.swift in Sources */,
+				58D23CD0223CF4850048D9FD /* EasyToastConfiguration.swift in Sources */,
+				582308C6223A716600BDE05C /* AdminMaverickTicketsVc.swift in Sources */,
 				CE62698A21254C5700C38FCE /* ImgeUploadForChecklist.swift in Sources */,
 				CE8B4EC9213EAEDE006B2B0D /* locationsCollectionViewCell.swift in Sources */,
 				CE0C51A820B2D86500B12027 /* UserListVc.swift in Sources */,
+				58D8B86B2237B61500E5481B /* Utilities.swift in Sources */,
 				CE5DC17A20C2A3450014D0FC /* ChecklistRespImageCell.swift in Sources */,
 				580B00BC2109E76E00E587F5 /* checklistCollectionViewCell.swift in Sources */,
 				CE51B9D5212167D000500224 /* QueTypeTwoBarcodeCell.swift in Sources */,
 				58064D892112DAD20083A726 /* TodayFilledChecklistVC.swift in Sources */,
 				58048DA72101A7DD0076474D /* Constant.swift in Sources */,
 				CE82520720AD5516000C8586 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				58C992602204695B00E56C5A /* KLCPopup.m in Sources */,
 				CE234ECA20B6844D00502D20 /* TicketImageVc.swift in Sources */,
+				58D23CCD223CF4850048D9FD /* ToastWindow.swift in Sources */,
 				58048DB4210310410076474D /* TicketDetaIsTableViewCell.swift in Sources */,
 				58A2332220FE14E6000A1C21 /* ErrorMsgs.swift in Sources */,
 				CE0CECA3211AC627002E93B2 /* SubmitChecklistData.swift in Sources */,
 				58064D8C2112EC8D0083A726 /* FilledChecklistData.swift in Sources */,
 				58D71F75210743AE008CEE10 /* TicketImagesCVC.swift in Sources */,
 				CE8B4ECC213EB055006B2B0D /* feedbackdataModel.swift in Sources */,
+				582308C2223A58B000BDE05C /* TodayAuditorCell.swift in Sources */,
 				CE234ECC20B6868B00502D20 /* TicketImaheCell.swift in Sources */,
 				5832DE5420FF57D700483655 /* CheckListByLocationVc.swift in Sources */,
 				CE5C36BD20BC1FAC002518BB /* ProjectsVc.swift in Sources */,
 				58048DA92101ACE90076474D /* gradient.swift in Sources */,
 				CE2149D320C1812D00D47754 /* SubmitedChecklistCell.swift in Sources */,
+				58D23CCE223CF4850048D9FD /* UIView+Toast.swift in Sources */,
 				5832DE5220FF57D700483655 /* BarCodeVc.swift in Sources */,
 				CE8B4EC7213EAEDE006B2B0D /* FeedbackViewController.swift in Sources */,
 				5832DE5A20FF57D700483655 /* ChecklistQuestionsVc.swift in Sources */,
@@ -846,37 +968,53 @@
 				CE2A852920B3F02300EC5FA0 /* UserProfileVc.swift in Sources */,
 				580366F12108AA190041B3A4 /* ticketMonitorDataModel.swift in Sources */,
 				58065BFF2108F93300126942 /* ImageDisplayViewController.swift in Sources */,
+				58D23CD3223D052B0048D9FD /* TodaysFilledChecklistVc.swift in Sources */,
 				58A2332120FE14E6000A1C21 /* UITableView.swift in Sources */,
 				58453EB320FDED630044CBFA /* ManagementViewController.swift in Sources */,
 				58064D8F21130A010083A726 /* submittedChecklistTableViewCell.swift in Sources */,
 				5832DE5B20FF57D700483655 /* ShowImgFullScreenVc.swift in Sources */,
 				CE8644C52114599700E47E42 /* MapLocations.swift in Sources */,
 				CE8644CA21147D1300E47E42 /* DLRadioButton.m in Sources */,
+				582308C4223A58D500BDE05C /* TodaySupervisorCell.swift in Sources */,
 				5832DE5120FF57D700483655 /* SubmittedChecklistVc.swift in Sources */,
 				580B3C92210067430052376A /* PendingTicketViewController.swift in Sources */,
 				5886E3BE217F0720001F4EEA /* EmpMaverickTicketVC.swift in Sources */,
 				CE5C36C220BC2EFF002518BB /* barcodeNumberCell.swift in Sources */,
 				CE82520820AD5516000C8586 /* TPKeyboardAvoidingTableView.m in Sources */,
 				5832DE5820FF57D700483655 /* SubmitChecklistResponseVc.swift in Sources */,
+				58CB629B2236767B00CF9E4A /* MaverickTicketImageCell.swift in Sources */,
 				CE5DC17620C29FFA0014D0FC /* ChecklistResponceCell.swift in Sources */,
+				58CB629922365A8000CF9E4A /* Cardview.swift in Sources */,
 				5832DE5920FF57D700483655 /* MaverickTicketViewVc.swift in Sources */,
 				580B00B92109C90C00E587F5 /* checkListDataModel.swift in Sources */,
+				58E8FC1B223FCD33000E8B58 /* AdminDetailMaverickTickVc.swift in Sources */,
+				58D23CC6223CDF8A0048D9FD /* Reachability.swift in Sources */,
 				CE0F660C20AD48F200B8F026 /* LoginPageVc.swift in Sources */,
+				58F099282232A695008FBBD4 /* PendingMaverickTickets.swift in Sources */,
+				58D23CD1223CF4850048D9FD /* QueueToast.swift in Sources */,
 				CE12B14F213037410062F87C /* ChecklistRespImageInputCell.swift in Sources */,
 				CEF1934420B92C48001567ED /* ScannerVc.swift in Sources */,
 				CE01FE8521196DA400BEBB8B /* ImageCell.swift in Sources */,
+				58F09926223278F9008FBBD4 /* GradientView.swift in Sources */,
 				5832DE5E20FF585000483655 /* ManagemnetDataModel.swift in Sources */,
 				CE8F816521186E89006E1B1E /* ChecklistQTypeCell.swift in Sources */,
 				CE0F661220AD4B4C00B8F026 /* JYToast.swift in Sources */,
 				CE0F661D20AD51C800B8F026 /* AbbrevationVc.swift in Sources */,
+				582308C8223A95FF00BDE05C /* AdminChecklistsVc.swift in Sources */,
+				58CB629D2236819000CF9E4A /* OpenImageVC.swift in Sources */,
 				CE288A5220BFEDF800D2856E /* imageUpload.swift in Sources */,
 				58A2332320FE14E6000A1C21 /* String.swift in Sources */,
 				CEF1934620B92F3F001567ED /* Utility.swift in Sources */,
 				CE0F65F720AD452E00B8F026 /* AppDelegate.swift in Sources */,
 				CE82520620AD5516000C8586 /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				58F0992B2232A6DF008FBBD4 /* PendingMaverickTicketCell.swift in Sources */,
+				58D2F9CA223ECAE7003D71BA /* DetailMaverickTickVc.swift in Sources */,
+				582308B9223A39F900BDE05C /* AppStoryboard.swift in Sources */,
 				CE82523120AD9E78000C8586 /* ProjectInfoCell.swift in Sources */,
 				CE51B9CE2121630200500224 /* ChecklistQueForBarcodeVC.swift in Sources */,
 				580B00B62109B18C00E587F5 /* ChecklistViewController.swift in Sources */,
+				582308BE223A427400BDE05C /* SuperAdminHomePageVc.swift in Sources */,
+				58D23CCF223CF4850048D9FD /* ToastContainerVC.swift in Sources */,
 				CE82520920AD5516000C8586 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				5832DE4320FF394600483655 /* GetSelectedTicketDetailsViewController.swift in Sources */,
 				580B3C9E2100EF0A0052376A /* SupervisorTableViewCell.swift in Sources */,

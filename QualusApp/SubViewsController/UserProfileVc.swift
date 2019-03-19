@@ -25,6 +25,16 @@ class UserProfileVc: UIViewController {
      
         self.lblUserName.text = usernm
         
+        if self.roleUser == "1"
+        {
+            self.lblUserRole.text = "SuperAdmin"
+        }
+        
+        if self.roleUser == "2"
+        {
+            self.lblUserRole.text = "Supervisor"
+        }
+        
         if self.roleUser == "3"
         {
             self.lblUserRole.text = "Auditor"
@@ -33,6 +43,10 @@ class UserProfileVc: UIViewController {
         {
             self.lblUserRole.text = "Emplolyee"
         }
+        if self.roleUser == "5"
+        {
+            self.lblUserRole.text = "Help Desk"
+        }
         if self.roleUser == "6"
         {
             self.lblUserRole.text = "Management"
@@ -40,6 +54,10 @@ class UserProfileVc: UIViewController {
         if self.roleUser == "7"
         {
             self.lblUserRole.text = "CSR"
+        }
+        if self.roleUser == "8"
+        {
+            self.lblUserRole.text = "Admin"
         }
 
     }

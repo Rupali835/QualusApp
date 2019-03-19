@@ -73,38 +73,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QualusApp/ViewControllers/Auditor Display/SubmitChecklistResponseVc.swift"
-            timestampString = "559824443.429777"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "getData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "QualusApp/ViewControllers/Auditor Display/SubmitChecklistResponseVc.swift"
-            timestampString = "559824443.429872"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "getData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "QualusApp/ViewControllers/ChecklistDetails/ChecklistViewController.swift"
             timestampString = "554905715.692114"
             startingColumnNumber = "9223372036854775807"
@@ -121,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QualusApp/ViewControllers/Auditor Display/SplashScreenVc.swift"
-            timestampString = "563882752.359728"
+            filePath = "QualusApp/ViewControllers/ManagementLogin/Management Display/ManagementViewController.swift"
+            timestampString = "574432878.413842"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
-            landmarkName = "SplashData()"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "TicketTillDatePEndingClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,13 +105,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QualusApp/ViewControllers/CSR /FeedbackViewController.swift"
-            timestampString = "562073928.866407"
+            filePath = "QualusApp/ViewControllers/Auditor Display/GenarateMaverickTicketVc.swift"
+            timestampString = "574456650.3582079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
+            landmarkName = "backToViewController(viewController:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QualusApp/ViewControllers/Auditor Display/ChecklistQuestionsVc.swift"
+            timestampString = "574541751.281132"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1329"
+            endingLineNumber = "1329"
+            landmarkName = "sendData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QualusApp/ViewControllers/Auditor Display/ChecklistQuestionsVc.swift"
+            timestampString = "574541751.281199"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1268"
+            endingLineNumber = "1268"
+            landmarkName = "sendData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QualusApp/ViewControllers/Auditor Display/ChecklistQuestionsVc.swift"
+            timestampString = "574541751.281252"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1324"
+            endingLineNumber = "1324"
+            landmarkName = "sendData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QualusApp/ViewControllers/Auditor Display/SubmittedChecklistVc.swift"
+            timestampString = "574596842.234915"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

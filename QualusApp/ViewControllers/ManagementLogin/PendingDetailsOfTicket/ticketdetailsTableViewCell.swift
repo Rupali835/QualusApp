@@ -51,14 +51,14 @@ class ticketdetailsTableViewCell: UITableViewCell,UICollectionViewDataSource,UIC
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrImges.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.className(ImageCollectionViewCell.self), for: indexPath) as! ImageCollectionViewCell
         
         let img = arrImges[indexPath.row]

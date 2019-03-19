@@ -89,11 +89,6 @@ class SelectProjectForTicketVc: UIViewController, UITableViewDataSource, UITable
             cBarcode.pId = pId!
             self.present(cBarcode, animated:true, completion: nil)
 
-            //            let navController = UINavigationController(rootViewController: cBarcode)
-            //            navController.setViewControllers([cBarcode], animated: true)
-            
-            //            let navigationController = self.window?.rootViewController as! UINavigationController
-            //            navigationController.setViewControllers([cBarcode], animated: true)
             
         }else
         {

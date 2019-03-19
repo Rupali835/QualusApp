@@ -29,6 +29,7 @@ class ChecklistQuetionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.btnYes.isMultipleSelectionEnabled = false
+       // self.btnYes.isSelected = true
         self.selectionStyle = .none
     }
 

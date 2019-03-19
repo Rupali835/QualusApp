@@ -71,7 +71,7 @@ class MaverickTicketViewVc: UIViewController
     
     override func viewWillAppear(_ animated: Bool)
     {
-           getMaverickTicket()
+        getMaverickTicket()
         tblProject.reloadData()
     }
     
@@ -151,7 +151,6 @@ class MaverickTicketViewVc: UIViewController
         popUp.dismissType = .slideOutToLeft
         popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
         tblProject.reloadData()
-        
     }
     
     @IBAction func btnUserProfile_click(_ sender: Any)

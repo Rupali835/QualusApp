@@ -33,6 +33,8 @@ class ManagementViewController: UIViewController {
     var userName : String!
     var AuditorArray:[AuditorTicketDetails] = []
     var SupervisorArray:[SupervisiorTicketDetails] = []
+    var TicketDataArr : [getManageTicketDetails] = []
+    
     var popUp : KLCPopup!
     var score: Int!
     var totalquestionsasked: Int!
@@ -68,11 +70,11 @@ class ManagementViewController: UIViewController {
     
     func navigationBarButton()
     {
-        let image = UIImage(named: "more (3)")
-        var rightButton = UIButton(type: .system)
-        rightButton.setImage(image, for: .normal)
+      
+        let rightButton = UIButton(type: .system)
+        rightButton.setTitle("AUDIT", for: .normal)
         rightButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        rightButton.addTarget(self, action: #selector(openTicketVC), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(openAuditorVc), for: .touchUpInside)
         let buttonitem = UIBarButtonItem(customView: rightButton)
         
         let img1 = UIImage(named: "power-signal")
@@ -88,25 +90,18 @@ class ManagementViewController: UIViewController {
         rightbutton2.setImage(img2, for: .normal)
         rightbutton2.addTarget(self, action: #selector(Userdetails), for: .touchUpInside)
         let buttonitem2 = UIBarButtonItem(customView: rightbutton2)
-        
-       navigationItem.rightBarButtonItems = [buttonitem, buttonitem1, buttonitem2]
-        
+        navigationItem.rightBarButtonItems = [buttonitem1, buttonitem2, buttonitem]
     }
     
-    @objc func openTicketVC() {
-        Moreview.applyShadowAndRadiustoView()
-        myProfileView.isHidden = true
-        Moreview.isHidden = false
-        popUp.contentView = Moreview
-        popUp.maskType = .dimmed
-        popUp.shouldDismissOnBackgroundTouch = true
-        popUp.shouldDismissOnContentTouch = false
-        popUp.showType = .slideInFromRight
-        popUp.dismissType = .slideOutToLeft
-        popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
+    @objc func openAuditorVc()
+    {
+       //let vc = storyboard?.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
+      //self.present(vc, animated: true, completion: nil)
+        
+      //  let vc = ProjectInfoVc.loadNib()
+      //  self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
+
     @objc func logout()
     {
         let alert = UIAlertController(title: "Qualus", message: "Are you sure to Logout", preferredStyle: .alert)
@@ -137,7 +132,6 @@ class ManagementViewController: UIViewController {
     }
     
     func UserRoleCheck()
-        
     {
         if UserRole == "6"
         {
@@ -170,8 +164,6 @@ class ManagementViewController: UIViewController {
         popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
     }
     
-    
-    
     func setUPcollectionView() {
         auditorCollectionView.delegate = self
         auditorCollectionView.dataSource = self
@@ -183,7 +175,6 @@ class ManagementViewController: UIViewController {
     
     func ManagementMonitorData()
     {
-        
         let strurl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Reports/get_monitor_data"
         
         let ManagePara = ["user_id": UserId! ,"role": UserRole!]
@@ -191,17 +182,18 @@ class ManagementViewController: UIViewController {
         OperationQueue.main.addOperation {
             SVProgressHUD.setDefaultMaskType(.custom)
             SVProgressHUD.setBackgroundColor(UIColor.gray)
-            SVProgressHUD.setBackgroundLayerColor(UIColor.white)
+            SVProgressHUD.setBackgroundLayerColor(UIColor.clear)
             SVProgressHUD.show()
         }
         
         manager.request(strurl, method: .post, parameters: ManagePara, encoding: URLEncoding.default, headers: nil).responseData(completionHandler: { (response) in
+            
+           // print(response)
             if let data = response.result.value
             {
                 OperationQueue.main.addOperation
-                    {
-                        
-                    SVProgressHUD.dismiss()
+                {
+                   SVProgressHUD.dismiss()
                 }
                 do{
                     let dataModel = try JSONDecoder().decode(ManagemnetDataModel.self, from: data)
@@ -212,6 +204,7 @@ class ManagementViewController: UIViewController {
                     self.lblSupervisiorChecklistCount.text = dataModel.sv_chk_fill_month
                     self.AuditorArray = dataModel.auditor_Target
                     self.SupervisorArray = dataModel.supervisor_Target
+            //        self.TicketDataArr = dataModel.getTicketData
 //                    self.auditorPercentage()
 //                    self.SupervisorPercentage()
                     self.auditorCollectionView.reloadData()
@@ -219,6 +212,10 @@ class ManagementViewController: UIViewController {
                 }catch
                 {
                     print(error)
+                    OperationQueue.main.addOperation
+                    {
+                        SVProgressHUD.dismiss()
+                    }
                 }
             }
         })
@@ -237,6 +234,7 @@ class ManagementViewController: UIViewController {
         }
         
     }
+    
     func SupervisorPercentage()
     {
         for item in SupervisorArray.enumerated()
@@ -271,7 +269,8 @@ class ManagementViewController: UIViewController {
             }else{
                 let pendingTicketVc = PendingTicketViewController.loadNib()
                 pendingTicketVc.ticketType = sender.tag
-                self.navigationController?.pushViewController(pendingTicketVc, animated: true)
+                
+            self.navigationController?.pushViewController(pendingTicketVc, animated: true)
             }
         }else if sender.tag == 2
         {
@@ -290,6 +289,7 @@ class ManagementViewController: UIViewController {
             }else{
                 let pendingTicketVc = PendingTicketViewController.loadNib()
                 pendingTicketVc.ticketType = sender.tag
+                pendingTicketVc.arrpendingTicket = self.TicketDataArr
                 self.navigationController?.pushViewController(pendingTicketVc, animated: true)
             }
         }
@@ -317,15 +317,10 @@ class ManagementViewController: UIViewController {
             }else{
                 let checklistvc = ChecklistViewController.loadNib()
                 checklistvc.checkListType = sender.tag
-                self.navigationController?.pushViewController(checklistvc, animated: true)
+               self.navigationController?.pushViewController(checklistvc, animated: true)
             }
-            
         }
-        
-        
-     }
-    
-    
+    }
 }
 //MARK:EXTENSIONS
 
@@ -350,6 +345,7 @@ extension ManagementViewController: UICollectionViewDelegate,UICollectionViewDat
         switch collectionView {
         case supervisorCollectionView:
             let cell = auditorCollectionView.dequeueReusableCell(withReuseIdentifier: String.className(AuditordetailsCollectionViewCell.self), for: indexPath) as! AuditordetailsCollectionViewCell
+            
             cell.lblActualQuantity.text = "\(SupervisorArray[indexPath.row].actual)"
             cell.lblExceptedQuantity.text = "\(SupervisorArray[indexPath.row].expected)"
             cell.lblName.text = SupervisorArray[indexPath.row].name
@@ -362,7 +358,6 @@ extension ManagementViewController: UICollectionViewDelegate,UICollectionViewDat
             cell.lblActualQuantity.text = "\(AuditorArray[indexPath.row].actual)"
             cell.lblExceptedQuantity.text = "\(AuditorArray[indexPath.row].expected)"
             cell.lblName.text = AuditorArray[indexPath.row].name
-            
             return cell
         default:
             print("default")

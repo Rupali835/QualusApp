@@ -26,7 +26,9 @@ class GetSelectedTicketDetailsViewController: UIViewController,imgaeSelectionPro
     
     @IBOutlet weak var lblTciketNo: UILabel!
     @IBOutlet weak var tableview: UITableView!
+    
     var Ticket : getManageTicketDetails!
+    
     var Arr : [[String:Any]] = []
     var Arrimage = [UIImage]()
     var AssignUserName : String!
@@ -40,7 +42,8 @@ class GetSelectedTicketDetailsViewController: UIViewController,imgaeSelectionPro
         tableview.dataSource = self
         self.tableview.separatorStyle = .none
         self.tableview.rowHeight = UITableViewAutomaticDimension
-        lblTciketNo.text = "Ticket No"+""+Ticket.mt_id
+     //   lblTciketNo.text = "Ticket No"+""+Ticket.mt_id
+        lblTciketNo.text = "Ticket No :  \(Ticket.mt_id)"
         tableview.registerCellNib(TicketDetaIsTableViewCell.self)
         tableview.registerCellNib(ticketdetailsTableViewCell.self)
         NFCheck()
@@ -67,24 +70,28 @@ class GetSelectedTicketDetailsViewController: UIViewController,imgaeSelectionPro
         {
             Ticket.t_close_remark  = "Not Provided"
         }
+        if Ticket.mt_action_plan_date == "0000-00-00"
+        {
+           Ticket.mt_action_plan_date = "Not Provided"
+        }
     }
     
     func dataDisplay()
     {
         
-         if let Data = Ticket
+        if Ticket != nil
         {
-            Arr =  [["title":"Observation","details":(Ticket.mt_subject)],["title":"Project","details":(Ticket.p_name)],
-                    ["title":"Branch","details":(Ticket.pb_name)],
-                    ["title":"Space","details":(Ticket.l_space)],
-                    ["title":"locations","details":("Floor:\(Ticket.l_floor),Building:\(Ticket.b_name)")],
+            Arr =  [["title":"Observation","details":(Ticket.mt_subject)],["title":"Project","details":(Ticket.p_name)!],
+                    ["title":"Branch","details":(Ticket.pb_name)!],
+                    ["title":"Space","details":(Ticket.l_space)!],
+                    ["title":"locations","details":("Floor:\(Ticket.l_floor!),Building:\(Ticket.b_name!)")],
                     ["title":"Expected Completion Date","details":(Ticket.mt_action_plan_date)],
                     ["title":"Added by ","details":(Ticket.added_by_name)],
                     ["title":"Assigned To/Accepted by","details": Ticket.assigned_to],
                     ["title":"Remark","details":(Ticket.mt_remark)],
                     ["title":"Action Plan implemented by Supervisor","details":(Ticket.mt_action_plan)],
-                    ["title":"Remark by Supervisor","details": Ticket.t_close_remark],
-                    ["title":"Ticket close action","details": Ticket.t_close_action],
+                    ["title":"Remark by Supervisor","details": Ticket.t_close_remark!],
+                    ["title":"Ticket close action","details": Ticket.t_close_action!],
                     ["title":"Photos","details":Ticket.mt_photo]]
         }
     }

@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate,UNUserNo
     var Notificationcount = Int(0)
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
     
         IQKeyboardManager.shared().isEnabled = true
     
@@ -65,9 +64,14 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
             let Role = result["role"] as! String
             let userid = result["user_id"] as! String
             
-            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
-            let yourViewController: SplashScreenVc = storyboard.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
-            yourViewController.setViewController(user_id: userid, Role: Role)
+          //  let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
+            
+          //  let yourViewController: SplashScreenVc = storyboard.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
+            
+            let yourViewController = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
+            
+            
+        //    yourViewController.setViewController(user_id: userid, Role: Role)
             let navigationController = self.window?.rootViewController as! UINavigationController
          navigationController.setViewControllers([yourViewController], animated: true)
             

@@ -247,11 +247,8 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
             self.txtRemark.text = ""
             self.txtActionPlan.text = ""
             self.txtEnterObservation.text = ""
-            let MTVc = MaverickTicketViewVc()
-        
-        self.navigationController?.backToViewController(viewController: MaverickTicketViewVc.self)
             
-
+            self.navigationController?.backToViewController(viewController: ProjectInfoVc.self)
 
         } )
         
@@ -260,7 +257,6 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
 
     }
 
-   
     //MARK: ACTIONS
 
     @IBAction func btnCamera_Click(_ sender: Any)

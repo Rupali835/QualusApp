@@ -62,7 +62,7 @@ class UserListVc: UIViewController {
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchUserList.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchUserList.fetchRequest()) as [FetchUserList]
             for (index, value) in DataArr.enumerated()
             {
                 let userEnt = DataArr[index] as! FetchUserList
@@ -79,7 +79,7 @@ class UserListVc: UIViewController {
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchUserList.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchUserList.fetchRequest()) as [FetchUserList]
        //     print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()

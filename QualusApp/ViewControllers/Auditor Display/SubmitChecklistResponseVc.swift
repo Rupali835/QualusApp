@@ -77,7 +77,6 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
             print(fetchData)
             let JSON = fetchData.result.value as? [String: AnyObject]
             self.RespArr = JSON!["filled_answer"] as! [AnyObject]
-            print("Checklist Data", self.RespArr)
             self.tblChecklisrResp.reloadData()
         }
         
@@ -102,19 +101,59 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
         let lcDict = RespArr[indexPath.row]
         
         let m_img = lcDict["is_photo"] as! String
+        let questionType = lcDict["q_type"] as! String
+        
         
         if m_img == "0"
         {
             let Rcell = tblChecklisrResp.dequeueReusableCell(withIdentifier: "ChecklistResponceCell", for: indexPath) as! ChecklistResponceCell
             
+            if questionType == "1"
+            {
+               Rcell.lblAnswer.isHidden = true
+                Rcell.viewBtns.isHidden = false
+                
+                let ansQ = lcDict["answer"] as! String
+                
+                if ansQ == "1"
+                {
+                    Rcell.imgYes.image = UIImage(named: "selectRadioBtn")
+                    Rcell.imgNA.image = UIImage(named: "UnselectRadioBtn")
+                    Rcell.imgNo.image = UIImage(named: "UnselectRadioBtn")
+                }
+                
+                if ansQ == "0"
+                {
+                    Rcell.imgNA.image = UIImage(named: "selectRadioBtn")
+                    Rcell.imgYes.image = UIImage(named: "UnselectRadioBtn")
+                    Rcell.imgNo.image = UIImage(named: "UnselectRadioBtn")
+                }
+                
+                if ansQ == "2"
+                {
+                    Rcell.imgNo.image = UIImage(named: "selectRadioBtn")
+                    Rcell.imgNA.image = UIImage(named: "UnselectRadioBtn")
+                    Rcell.imgYes.image = UIImage(named: "UnselectRadioBtn")
+                    
+                }
+                
+            }
+            else
+            {
+                Rcell.lblAnswer.isHidden = false
+                Rcell.viewBtns.isHidden = true
+                
+                let cInput = lcDict["c_input"] as! String
+                Rcell.lblAnswer.text = "Answer :   \(cInput)"
+            }
             self.designCell(cView: Rcell.backView)
             
-            Rcell.lblQuetion.text = lcDict["question"] as! String
+            Rcell.lblQuetion.text = (lcDict["question"] as! String)
             
              let indexNumber = indexPath.row + 1
             Rcell.lblQuetionNum.text = "Q" + String(indexNumber)
             
-            var remark = lcDict["remark"] as! String
+            let remark = lcDict["remark"] as! String
             if remark == "NF"
             {
                 Rcell.lblNoRemark.text = "No Remark"
@@ -122,31 +161,6 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
             }else{
                 Rcell.lblRemark.text = remark
             }
-            
-            let ansQ = lcDict["answer"] as! String
-            
-            if ansQ == "1"
-            {
-                Rcell.imgYes.image = UIImage(named: "selectRadioBtn")
-                Rcell.imgNA.image = UIImage(named: "UnselectRadioBtn")
-                Rcell.imgNo.image = UIImage(named: "UnselectRadioBtn")
-            }
-            
-            if ansQ == "0"
-            {
-                Rcell.imgNA.image = UIImage(named: "selectRadioBtn")
-                Rcell.imgYes.image = UIImage(named: "UnselectRadioBtn")
-                Rcell.imgNo.image = UIImage(named: "UnselectRadioBtn")
-            }
-            
-            if ansQ == "2"
-            {
-                Rcell.imgNo.image = UIImage(named: "selectRadioBtn")
-                Rcell.imgNA.image = UIImage(named: "UnselectRadioBtn")
-                Rcell.imgYes.image = UIImage(named: "UnselectRadioBtn")
-                
-            }
-
             
             return Rcell
             
@@ -160,44 +174,72 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
             let ImgArr = lcDict["ans_image"] as! [AnyObject]
             self.BindImages(cImagesArr: ImgArr, cell: cell)
             
+            cell.loadData(data: ImgArr)
+            
+            
          let indexNumber = indexPath.row + 1
             cell.lblQuetionNum.text = "Q" + String(indexNumber)
-            cell.lblQuetion.text = lcDict["question"] as! String
-            cell.lblRespRemark.text = lcDict["remark"] as! String
+            cell.lblQuetion.text = (lcDict["question"] as! String)
+            cell.lblRespRemark.text = (lcDict["remark"] as! String)
             
-            let ansQ = lcDict["answer"] as! String
-            
-            if ansQ == "1"
+            if questionType == "1"
             {
-                cell.imgYes.image = UIImage(named: "selectRadioBtn")
-                cell.imgNo.image = UIImage(named: "UnselectRadioBtn")
-                cell.imgNA.image = UIImage(named: "UnselectRadioBtn")
-            }
-            
-            if ansQ == "0"
+                cell.lblAnswer.isHidden = true
+                cell.viewBtnYesNo.isHidden = false
+                
+                let ansQ = lcDict["answer"] as! String
+                
+                if ansQ == "1"
+                {
+                    cell.imgYes.image = UIImage(named: "selectRadioBtn")
+                    cell.imgNo.image = UIImage(named: "UnselectRadioBtn")
+                    cell.imgNA.image = UIImage(named: "UnselectRadioBtn")
+                }
+                
+                if ansQ == "0"
+                {
+                    cell.imgNA.image = UIImage(named: "selectRadioBtn")
+                    cell.imgNo.image = UIImage(named: "UnselectRadioBtn")
+                    cell.imgYes.image = UIImage(named: "UnselectRadioBtn")
+                }
+                
+                if ansQ == "2"
+                {
+                    cell.imgNo.image = UIImage(named: "selectRadioBtn")
+                    cell.imgNA.image = UIImage(named: "UnselectRadioBtn")
+                    cell.imgYes.image = UIImage(named: "UnselectRadioBtn")
+                }
+                
+            }else
             {
-                cell.imgNA.image = UIImage(named: "selectRadioBtn")
-                cell.imgNo.image = UIImage(named: "UnselectRadioBtn")
-                cell.imgYes.image = UIImage(named: "UnselectRadioBtn")
+                cell.lblAnswer.isHidden = false
+                cell.viewBtnYesNo.isHidden = true
+                let cInput = lcDict["c_input"] as! String
+                cell.lblAnswer.text = "Answer :   \(cInput)"
             }
-            
-            if ansQ == "2"
-            {
-                cell.imgNo.image = UIImage(named: "selectRadioBtn")
-                cell.imgNA.image = UIImage(named: "UnselectRadioBtn")
-                cell.imgYes.image = UIImage(named: "UnselectRadioBtn")
-            }
-            
             return cell
             
         }
       
     }
 
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+//    {
+//        let cFullScreen = storyboard?.instantiateViewController(withIdentifier: "OpenImageVC") as! OpenImageVC
+//
+//         let lcDict = RespArr[indexPath.row]
+//         let ImgArr = lcDict["ans_image"] as! [AnyObject]
+//        let Img = ImgArr["img_name"] as! String
+//        cFullScreen.imgNm = ImgArr
+//
+//        self.navigationController?.pushViewController(cFullScreen, animated: true)
+//
+//    }
     
     func BindImages(cImagesArr: [AnyObject], cell: ChecklistRespImageCell)
     {
-        for lcDict in cImagesArr
+       
+        for (index,lcDict) in cImagesArr.enumerated()
         {
             let img_name = lcDict["img_name"] as! String
             // append path of images here by using image name
@@ -209,20 +251,8 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
                     
                     DispatchQueue.main.async
                         {
-                            if cell.img1.image == nil
-                            {
-                              cell.img1.image = img
-                                
-                            }else if cell.img2.image == nil{
-                                cell.img2.image = img
-                                
-                            }else if cell.img3.image == nil{
-                                cell.img3.image = img
-                            
-                            }else if cell.img4.image == nil{
-                                cell.img4.image = img
-                                
-                    }
+                 
+                           
                 }
              }
          }

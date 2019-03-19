@@ -10,6 +10,7 @@ import UIKit
 
 class getTicketCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var lblBranch: UILabel!
     @IBOutlet weak var lblObservations: UILabel!
     @IBOutlet weak var lblproject1: UILabel!
@@ -20,8 +21,13 @@ class getTicketCollectionViewCell: UICollectionViewCell {
         self.clipsToBounds = true
         self.layer.cornerRadius = 5
         self.applyShadowAndRadiustoView()
+        
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        let screenWidth = UIScreen.main.bounds.size.width
+        widthConstraint.constant = screenWidth - (2 * 12)
 
     }
     
-    
+ 
+
 }

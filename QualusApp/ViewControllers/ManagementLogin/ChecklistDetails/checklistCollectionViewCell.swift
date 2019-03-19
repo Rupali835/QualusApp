@@ -11,10 +11,7 @@ import CoreData
 
 class checklistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var score: UILabel!
-    @IBOutlet weak var endtime: UILabel!
-    @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var createdDate: UILabel!
-    @IBOutlet weak var projName: UILabel!
     @IBOutlet weak var checklistName: UILabel!
     @IBOutlet weak var locName: UILabel!
     @IBOutlet weak var generatedby: UILabel!

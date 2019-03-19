@@ -14,7 +14,8 @@ target 'QualusApp' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Messaging'
 	pod 'Firebase/Database'	
-    pod 'IQKeyboardManager'	
+    pod 'IQKeyboardManager'
+	pod 'Kingfisher'	
 		
 
   # Pods for QualusApp
@@ -30,10 +31,7 @@ target 'QualusApp' do
 	pod 'Firebase/Messaging'
 	pod 'Firebase/Database'
     pod 'IQKeyboardManager'
+	pod 'Kingfisher'
 	
-	
-
- 
-
 
 end

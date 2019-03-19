@@ -70,6 +70,7 @@ class imageUpload: NSObject
     if message == "SUCCESS"
     {
         print("ticket updated successfully")
+        
     }
 
     DispatchQueue.main.async {

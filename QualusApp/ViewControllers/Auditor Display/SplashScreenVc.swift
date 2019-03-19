@@ -24,30 +24,78 @@ class SplashScreenVc: UIViewController {
     var Userrole : String = ""
     var userId : String = ""
     let manager = Alamofire.SessionManager.default
-    private var toast : JYToast!
+    private var toast = JYToast()
+    
+    var Password : String!
    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if isConnectedToNetwork()
-        {
-            manager.session.configuration.timeoutIntervalForRequest = 120
-            toast = JYToast()
-            self.SplashData()
-            
-            let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
-        }else{
-            self.toast.isShow("No internet connection")
-        }
+//        if isConnectedToNetwork()
+//        {
+//            manager.session.configuration.timeoutIntervalForRequest = 120
+//            self.SplashData()
+//
+//            let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
+//            self.Password = UserDefaults.standard.value(forKey: "passwordd") as! String
+//            print(self.Password)
+//
+//            let userRole = lcDict["role"] as! String
+//            let userid = lcDict["user_id"] as! String
+//            setViewController(user_id: userid, Role: userRole)
+//
+//
+//        }else{
+//            self.toast.isShow("No internet connection")
+//        }
         
     
       }
 
+    override func viewDidAppear(_ animated: Bool)
+    {
+        NetworkManager.isReachable { _ in
+            print("already connected internet")
+            
+            self.manager.session.configuration.timeoutIntervalForRequest = 120
+            self.SplashData()
+            
+            let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
+            self.Password = (UserDefaults.standard.value(forKey: "passwordd") as! String)
+            print(self.Password)
+            
+            let userRole = lcDict["role"] as! String
+            let userid = lcDict["user_id"] as! String
+            self.setViewController(user_id: userid, Role: userRole)
+          
+            
+        }
+        NetworkManager.sharedInstance.reachability.whenReachable = { _ in
+            print("now connected internet")
+           
+            self.manager.session.configuration.timeoutIntervalForRequest = 120
+            self.SplashData()
+            
+            let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
+            self.Password = UserDefaults.standard.value(forKey: "passwordd") as! String
+            print(self.Password)
+            
+            let userRole = lcDict["role"] as! String
+            let userid = lcDict["user_id"] as! String
+            self.setViewController(user_id: userid, Role: userRole)
+        }
+        
+        NetworkManager.isUnreachable{ _ in
+            let alert = UIAlertController(title: "Qualus", message: "Please check your internet connection", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func setViewController(user_id : String, Role : String)
     {
-        
-        if Role == "3"
+        if Role == "3"   // Auditor Login
         {
             ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
                 if sucess
@@ -67,7 +115,7 @@ class SplashScreenVc: UIViewController {
                     })
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         
-                        let ProjVc = self.storyboard?.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
+                    let ProjVc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
                         self.navigationController?.pushViewController(ProjVc, animated: true)
                     }
                     
@@ -78,39 +126,67 @@ class SplashScreenVc: UIViewController {
             })
         }
         
-        if (Role == "6") || (Role == "1") || (Role == "8")
+        if (Role == "6") || (Role == "1") || (Role == "8")  // 6 :management, 1: SuperAdmin, 8 :Admin
             
         {
-            LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: {(sucess) -> Void in
-                if sucess{
-                    
+            
+            ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
+                if sucess
+                {
+                    LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: { (success) -> Void
+                        in
+                        if success
+                        {
+                            userDataList.cUserData.getUserList(user_id: user_id)
+                            ClassificationData.cDataClassification.fetchClassifictnData()
+                            MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
+                        }else
+                        {
+                            print("false")
+                        }
+                        
+                    })
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         
-                        let managevc = ManagementViewController.init(nibName: "ManagementViewController", bundle: nil)
-                        self.navigationController?.pushViewController(managevc, animated: true)
+                       
+                        let vc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "SuperAdminHomePageVc") as! SuperAdminHomePageVc
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }
-               
-                } else {
                     
+                } else {
                     print("false")
                 }
                 
             })
-         
+
+     
         }
         
         
-        if Role == "7"
+        if Role == "7"   // CSR
             
         {
             LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: {(sucess) -> Void in
                 if sucess{
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                      
-                    let CSRVc = self.storyboard?.instantiateViewController(withIdentifier: "CSRViewController") as! CSRViewController
-                        UserDefaults.standard.set(passwd.self, forKey: "pwd")
-                    self.navigationController?.pushViewController(CSRVc, animated: true)
+                    
+                    if self.Password != nil
+                    {
+                       let bool = "true"
+                        UserDefaults.standard.set(bool, forKey: "checkVC")
+
+                    let feedbackVc = FeedbackViewController.loadNib()
+                self.navigationController?.pushViewController(feedbackVc, animated: true)
+
+                    }else{
+                        
+                        let bool = "false"
+                        UserDefaults.standard.set(bool, forKey: "checkVC")
+                         let CSRVc = self.storyboard?.instantiateViewController(withIdentifier: "CSRViewController") as! CSRViewController
+                         self.navigationController?.pushViewController(CSRVc, animated: true)
+                        }
                       
                     }
                     
@@ -153,11 +229,6 @@ class SplashScreenVc: UIViewController {
                 
             })
         }
-        
-//        userDataList.cUserData.getUserList(user_id: user_id)
-//        ClassificationData.cDataClassification.fetchClassifictnData()
-//        MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
-        
         
     }
     

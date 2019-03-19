@@ -1,10 +1,3 @@
-//
-//  CSRViewController.swift
-//  QualusApp
-//
-//  Created by Prajakta Bagade on 8/18/18.
-//  Copyright © 2018 user. All rights reserved.
-//
 
 import UIKit
 import Alamofire
@@ -19,7 +12,6 @@ class CSRViewController: UIViewController {
     @IBOutlet weak var btnRoom: UIButton!
     @IBOutlet weak var btnSpace: UIButton!
     @IBOutlet weak var collectionview: UICollectionView!
-    
     @IBOutlet weak var branchView: UIView!
     @IBOutlet weak var BuildingView: UIView!
     @IBOutlet weak var floorView: UIView!
@@ -94,7 +86,7 @@ class CSRViewController: UIViewController {
     {
         let url = "http://kanishkaconsultancy.com/Qualus-FM-Android/fetchAllLocations.php"
         
-        let para = ["u_Id": self.UserId , "u_type": self.Role]
+        let para = ["u_Id": self.UserId! , "u_type": self.Role!]
         
        //     let para = ["u_Id": "147" , "u_type": "7"]
         
@@ -103,12 +95,13 @@ class CSRViewController: UIViewController {
             OperationQueue.main.addOperation {
                 SVProgressHUD.setDefaultMaskType(.custom)
                 SVProgressHUD.setBackgroundColor(UIColor.gray)
-                SVProgressHUD.setBackgroundLayerColor(UIColor.white)
+                SVProgressHUD.setBackgroundLayerColor(UIColor.clear)
                 SVProgressHUD.show()
                 
             }
     
         Alamofire.request(url, method: .post, parameters: para, encoding: URLEncoding.default, headers: nil).responseData { (resp) in
+            print(resp)
             if let data = resp.result.value
             {
                 OperationQueue.main.addOperation {
@@ -162,10 +155,6 @@ class CSRViewController: UIViewController {
         SpaceView.layer.cornerRadius = 10
         
     }
-    
-    
-    
-    
     
     func filterWing()
     {
@@ -234,7 +223,7 @@ class CSRViewController: UIViewController {
         OperationQueue.main.addOperation {
             SVProgressHUD.setDefaultMaskType(.custom)
             SVProgressHUD.setBackgroundColor(UIColor.gray)
-            SVProgressHUD.setBackgroundLayerColor(UIColor.white)
+            SVProgressHUD.setBackgroundLayerColor(UIColor.clear)
             SVProgressHUD.show()
             
         }
@@ -249,7 +238,7 @@ class CSRViewController: UIViewController {
                 }
                 UserDefaults.standard.removeObject(forKey: "UserData")
                 UserDefaults.standard.removeObject(forKey: "checkVC")
-                UserDefaults.standard.removeObject(forKey: "pwd")
+                UserDefaults.standard.removeObject(forKey: "passwordd")
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
                 let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginPageVc") as! LoginPageVc
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -457,7 +446,8 @@ extension CSRViewController: UICollectionViewDelegate,UICollectionViewDataSource
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.className(locationsCollectionViewCell.self), for: indexPath) as! locationsCollectionViewCell
         if selected == 1
         {
@@ -521,8 +511,7 @@ extension CSRViewController: UICollectionViewDelegate,UICollectionViewDataSource
             
         }else if selected == 6
         {
-
-           space = spaceArray[indexPath.row]
+            space = spaceArray[indexPath.row]
             btnSpace.setTitle(space, for: .normal)
             popUp.dismiss(true)
         }

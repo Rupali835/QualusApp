@@ -97,7 +97,7 @@ class LocationData: NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try context.fetch(FetchLocation.fetchRequest()) as [AnyObject]
+            let DataArr = try context.fetch(FetchLocation.fetchRequest()) as [FetchLocation]
             
      
             
@@ -121,7 +121,7 @@ class LocationData: NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchBranches.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchBranches.fetchRequest()) as [FetchBranches]
 
             return DataArr
         }catch{
@@ -137,7 +137,7 @@ class LocationData: NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchBuilding.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchBuilding.fetchRequest()) as [FetchBuilding]
 //            for (index, value) in DataArr.enumerated()
 //            {
 //                let branchEnt = DataArr[index] as! FetchBuilding
@@ -156,7 +156,7 @@ class LocationData: NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchLocation.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchLocation.fetchRequest()) as [FetchLocation]
        //     print("Count=\(DataArr.count) \(DataArr)")
            
             for (index, _) in DataArr.enumerated()
@@ -175,7 +175,7 @@ class LocationData: NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchBranches.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchBranches.fetchRequest()) as [FetchBranches]
            // print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()
@@ -193,7 +193,7 @@ class LocationData: NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchBuilding.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchBuilding.fetchRequest()) as [FetchBuilding]
            // print("Count=\(DataArr.count) \(DataArr)")
             
             for (index, _) in DataArr.enumerated()

@@ -19,7 +19,9 @@ class TodayFilledChecklistVC: UIViewController {
     var userRoll : String!
     var Aud_Sup_Roll : String!
     var ChecklistDetailsArray : [checklistData] = []
+    
     @IBOutlet weak var tableview: UITableView!
+    
     var Projectlist = [FeatchProjects]()
     var LocationList = [FetchLocation]()
     var userArray = [FetchUserList]()

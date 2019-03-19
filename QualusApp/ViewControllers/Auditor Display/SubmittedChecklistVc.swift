@@ -1,10 +1,4 @@
-//
-//  SubmittedChecklistVc.swift
-//  QualusApp
-//
-//  Created by user on 01/06/18.
-//  Copyright © 2018 user. All rights reserved.
-//
+
 
 import UIKit
 import Alamofire
@@ -18,6 +12,7 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
     private var toast : JYToast!
     var FcId : String = ""
     //var LocationDataArr = [AnyObject]()
+    let cell = SubmitedChecklistCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +43,6 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         cView.layer.shadowOpacity = 0.7
         cView.layer.shadowOffset = CGSize(width: 0, height: 0)
         cView.layer.shadowRadius = 1
-        
     }
 
     func getdata()
@@ -63,12 +57,14 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
             let JSON = fetchData.result.value as? [String: AnyObject]
             
             self.CheckListArr = JSON!["filled_checklist"] as! [AnyObject]
-           
-            self.tblSubmitedList.reloadData()
             
+            self.tblSubmitedList.reloadData()
+            if self.CheckListArr.isEmpty == true
+            {
+             
+                Utilities.shared.centermsg(msg: "No any checklist available", view: self.view)
+            }
         }
-        
-        
     }
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -77,7 +73,7 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         {
             return self.CheckListArr.count
         }else{
-          //  self.toast.isShow("No any submitted checklist")
+          
             return 0
         }
     }
@@ -109,14 +105,17 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
                     {
                        let b_name = BuildingEnt.b_name
                         
-                        if L_room != "NF"
-                        {
-                            cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + b_name!
-                        }
-                        if L_wing != "NF"
-                        {
-                            cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + "Wing:" + L_wing! + "," + b_name!
-                        }
+                        cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + "Wing:" + L_wing! + "," + b_name!
+
+                        
+//                        if L_room != "NF"
+//                        {
+//                            cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + b_name!
+//                        }
+//                        if L_wing != "NF"
+//                        {
+//                            cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + "Wing:" + L_wing! + "," + b_name!
+//                        }
                    }
               }
                 
@@ -141,34 +140,34 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         dateFormatter.locale = tempLocale // reset the locale
         let dateString = dateFormatter.string(from: dateFo)
 
-        
-        
-       
         self.designCell(cView: cell.backView)
     
         cell.lblChecklistNm.text = lcDict["c_name"] as! String
        
         let l_id = lcDict["l_id"] as! String
         
+        cell.lblFilledBy.isHidden = true
         self.GetLocationData(cLocationId: l_id, cell: cell)
         
         cell.lblDate.text = dateString
         
         let Percent = lcDict["percent"] as! String
-        
-        cell.lblPercent.text = Percent  + "%"
+        let percent  = Percent + "%"
         let Score = lcDict["score"] as! String
         if Score == "0"
         {
-             cell.lblAverage.text = "Fail"
+            cell.lblAverage.text = percent + "  " + "Fail"
+            cell.lblAverage.textColor = UIColor.red
         }
         if Score == "1"
         {
-            cell.lblAverage.text = "Average"
+            cell.lblAverage.text = percent + "  " + "Average"
+            cell.lblAverage.textColor = UIColor.blue
         }
         if Score == "2"
         {
-            cell.lblAverage.text = "Pass"
+            cell.lblAverage.text = percent + "  " + "Pass"
+            cell.lblAverage.textColor = UIColor.green
         }
         
         return cell

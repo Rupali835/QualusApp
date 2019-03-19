@@ -67,7 +67,7 @@ class ClassificationData : NSObject
         let context = appDel.persistentContainer.viewContext
         do{
             
-            let DataArr = try context.fetch(FetchClassification.fetchRequest()) as [AnyObject]
+            let DataArr = try context.fetch(FetchClassification.fetchRequest()) as [FetchClassification]
             
             return DataArr
             
@@ -83,7 +83,7 @@ class ClassificationData : NSObject
         let context = appDel.persistentContainer.viewContext
         do{
             
-            let DataArr = try context.fetch(FetchQueData.fetchRequest()) as [AnyObject]
+            let DataArr = try context.fetch(FetchQueData.fetchRequest()) as [FetchQueData]
             
             return DataArr
             
@@ -98,7 +98,7 @@ class ClassificationData : NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchClassification.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchClassification.fetchRequest()) as [FetchClassification]
            
             for (index, _) in DataArr.enumerated()
             {
@@ -115,7 +115,7 @@ class ClassificationData : NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let contx = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try contx.fetch(FetchQueData.fetchRequest()) as [AnyObject]
+            let DataArr = try contx.fetch(FetchQueData.fetchRequest()) as [FetchQueData]
             
             for (index, _) in DataArr.enumerated()
             {

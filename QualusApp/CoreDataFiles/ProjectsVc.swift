@@ -20,14 +20,7 @@ class ProjectVc : NSObject
     var DataArr = NSArray()
     
     static let cProjectData = ProjectVc()
-    
-//    func method(arg: Bool, completion: (Bool) -> ()) {
-//        print("First line of code executed")
-//        // do stuff here to determine what you want to "send back".
-//        // we are just sending the Boolean value that was sent in "back"
-//        completion(arg)
-//    }
-    
+
     func fetchProjectList(usernm : String, user_role : String, arg: Bool, completion: @escaping (Bool)->())
     {
         let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -40,7 +33,6 @@ class ProjectVc : NSObject
 
         Alamofire.request(fetchUrl, method: .post, parameters: fetchParam).responseJSON { (fetchData) in
         //print(fetchData)
-         
             
         if let JSON = fetchData.result.value
         {
@@ -93,7 +85,7 @@ class ProjectVc : NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
         do{
-            let DataArr = try context.fetch(FeatchProjects.fetchRequest()) as [AnyObject]
+            let DataArr = try context.fetch(FeatchProjects.fetchRequest()) as [FeatchProjects]
             
             return DataArr
         }
@@ -109,7 +101,7 @@ class ProjectVc : NSObject
         let context = appDel.persistentContainer.viewContext
         
         do{
-            let DataArr = try context.fetch(FeatchProjects.fetchRequest()) as [AnyObject]
+            let DataArr = try context.fetch(FeatchProjects.fetchRequest()) as [FeatchProjects]
             
         //    print("Count=\(DataArr.count) \(DataArr)")
             
