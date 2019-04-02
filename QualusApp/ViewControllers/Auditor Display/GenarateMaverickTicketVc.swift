@@ -24,6 +24,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     var LocationDaraArr     = [AnyObject]()
     var userId : String     = ""
     var Comid : String      = ""
+    var userRole : String   = ""
     var DatePicker          = UIDatePicker()
     let toolBar             = UIToolbar()
     var DateStr             : String!
@@ -63,6 +64,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         self.userId = lcDict["user_id"] as! String
         self.Comid = lcDict["com_id"] as! String
+        self.userRole = lcDict["role"] as! String
         
         self.txtRemark.delegate = self
         self.txtActionPlan.delegate = self
@@ -88,17 +90,15 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
             imageCollection.isHidden = false
             btnAddImg.isHidden = false
             stackViewTopHIghtConstrains.constant = 10
-            backViewHeight.constant = 450  // ticket from qr code
+            backViewHeight.constant = 480  // ticket from qr code
         }
     }
     
     //MARK: FUNCTIONS
     
     @objc func back(sender: UIBarButtonItem) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "MaverickTicketViewVc") as! MaverickTicketViewVc
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
-    
     
     func createDatePicker()
     {
@@ -136,15 +136,6 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     func setQrString(cQr: String)
     {
         self.QRstr = cQr
-    }
-    
-    func designCell(cView : UIView)
-    {
-        cView.layer.masksToBounds = false
-        cView.layer.shadowColor = UIColor.black.cgColor
-        cView.layer.shadowOpacity = 0.7
-        cView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        cView.layer.shadowRadius = 1
     }
     
     func textViewDidBeginEditing(_ textView: UITextView)
@@ -201,12 +192,51 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
                 let p_id = locationEnt.p_id!
                 let branchId = locationEnt.branch_id!
             
-                Add_MaverickTikt(Pid: p_id, PbId: branchId, Lid: l_id, Userid: self.userId, ComId: self.Comid)
+                if self.userRole == "2"
+                {
+                    Add_ProactiveTikt(Pid: p_id, PbId: branchId, Lid: l_id, Userid: self.userId, ComId: self.Comid)
+                }
+                else
+                {
+                     Add_MaverickTikt(Pid: p_id, PbId: branchId, Lid: l_id, Userid: self.userId, ComId: self.Comid)
+                }
+               
             }
-            
             
         }
     }
+    
+    func Add_ProactiveTikt(Pid: String, PbId : String, Lid : String, Userid : String, ComId : String)
+    {
+        
+        var jsonimgString = json(from: self.imgArr)
+        let imageCount = String(self.ImageArr.count)
+        
+        if imgArr.isEmpty == true
+        {
+            jsonimgString = "NF"
+        }
+        
+        let addParam = ["com_id" : ComId,
+                        "project_id" : Pid,
+                        "branch_id" : PbId,
+                        "location_id" : Lid,
+                        "l_barcode" : self.QRstr,
+                        "user_id" : self.userId,
+                        "pt_subject" : "\(txtEnterObservation.text!)",
+                        "pt_remark" : "\(txtRemark.text!)",
+                        "pt_photo" : jsonimgString,
+                        "totalImages" : imageCount,
+                        "action_plan" : "\(txtActionPlan.text!)",
+                        "action_plan_date" : lbldate.text  ]as! [String: String]
+        print(addParam)
+        let addProTicket = constant.BaseUrl + constant.generateProactiveTic
+        
+        imageUpload.SharedInstance.ImageUploadData(MyUrl: addProTicket, lcParam: addParam , lcOriginalImgArr: self.ImageArr, lcImagArr: self.imgArr, cDelegate: self, withHUD: true)
+        
+    }
+    
+    
     
     func Add_MaverickTikt(Pid: String, PbId : String, Lid : String, Userid : String, ComId : String)
     {
@@ -231,8 +261,8 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
                         "totalImages" : imageCount,
                         "action_plan" : "\(txtActionPlan.text!)",
         "action_plan_date" : lbldate.text  ]as! [String: String]
-        
-        imageUpload.SharedInstance.ImageUploadData(lcParam: addParam , lcOriginalImgArr: self.ImageArr, lcImagArr: self.imgArr, cDelegate: self, withHUD: true)
+        let addTick = constant.BaseUrl + constant.addUrl
+        imageUpload.SharedInstance.ImageUploadData(MyUrl: addTick, lcParam: addParam , lcOriginalImgArr: self.ImageArr, lcImagArr: self.imgArr, cDelegate: self, withHUD: true)
         
     }
     
@@ -247,8 +277,15 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
             self.txtRemark.text = ""
             self.txtActionPlan.text = ""
             self.txtEnterObservation.text = ""
-            
-            self.navigationController?.backToViewController(viewController: ProjectInfoVc.self)
+           
+           if self.userRole == "2"
+           {
+         self.navigationController?.backToViewController(viewController: SuperVisorProjectListVc.self)
+   
+            }else
+           {
+        self.navigationController?.backToViewController(viewController: ProjectInfoVc.self)
+            }
 
         } )
         
@@ -322,7 +359,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
     
     @IBAction func btnSubmit_Click(_ sender: Any)
     {
-        if self.showVc == false
+        if self.showVc == false  // from barcode
         {
             if (txtEnterObservation.text! == "Enter Observation") || (txtEnterObservation.text! == "")
             {
@@ -332,7 +369,7 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
                getLocation()
             }
 
-        }else
+        }else // from scanner
         {
             if (txtEnterObservation.text! == "Enter Observation") || (txtEnterObservation.text! == "")
             {
@@ -340,7 +377,6 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
             }else if imgArr.count <= 0
             {
                 self.toast.isShow(ErrorMsgs.imageCmpousory)
-                
             }else{
                 getLocation()
 
@@ -348,8 +384,10 @@ class GenarateMaverickTicketVc: UIViewController, UITextViewDelegate, UITextFiel
         }
     }
 
-    @IBAction func cancledClicked(_ sender: Any) {
-        self.navigationController?.backToViewController(viewController: MaverickTicketViewVc.self)
+    @IBAction func cancledClicked(_ sender: Any)
+    {
+        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.backToViewController(viewController: MaverickTicketViewVc.self)
     }
     
     @IBAction func deleteImageClicked(_ sender: Any)

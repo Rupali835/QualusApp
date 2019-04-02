@@ -24,7 +24,8 @@ class SelectProjectForTicketVc: UIViewController, UITableViewDataSource, UITable
         tblProject.dataSource = self
         tblProject.registerCellNib(LocationCell.self)
         tblProject.separatorStyle = .none
-      
+        ProjNmArr = ProjectVc.cProjectData.FeatchProjectsDataOffline()!
+
         
         for (index, value) in ProjNmArr.enumerated()
         {
@@ -49,7 +50,6 @@ class SelectProjectForTicketVc: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        ProjNmArr = ProjectVc.cProjectData.FeatchProjectsDataOffline()!
         
         if ProjNmArr.count > 0
         {

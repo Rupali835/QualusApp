@@ -17,6 +17,7 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
     var fcid : String = ""
     var UserRole : String = ""
     var RespArr = [AnyObject]()
+    var ImgArr = [AnyObject]()
     private var toast : JYToast!
     var show = Bool(false)                 // bool to check which ticket should
     var A_Srole : String!
@@ -34,6 +35,8 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
         self.tblChecklisrResp.rowHeight = UITableViewAutomaticDimension
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
        UserRole = lcDict["role"] as! String
+        self.getData()
+
     }
 
     private func initUi()
@@ -55,10 +58,7 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
         cView.layer.shadowRadius = 1
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        self.getData()
-    }
+   
     
     func getData()
     {
@@ -75,13 +75,15 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
         let respUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/get_filled_checklist_data"
         Alamofire.request(respUrl, method: .post, parameters: param).responseJSON { (fetchData) in
             print(fetchData)
-            let JSON = fetchData.result.value as? [String: AnyObject]
-            self.RespArr = JSON!["filled_answer"] as! [AnyObject]
-            self.tblChecklisrResp.reloadData()
+            
+            DispatchQueue.main.async {
+                let JSON = fetchData.result.value as? [String: AnyObject]
+                self.RespArr = JSON!["filled_answer"] as! [AnyObject]
+                self.tblChecklisrResp.reloadData()
+            }
+         
         }
-        
-        
-    }
+     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.RespArr.count > 0
@@ -171,11 +173,13 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
             
             self.designCell(cView: cell.backView)
             
+         //   let fcid = lcDict["fc_id"] as! String
+            
             let ImgArr = lcDict["ans_image"] as! [AnyObject]
             self.BindImages(cImagesArr: ImgArr, cell: cell)
             
-            cell.loadData(data: ImgArr)
-            
+            cell.loadData(data: ImgArr, fcId: fcid)
+            cell.delegate = self
             
          let indexNumber = indexPath.row + 1
             cell.lblQuetionNum.text = "Q" + String(indexNumber)
@@ -223,18 +227,6 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
       
     }
 
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-//    {
-//        let cFullScreen = storyboard?.instantiateViewController(withIdentifier: "OpenImageVC") as! OpenImageVC
-//
-//         let lcDict = RespArr[indexPath.row]
-//         let ImgArr = lcDict["ans_image"] as! [AnyObject]
-//        let Img = ImgArr["img_name"] as! String
-//        cFullScreen.imgNm = ImgArr
-//
-//        self.navigationController?.pushViewController(cFullScreen, animated: true)
-//
-//    }
     
     func BindImages(cImagesArr: [AnyObject], cell: ChecklistRespImageCell)
     {
@@ -259,4 +251,16 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
      }
   
   }
+}
+extension SubmitChecklistResponseVc : openChecklistimageDelegate
+{
+    func openChecklistImage(imgNm: String)
+    {
+        let vc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "OpenImageVC") as! OpenImageVC
+        vc.imgNm = imgNm
+        vc.m_bImg = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
 }

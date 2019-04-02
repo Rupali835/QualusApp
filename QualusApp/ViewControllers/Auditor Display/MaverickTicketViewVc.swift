@@ -22,7 +22,6 @@ class MaverickTicketViewVc: UIViewController
     var ProjArr = [AnyObject]()
     var LocationDataArr: [AnyObject]!
     var cShowVc = Bool(false)
-    var cChecklistVC =  ChecklistViewController()
     var toast = JYToast()
     var popUp : KLCPopup!
     var cSubmitCheck : SubmittedChecklistVc!

@@ -62,7 +62,6 @@ class ProjectInfoVc: UIViewController
         tblSelectProject.delegate = self
         tblSelectProject.separatorStyle = .none
         
-        setTicketCount(id: self.UserId)
         
     }
     
@@ -125,7 +124,8 @@ class ProjectInfoVc: UIViewController
         {
              self.navigationItem.hidesBackButton = true
         }
-       
+        setTicketCount(id: self.UserId)
+
     }
     
     func designCell(cView : UIView)
@@ -165,6 +165,9 @@ class ProjectInfoVc: UIViewController
         
         
     }
+    
+  
+    
     
     //MARK : View Maverick Tickets
     @IBAction func btnCloseTicket_onClick(_ sender: Any)
@@ -372,6 +375,10 @@ class ProjectInfoVc: UIViewController
                         SVProgressHUD.dismiss()
                     }
                     //self.toast.isShow("Data sync successfully")
+                   
+                    self.projectDataArr = ProjectVc.cProjectData.FeatchProjectsDataOffline()!
+
+                    
                     self.toast(msg: "Data sync successfully")
                 }
                 
@@ -410,23 +417,26 @@ extension ProjectInfoVc : UITableViewDelegate, UITableViewDataSource
         let cell = tblSelectProject.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
       //  ProjArr = ProjectVc.cProjectData.FeatchProjectsDataOffline()!
      
-        projEnt = projectDataArr[indexPath.row] as! FeatchProjects
-        let Pname = projEnt.p_name
+        projEnt = (projectDataArr[indexPath.row] as! FeatchProjects)
         
-        cell.lblLocationNm.text = Pname
-        
-        let firstName = Pname?.first
-        cell.lblFirstLetter.text = String(firstName!)
-        cell.lblFirstLetter.backgroundColor = getRandomColor()
+        if projEnt != nil
+        {
+            if let Pname = projEnt.p_name
+            {
+                cell.lblLocationNm.text = Pname
+                let firstName = Pname.first
+                cell.lblFirstLetter.text = String(firstName!)
+                cell.lblFirstLetter.backgroundColor = getRandomColor()
+            }
+             
+        }
+      
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-       
             popUp.dismiss(true)
-        
-            
             let projEnt = projectDataArr[indexPath.row] as! FeatchProjects
             let pId = projEnt.p_id
             let CameraFlag = projEnt.p_camera
@@ -495,9 +505,7 @@ extension ProjectInfoVc : UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        // let lcDict = projectDataArr[indexPath.row]
         
-        //let abc = lcDict["p_id"]
         projEnt = projectDataArr[indexPath.row] as! FeatchProjects
         let P_id = projEnt.p_id
         

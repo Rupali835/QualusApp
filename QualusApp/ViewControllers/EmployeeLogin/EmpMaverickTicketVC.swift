@@ -2,7 +2,7 @@
 
 import UIKit
 
-class EmpMaverickTicketVC: UIViewController
+class EmployeeHomePageVc: UIViewController
 {
 
     override func viewDidLoad()

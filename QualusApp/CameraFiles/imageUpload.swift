@@ -22,7 +22,7 @@ class imageUpload: NSObject
     //var fileName: String!
     var delegate: imageUploadDelegate?
     
-    func ImageUploadData(lcParam: [String: String], lcOriginalImgArr: [UIImage],lcImagArr: [Any],cDelegate: imageUploadDelegate, withHUD: Bool)  
+    func ImageUploadData(MyUrl: String, lcParam: [String: String], lcOriginalImgArr: [UIImage],lcImagArr: [Any],cDelegate: imageUploadDelegate, withHUD: Bool)  
 {
     
     if withHUD {
@@ -35,9 +35,9 @@ class imageUpload: NSObject
     
     self.delegate = cDelegate
     
-    let MyUrl = URL(string: constant.BaseUrl+constant.addUrl)
+    let cMyUrl = URL(string: MyUrl)
     
-    var request = URLRequest(url: MyUrl!)
+    var request = URLRequest(url: cMyUrl!)
     
     request.httpMethod = "POST";
     

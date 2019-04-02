@@ -52,12 +52,12 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
                          "user_role" : self.UserRole]
         
         Alamofire.request(listUrl, method: .post, parameters: listParam).responseJSON { (fetchData) in
-        //print(fetchData)
+        print(fetchData)
             
             let JSON = fetchData.result.value as? [String: AnyObject]
             
             self.CheckListArr = JSON!["filled_checklist"] as! [AnyObject]
-            
+            print(self.CheckListArr.count)
             self.tblSubmitedList.reloadData()
             if self.CheckListArr.isEmpty == true
             {
@@ -73,8 +73,7 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         {
             return self.CheckListArr.count
         }else{
-          
-            return 0
+           return 0
         }
     }
     
@@ -98,24 +97,21 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 for (index, _) in BuildingArr.enumerated()
                {
-                  let BuildingEnt = BuildingArr[index] as! FetchBuilding
+                
+                
+                 let BuildingEnt = BuildingArr[index] as! FetchBuilding
+                
+           //     let cb = BuildingArr.filter { $0.contains(BuildingEnt.branch_id)}
+                
+                
+                
                     let BranchId = BuildingEnt.branch_id
-              //  print("BranchId =", BranchId)
                     if branch_id == BranchId
                     {
                        let b_name = BuildingEnt.b_name
                         
                         cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + "Wing:" + L_wing! + "," + b_name!
 
-                        
-//                        if L_room != "NF"
-//                        {
-//                            cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + b_name!
-//                        }
-//                        if L_wing != "NF"
-//                        {
-//                            cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + "Wing:" + L_wing! + "," + b_name!
-//                        }
                    }
               }
                 
@@ -124,22 +120,15 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tblSubmitedList.dequeueReusableCell(withIdentifier: "SubmitedChecklistCell", for: indexPath) as! SubmitedChecklistCell
        
          let lcDict = CheckListArr[indexPath.row]
-        let string = lcDict["start_time"] as! String
+        let sDate = lcDict["start_time"] as! String
+        cell.lblDate.text = sDate.convertDateFormaterInList()
         
-        let dateFormatter = DateFormatter()
-        let tempLocale = dateFormatter.locale // save locale temporarily
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateFo = dateFormatter.date(from: string)!
-        dateFormatter.dateFormat = "MMM d, h:mm a"
-        dateFormatter.locale = tempLocale // reset the locale
-        let dateString = dateFormatter.string(from: dateFo)
-
         self.designCell(cView: cell.backView)
     
         cell.lblChecklistNm.text = lcDict["c_name"] as! String
@@ -149,9 +138,7 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         cell.lblFilledBy.isHidden = true
         self.GetLocationData(cLocationId: l_id, cell: cell)
         
-        cell.lblDate.text = dateString
-        
-        let Percent = lcDict["percent"] as! String
+       let Percent = lcDict["percent"] as! String
         let percent  = Percent + "%"
         let Score = lcDict["score"] as! String
         if Score == "0"

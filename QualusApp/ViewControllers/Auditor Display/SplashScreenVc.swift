@@ -31,45 +31,25 @@ class SplashScreenVc: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        if isConnectedToNetwork()
-//        {
-//            manager.session.configuration.timeoutIntervalForRequest = 120
-//            self.SplashData()
-//
-//            let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
-//            self.Password = UserDefaults.standard.value(forKey: "passwordd") as! String
-//            print(self.Password)
-//
-//            let userRole = lcDict["role"] as! String
-//            let userid = lcDict["user_id"] as! String
-//            setViewController(user_id: userid, Role: userRole)
-//
-//
-//        }else{
-//            self.toast.isShow("No internet connection")
-//        }
-        
-    
+     
       }
 
     override func viewDidAppear(_ animated: Bool)
     {
         NetworkManager.isReachable { _ in
             print("already connected internet")
-            
+
             self.manager.session.configuration.timeoutIntervalForRequest = 120
             self.SplashData()
-            
+
             let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
             self.Password = (UserDefaults.standard.value(forKey: "passwordd") as! String)
             print(self.Password)
-            
+
             let userRole = lcDict["role"] as! String
             let userid = lcDict["user_id"] as! String
             self.setViewController(user_id: userid, Role: userRole)
-          
-            
+
         }
         NetworkManager.sharedInstance.reachability.whenReachable = { _ in
             print("now connected internet")
@@ -199,7 +179,7 @@ class SplashScreenVc: UIViewController {
             
         }
         
-        if Role == "4"
+        if Role == "4"  // Employee login
         {
             ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
                 if sucess
@@ -219,7 +199,69 @@ class SplashScreenVc: UIViewController {
                     })
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         
-                        let ProjVc = self.storyboard?.instantiateViewController(withIdentifier: "MaverickTicketViewVc") as! MaverickTicketViewVc
+                        let EmpVc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "EmployeeHomePageVc") as! EmployeeHomePageVc
+                        self.navigationController?.pushViewController(EmpVc, animated: true)
+                    }
+                    
+                } else {
+                    print("false")
+                }
+                
+            })
+        }
+        
+        if Role == "2"  // SuperVisor
+        {
+            ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
+                if sucess
+                {
+                    LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: { (success) -> Void
+                        in
+                        if success
+                        {
+                            userDataList.cUserData.getUserList(user_id: user_id)
+                            ClassificationData.cDataClassification.fetchClassifictnData()
+                            MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
+                        }else
+                        {
+                            print("false")
+                        }
+
+                    })
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                        let ProjVc = AppStoryboard.SuperVisor.instance.instantiateViewController(withIdentifier: "SuperVisorProjectListVc") as! SuperVisorProjectListVc
+                        self.navigationController?.pushViewController(ProjVc, animated: true)
+                    }
+
+                } else {
+                    print("false")
+                }
+
+            })
+        }
+        
+        if Role == "9"  // Technician
+        {
+            ProjectVc.cProjectData.fetchProjectList(usernm: user_id, user_role: Role, arg: true, completion: {(sucess) -> Void in
+                if sucess
+                {
+                    LocationData.cLocationData.fetchData(lcUID: user_id, lcRole: Role, arg: true, completion: { (success) -> Void
+                        in
+                        if success
+                        {
+                            userDataList.cUserData.getUserList(user_id: user_id)
+                            ClassificationData.cDataClassification.fetchClassifictnData()
+                            MapLocation.cMapLocationData.fetchMapLocation(UserId: user_id)
+                        }else
+                        {
+                            print("false")
+                        }
+                        
+                    })
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        
+                        let ProjVc = AppStoryboard.SuperVisor.instance.instantiateViewController(withIdentifier: "TechnicianHomePageVc") as! TechnicianHomePageVc
                         self.navigationController?.pushViewController(ProjVc, animated: true)
                     }
                     

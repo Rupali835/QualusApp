@@ -199,7 +199,7 @@ class SuperAdminHomePageVc: UIViewController {
         {
             if lblCountT_generateToday.text! == "0"
             {
-                self.toast(msg: "No data found")
+                self.toast(msg: "No Tickets")
               
             }else{
                 let pendingTicketVc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "AdminMaverickTicketsVc") as! AdminMaverickTicketsVc
@@ -211,7 +211,7 @@ class SuperAdminHomePageVc: UIViewController {
         {
             if lblCountT_closeToday.text! == "0"
             {
-                self.toast(msg: "No data found")
+                self.toast(msg: "No Tickets")
             }else{
                 let pendingTicketVc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "AdminMaverickTicketsVc") as! AdminMaverickTicketsVc
                 
@@ -222,7 +222,7 @@ class SuperAdminHomePageVc: UIViewController {
         else if sender.tag == 3{
             if lblCountTillPending.text! == "0"
             {
-                self.toast(msg: "No data found")
+                self.toast(msg: "No Tickets")
             }else{
                 
                 let pendingTicketVc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "AdminMaverickTicketsVc") as! AdminMaverickTicketsVc
@@ -239,22 +239,23 @@ class SuperAdminHomePageVc: UIViewController {
     @IBAction func btnChecklist_onClick(_ sender: UIButton)
     {
         
-        if sender.tag == 2
+        if sender.tag == 2   // Auditor checklist
         {
             if lblCountAuditorChecklist.text! == "0"
             {
-                self.toast(msg: "No checklist found")
+                self.toast(msg: "No checklist")
             }
             else{
                 let vc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "AdminChecklistsVc") as! AdminChecklistsVc
                 vc.checkListType = sender.tag
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-        }else {
+        }else    // Supervisor checklist
+        {
             
             if lblCountSuperVisorChecklist.text! == "0"
             {
-               self.toast(msg: "No checklist found")
+               self.toast(msg: "No checklist")
             }else{
                 let vc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "AdminChecklistsVc") as! AdminChecklistsVc
                 vc.checkListType = sender.tag
@@ -323,10 +324,19 @@ extension SuperAdminHomePageVc : UICollectionViewDelegate, UICollectionViewDataS
         switch collectionView
         {
         case collSupervisor:
-            let todaySChecklist = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "TodaysFilledChecklistVc") as! TodaysFilledChecklistVc
-            todaySChecklist.type = 1
-            todaySChecklist.userid = SupervisorArray[indexPath.row].id
-            self.navigationController?.pushViewController(todaySChecklist, animated: true)
+            
+            let lcdata = SupervisorArray[indexPath.row]
+            if lcdata.actual == 0
+            {
+                toast(msg: "No Checklist")
+            }
+            else
+            {
+                let todaySChecklist = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "TodaysFilledChecklistVc") as! TodaysFilledChecklistVc
+                todaySChecklist.type = 1
+                todaySChecklist.userid = SupervisorArray[indexPath.row].id
+                self.navigationController?.pushViewController(todaySChecklist, animated: true)
+            }
             
         case collAuditor:
             
@@ -342,7 +352,7 @@ extension SuperAdminHomePageVc : UICollectionViewDelegate, UICollectionViewDataS
                 let todayAChecklist = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "TodaysFilledChecklistVc") as! TodaysFilledChecklistVc
                 todayAChecklist.type = 2
                 todayAChecklist.userid = AuditorArray[indexPath.row].id
-                self.navigationController?.pushViewController(todayAChecklist, animated: true)
+            self.navigationController?.pushViewController(todayAChecklist, animated: true)
                 
             }
         

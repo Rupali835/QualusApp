@@ -16,6 +16,7 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
     var projectId : String!
     var showVC = Bool()
     private var toast : JYToast!
+    var ColorArr = [UIColor]()
     
     @IBOutlet weak var tblChecklist: UITableView!
     override func viewDidLoad()
@@ -49,11 +50,15 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
             }
            
         }
+        
+           self.ColorArr = [UIColor.MKColor.Red.P400, UIColor.MKColor.Blue.P400, UIColor.MKColor.Orange.P400, UIColor.MKColor.Green.P400, UIColor.MKColor.Indigo.P400, UIColor.MKColor.Amber.P400, UIColor.MKColor.LightBlue.P400, UIColor.MKColor.BlueGrey.P400, UIColor.MKColor.Brown.P400, UIColor.MKColor.Cyan.P400, UIColor.MKColor.Teal.P400, UIColor.MKColor.Lime.P400, UIColor.MKColor.Pink.P400, UIColor.MKColor.Purple.P400]
+        
+        
     }
 
     @objc func back(sender: UIBarButtonItem) {
-       let vc = storyboard?.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
-        self.navigationController?.pushViewController(vc, animated: true)
+
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setQrString(cQr: String, ProjId: String, Showvc: Bool)
@@ -126,15 +131,16 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
         
         let lcDict = self.checklistArr[indexPath.row]
         
+            let randomColor = ColorArr[Int(arc4random_uniform(UInt32(ColorArr.count)))]
+        
         self.designCell(cView: cell.backView)
         
-         let lcUserName = lcDict["c_name"] as! String
+        let lcUserName = lcDict["c_name"] as! String
         cell.lblLocationNm.text = (lcDict["c_name"] as! String)
-        self.ClassId = lcDict["class_id"] as! String
+        self.ClassId = (lcDict["class_id"] as! String)
         let firstLetter = lcUserName.first!
         cell.lblFirstLetter.text = String(describing: firstLetter)
-        cell.lblFirstLetter.backgroundColor = getRandomColor()
-        
+        cell.lblFirstLetter.backgroundColor = randomColor
         return cell
     }
 
@@ -172,11 +178,11 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             QuestionVc.ProjId = self.projectId
-            QuestionVc.ClassificationId = self.ClassId
+            QuestionVc.ClassificationId = cid
             QuestionVc.QuestionArray = questionArr
             QuestionVc.QrStr = self.QrString
-            QuestionVc.CheckListArr = self.checklistArr
-        self.navigationController?.pushViewController(QuestionVc, animated: true)
+            QuestionVc.CheckListArr = lcDict as! [String : Any]
+            self.navigationController?.pushViewController(QuestionVc, animated: true)
         }
         else{
             
@@ -196,7 +202,7 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
             QueBarcodeVc.ProjId = self.projectId
-            QueBarcodeVc.ClassificationId = self.ClassId
+            QueBarcodeVc.ClassificationId = cid
             QueBarcodeVc.QuestionArray = questionArr
             QueBarcodeVc.CheckListArr = self.checklistArr
             QueBarcodeVc.QrStr = self.QrString

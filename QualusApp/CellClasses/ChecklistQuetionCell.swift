@@ -15,9 +15,8 @@ class ChecklistQuetionCell: UITableViewCell {
     @IBOutlet weak var lblQuestion: UILabel!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var btnSubmit: UIButton!
-    @IBOutlet weak var imgCamera: UIImageView!
+  
     @IBOutlet weak var btnTakeImg: UIButton!
-
     @IBOutlet weak var btnYes: DLRadioButton!
     @IBOutlet weak var btnNO: DLRadioButton!
     

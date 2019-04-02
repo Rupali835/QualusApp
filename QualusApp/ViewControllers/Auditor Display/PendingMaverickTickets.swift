@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 struct MaverickTicket: Decodable
 {
@@ -53,47 +54,57 @@ struct getMaverickTickets : Decodable
 class PendingMaverickTickets: UIViewController
 {
     @IBOutlet weak var tblPendingTickets: UITableView!
-    @IBOutlet weak var lblProjectNm: UILabel!
-    @IBOutlet weak var lblObservation: UILabel!
-    @IBOutlet weak var lblRemark: UILabel!
-    @IBOutlet weak var lblBranchNm: UILabel!
-    @IBOutlet weak var lblPhotoCount: UILabel!
-    @IBOutlet weak var lblActionPlan: UILabel!
-    @IBOutlet weak var lblCompletionDate: UILabel!
-    @IBOutlet weak var lblLocation: UILabel!
-    @IBOutlet weak var lblSpace: UILabel!
-    @IBOutlet var viewMoreDetail: UIView!
-    @IBOutlet weak var lblTicketnum: UILabel!
-    @IBOutlet weak var collView: UICollectionView!
-    
+  
     var m_cTickets : [getMaverickTickets] = []
-    let popUp = KLCPopup()
-    var imgArr = [String]()
     var ticketStatus : Int!
+    var LocationDaraArr = [FetchLocation]()
+
+    var locationName = String()
+    var context = AppDelegate().persistentContainer.viewContext
+
+
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        self.tblPendingTickets.registerCellNib(PendingMaverickTicketCell.self)
+    self.tblPendingTickets.registerCellNib(PendingMaverickTicketCell.self)
 
         tblPendingTickets.delegate = self
         tblPendingTickets.dataSource = self
         tblPendingTickets.separatorStyle = .none
         
-        collView.delegate = self
-        collView.dataSource = self
-        
-        let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
-        let role = lcDict["role"] as! String
-        let userid = lcDict["user_id"] as! String
-        
-      //  getPendingTickets(id: userid, role: role, status: "0")
-        
+        let Lresquest = NSFetchRequest<FetchLocation>(entityName: "FetchLocation")
+        let Lresponse = try! context.fetch(Lresquest)
+        LocationDaraArr = Lresponse
         
     }
     
+    func getLid(l_id : String)
+    {
+        for item2 in LocationDaraArr
+        {
+            if l_id == item2.l_id
+            {
+                let fNm = item2.l_floor
+                let Rnm = item2.l_room
+                let Wnm = item2.l_wing
+                let Snm = item2.l_space
+                //let Bnm = item2.
+                
+                if Rnm == "NF" || Wnm == "NF"
+                {
+                    locationName = "Floor: \(fNm!), Space: \(Snm!)"
+                }
+                else
+                {
+                    locationName = "Room: \(Rnm!), Wing: \(Wnm!), Floor: \(fNm!), Space: \(Snm!)"
+                }
+            }
+        }
 
+    }
+   
     
     func getPendingTickets(id: String, role: String, status: String)
     {
@@ -125,8 +136,6 @@ class PendingMaverickTickets: UIViewController
             }
             
         }
-        
-        
     }
     
     @objc func btnViewMore_onclick(sender: UIButton)
@@ -139,76 +148,11 @@ class PendingMaverickTickets: UIViewController
         let lcTickDict = m_cTickets[(indexPath?.row)!]
         
         print(lcTickDict)
-        
+        vc.Locationstr = locationName
         vc.setTicketData(lcdict: lcTickDict)
         self.navigationController?.pushViewController(vc, animated: true)
-        
-//        let buttonPosition:CGPoint = sender.convert(CGPoint.zero, to:self.tblPendingTickets)
-//
-//        let indexPath = self.tblPendingTickets.indexPathForRow(at: buttonPosition)
-//
-//        let lcTickDict = m_cTickets[(indexPath?.row)!]
-//
-//        setTicketData(lcdict: lcTickDict)
-//
-//        popUp.contentView = viewMoreDetail
-//        popUp.maskType = .dimmed
-//        popUp.shouldDismissOnBackgroundTouch = false
-//        popUp.shouldDismissOnContentTouch = false
-//        popUp.showType = .slideInFromRight
-//        popUp.dismissType = .slideOutToLeft
-//        popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
-//
-       // collView.reloadData()
-
+ 
     }
-    
-    func setTicketData(lcdict : getMaverickTickets)
-    {
-        lblTicketnum.text = "Ticket No: \(lcdict.mt_id!)"
-        lblObservation.text = lcdict.mt_subject
-        lblProjectNm.text = lcdict.p_name
-        lblBranchNm.text = lcdict.pb_name
-        lblSpace.text = lcdict.l_space
-        lblLocation.text = lcdict.l_id
-        
-        if lcdict.mt_action_plan_date == "0000-00-00"
-        {
-            lblCompletionDate.text = "Not Provided"
-        }else
-        {
-            lblCompletionDate.text = lcdict.mt_action_plan_date
-        }
-    
-        lblRemark.text = lcdict.mt_remark
-        lblActionPlan.text = lcdict.mt_action_plan
-        
-        imgArr = lcdict.mt_photo
-        let picCount = imgArr.count
-        
-        lblPhotoCount.text = "\(picCount) Photos"
-        collView.reloadData()
-     
-     }
-    
-    @IBAction func btnOk_onclick(_ sender: Any) {
-        popUp.dismiss(true)
-    }
-    
-    func img(lcURl: String, cell: MaverickTicketImageCell)
-    {
-        Alamofire.request(lcURl, method: .get).responseImage { (resp) in
-            print(resp)
-            if let img = resp.result.value{
-                
-                DispatchQueue.main.async
-                    {
-                        cell.imgTicket.image = img
-                }
-            }
-        }
-    }
-
     
 }
 extension PendingMaverickTickets : UITableViewDelegate, UITableViewDataSource
@@ -247,7 +191,8 @@ extension PendingMaverickTickets : UITableViewDelegate, UITableViewDataSource
         cell.lblTicketNo.text = "Ticket No:  \(lcdict.mt_id!)"
         cell.lblObservation.text = lcdict.mt_subject
         cell.lblSpace.text = lcdict.l_space
-        cell.lblLocation.text = lcdict.l_id
+        getLid(l_id: lcdict.l_id)
+        cell.lblLocation.text = locationName
         
         cell.btnViewMore.tag = indexPath.row
         cell.btnViewMore.addTarget(self, action: #selector(btnViewMore_onclick(sender:)), for: .touchUpInside)
@@ -260,37 +205,4 @@ extension PendingMaverickTickets : UITableViewDelegate, UITableViewDataSource
     }
     
 }
-extension PendingMaverickTickets : UICollectionViewDelegate, UICollectionViewDataSource
-{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return self.imgArr.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        let cell = collView.dequeueReusableCell(withReuseIdentifier: "MaverickTicketImageCell", for: indexPath) as! MaverickTicketImageCell
-        let lcurl = self.imgArr[indexPath.row]
-        
-        let imgpath = constant.imagePath + lcurl
-        
-        img(lcURl: imgpath, cell: cell)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
-        let cFullScreen = storyboard?.instantiateViewController(withIdentifier: "OpenImageVC") as! OpenImageVC
-        
-        popUp.dismiss(true)
-        
-        let lcSeletedImg = self.imgArr[indexPath.row]
-        
-        cFullScreen.imgNm = lcSeletedImg
-        
-        self.navigationController?.pushViewController(cFullScreen, animated: true)
-    
-    }
-    
-}
+

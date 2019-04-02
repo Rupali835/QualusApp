@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import Kingfisher
 
 class AdminDetailMaverickTickVc: UIViewController {
@@ -54,6 +53,7 @@ class AdminDetailMaverickTickVc: UIViewController {
             }
             else{
                 lblpicCount.text = "\(imgArr.count) Photos"
+                collPics.reloadData()
             }
             
             NFCheck()
@@ -111,19 +111,38 @@ extension AdminDetailMaverickTickVc : UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collPics.dequeueReusableCell(withReuseIdentifier: "MaverickTicketImageCell", for: indexPath) as! MaverickTicketImageCell
+        
+        let fcId = self.Ticket.fc_id
         let lcurl = self.imgArr[indexPath.row]
+        var imgPath = String()
+        if fcId != "0"
+        {
+             imgPath = constant.ansImagePath + lcurl
+        }else
+        {
+            imgPath = constant.imagePath + lcurl
+        }
         
-        let imgpath = constant.imagePath + lcurl
-        
-        let Url = URL(string: imgpath)
-        
-        cell.imgTicket.kf.setImage(with: Url)
-        
-//        let finalurl = URL(string: url)
-//        cell.ticketImage.sd_setImage(with: finalurl, placeholderImage: #imageLiteral(resourceName: "placeholder"))
-        
-//        img(lcURl: imgpath, cell: cell)
-        
-        return cell
+        let Url = URL(string: imgPath)
+         cell.imgTicket.kf.setImage(with: Url)
+         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let cFullScreen = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "OpenImageVC") as! OpenImageVC
+        
+        let lcSeletedImg = self.imgArr[indexPath.row]
+        
+        cFullScreen.Fcid = self.Ticket.fc_id
+        cFullScreen.imgNm = lcSeletedImg
+        cFullScreen.m_bImg = true
+        
+        self.navigationController?.pushViewController(cFullScreen, animated: true)
+        
+    }
+
+    
 }
+
+

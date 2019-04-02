@@ -17,7 +17,6 @@ class LoginPageVc: UIViewController {
     @IBOutlet weak var txtPasswordFld: KaedeTextField!
     
     private var toast : JYToast!
-    var cAbbrVc : AbbrevationVc!
     var ComId : String = ""
     var ckeckCom_id : Bool!
     var com_id : String = ""
@@ -36,12 +35,6 @@ class LoginPageVc: UIViewController {
         }
        
     }
-
-    override func awakeFromNib()
-    {
-        self.cAbbrVc = self.storyboard?.instantiateViewController(withIdentifier: "AbbrevationVc") as! AbbrevationVc
-    }
-    
 
     private func initUi()
     {
@@ -65,8 +58,7 @@ class LoginPageVc: UIViewController {
             "user_name" : txtUserNm.text! as AnyObject,
             "user_password" : txtPasswordFld.text! as AnyObject
         ]
-        
-        
+
         Alamofire.request(LoginUrl, method: .post, parameters: loginParam).responseJSON { (LoginData) in
             print(LoginData)
             
@@ -92,6 +84,8 @@ class LoginPageVc: UIViewController {
                     let user_id = UserData["user_id"] as! String
                     let Role = UserData["role"] as! String
                     self.ComId = UserData["com_id"] as! String
+                    
+                    self.sendFcmToken(userid: user_id)
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
                     vc.setViewController(user_id: user_id, Role: Role)
                   //  vc.Password = self.txtPasswordFld.text!
@@ -112,17 +106,6 @@ class LoginPageVc: UIViewController {
         }
     }
     
-    func funShowAlert(_ varTitle: String, _ varMessage: String){
-        let alertPassword = UIAlertController(title: varTitle, message: varMessage, preferredStyle: .actionSheet)
-        
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-           // print("Ok")
-        })
-        
-        alertPassword.addAction(okAction)
-        
-        self.present(alertPassword, animated: true, completion: nil)
-    }
     
     @IBAction func btnLogin_Click(_ sender: Any)
     {
@@ -210,6 +193,37 @@ class LoginPageVc: UIViewController {
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+    
+    func sendFcmToken(userid: String)
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let FcmToken = appDelegate.FCMToken
+        
+        let Api = constant.BaseUrl + constant.fcmToken
+        let param = ["user_id" : userid,
+                     "gcmid" : FcmToken!,
+                     "type" : "ios"]
+        print(param)
+        
+        Alamofire.request(Api, method: .post, parameters: param).responseJSON { (resp) in
+            print(resp)
+            
+            switch resp.result
+            {
+            case .success(_):
+                let json = resp.result.value as! String
+                if json == "success"
+                {
+                    self.toast.isShow("fcm token send to server")
+                }
+                break
+            case .failure(_):
+                self.toast.isShow("fcm tokem is not generated because of some network issue. If you didn't get any notification, please login again.")
+                break
+            }
+        }
     }
     
 }

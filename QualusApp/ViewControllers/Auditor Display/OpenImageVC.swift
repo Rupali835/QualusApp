@@ -14,19 +14,42 @@ class OpenImageVC: UIViewController {
     @IBOutlet weak var imgFullScreen: UIImageView!
     
     var imgNm = String()
+    var Fcid = String()
+    var imgPath = String()
+    var m_bImg = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       if imgNm != nil
-       {
-           let imgpath = constant.imagePath + imgNm
-           let Imgurl = URL(string: imgpath)
-           imgFullScreen.kf.setImage(with: Imgurl)
-        
+        if m_bImg == false
+        {
+            imgPath = constant.proactive_imgPath + imgNm
+            let Imgurl = URL(string: imgPath)
+            imgFullScreen.kf.setImage(with: Imgurl)
+        }else
+        {
+            if imgNm != nil
+            {
+                if Fcid != "0"
+                {
+                    imgPath = constant.ansImagePath + imgNm
+                }else
+                {
+                    imgPath = constant.imagePath + imgNm
+                }
+                let Imgurl = URL(string: imgPath)
+                imgFullScreen.kf.setImage(with: Imgurl)
+                
+            }
+            
+            if Fcid == nil
+            {
+                imgPath = constant.ansImagePath + imgNm
+                let Imgurl = URL(string: imgPath)
+                imgFullScreen.kf.setImage(with: Imgurl)
+            }
         }
+       
     }
-    
-
-
 }
+

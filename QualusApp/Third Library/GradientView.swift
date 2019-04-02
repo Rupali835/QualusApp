@@ -82,7 +82,7 @@ import UIKit
     }
     
     override func layoutSubviews() {
-        self.gradientLayer = self.layer as! CAGradientLayer
+        self.gradientLayer = (self.layer as! CAGradientLayer)
         self.gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
         self.gradientLayer.startPoint = CGPoint(x: startPointX, y: startPointY)
         self.gradientLayer.endPoint = CGPoint(x: endPointX, y: endPointY)

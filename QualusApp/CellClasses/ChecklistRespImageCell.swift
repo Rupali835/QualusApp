@@ -8,6 +8,12 @@
 
 import UIKit
 import SDWebImage
+import Kingfisher
+
+protocol openChecklistimageDelegate
+{
+    func openChecklistImage(imgNm: String)
+}
 
 class ChecklistRespImageCell: UITableViewCell
 {
@@ -27,8 +33,9 @@ class ChecklistRespImageCell: UITableViewCell
     
     var arrImges = [AnyObject]()
     var objOpenImageVc : OpenImageVC!
-
-   
+    var Fcid = String()
+    var delegate: openChecklistimageDelegate?
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -41,16 +48,17 @@ class ChecklistRespImageCell: UITableViewCell
 
     }
     
-    func loadData(data:[AnyObject])
+    func loadData(data:[AnyObject], fcId: String)
     {
         self.arrImges = data
         collImages.isHidden = false
         collImages.reloadData()
+        self.Fcid = "0"
     }
 
     
 }
-extension ChecklistRespImageCell : UICollectionViewDataSource, UICollectionViewDelegate
+extension ChecklistRespImageCell : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrImges.count
@@ -60,29 +68,34 @@ extension ChecklistRespImageCell : UICollectionViewDataSource, UICollectionViewD
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String.className(ImageCollectionViewCell.self), for: indexPath) as! ImageCollectionViewCell
         
+        
         let imgDict = arrImges[indexPath.row]
         
         let imgNm = imgDict["img_name"] as! String
         
-        let url = constant.ansImagePath + imgNm
-        
-     //   let url = "http://kanishkagroups.com/Qualus/uploads/ticket_images/\(imgNm)"
-        let finalurl = URL(string: url)
-        cell.ticketImage.sd_setImage(with: finalurl, placeholderImage: #imageLiteral(resourceName: "placeholder"))
+        var imgPath = String()
+    
+        imgPath = constant.ansImagePath + imgNm
+        let Imgurl = URL(string: imgPath)
+        cell.ticketImage.kf.setImage(with: Imgurl)
+       // cell.ticketImage.sd_setImage(with: Imgurl, placeholderImage: #imageLiteral(resourceName: "placeholder"))
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let cFullScreen = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "OpenImageVC") as! OpenImageVC
+       
+
+        let imgDict = arrImges[indexPath.row]
         
-         let imgDict = arrImges[indexPath.row]
-     
-         let imgNm = imgDict["img_name"] as! String
-        cFullScreen.imgNm = imgNm
+        let imgName = imgDict["img_name"] as! String
+        delegate?.openChecklistImage(imgNm: imgName)
     
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
     
 }

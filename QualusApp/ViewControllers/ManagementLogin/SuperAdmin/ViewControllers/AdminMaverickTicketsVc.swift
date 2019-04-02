@@ -12,7 +12,7 @@ import SVProgressHUD
 
 class AdminMaverickTicketsVc: UIViewController {
 
-    @IBOutlet weak var collMaverickTickets: UICollectionView!
+    @IBOutlet weak var tblmaverickTickets: UITableView!
     
     var arrpendingTicket : [getManageTicketDetails] = []
     var ticketType : Int!
@@ -32,17 +32,12 @@ class AdminMaverickTicketsVc: UIViewController {
         UserId = lcDict["user_id"] as! String
         com_id = lcDict["com_id"] as! String
         GetMonitorTickets()
-        
     
-    collMaverickTickets.registerCellNib(getTicketCollectionViewCell.self)
-        print(arrpendingTicket.count)
+        tblmaverickTickets.registerCellNib(AdminMaverickTicketCell.self)
         
-        if let flowLayout = collMaverickTickets.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(width: 1,height: 1)
-        }
-       
-        collMaverickTickets.delegate = self
-        collMaverickTickets.dataSource = self
+        tblmaverickTickets.delegate = self
+        tblmaverickTickets.dataSource = self
+        tblmaverickTickets.separatorStyle = .none
         
     }
     
@@ -75,7 +70,7 @@ class AdminMaverickTicketsVc: UIViewController {
                     if self.arrpendingTicket.count == 0 {
                         self.toast.isShow(ErrorMsgs.NOMavrikTicket)
                     }
-                    self.collMaverickTickets.reloadData()
+                    self.tblmaverickTickets.reloadData()
                 }catch
                 {
                     print(error)
@@ -87,62 +82,72 @@ class AdminMaverickTicketsVc: UIViewController {
     }
     
 }
-extension AdminMaverickTicketsVc : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+
+extension String
 {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrpendingTicket.count
+    func convertDateFormaterInList() -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: self)
+      
+        if date != nil
+        {
+            dateFormatter.dateFormat = "dd-MMM-yyyy  h:mm:a"
+            return  dateFormatter.string(from: date!)
+        }else{
+            return ""
+        }
+        
+    }
+}
+extension AdminMaverickTicketsVc : UITableViewDelegate, UITableViewDataSource
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return arrpendingTicket.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "getTicketCollectionViewCell", for: indexPath)as! getTicketCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tblmaverickTickets.dequeueReusableCell(withIdentifier: "AdminMaverickTicketCell", for: indexPath) as! AdminMaverickTicketCell
         
         let lcdata = arrpendingTicket[indexPath.row]
         let Status = lcdata.status
         
         if Status == "0"
         {
-            cell.lblticketnoandStatus.text = "Ticket No - \(lcdata.mt_id) (Pending)"
+            cell.lblTicketNumStatus.text = "Ticket No - \(lcdata.mt_id) (Pending)"
         }
         if Status == "1"
         {
-            cell.lblticketnoandStatus.text = "Ticket No - \(lcdata.mt_id) (Open)"
+            cell.lblTicketNumStatus.text = "Ticket No - \(lcdata.mt_id) (Open)"
         }
         if Status == "2"
         {
-            cell.lblticketnoandStatus.text = "Ticket No - \(lcdata.mt_id) (Closed)"
+            cell.lblTicketNumStatus.text = "Ticket No - \(lcdata.mt_id) (Closed)"
         }
         
-        cell.lblBranch.text = "Branch:  - \(arrpendingTicket[indexPath.row].pb_name!)"
-        cell.lblproject1.text = "Project: \(arrpendingTicket[indexPath.row].p_name!)"
-        cell.lblObservations.text = "Observations: \(arrpendingTicket[indexPath.row].mt_subject)"
-        //  cell.lblticketnoandStatus.text = "Ticket NO - \(arrpendingTicket[indexPath.row].mt_id)"
+        cell.lblBranchNm.text = "Branch:  - \(arrpendingTicket[indexPath.row].pb_name!)"
+        cell.lblProjectNm.text = "Project: \(arrpendingTicket[indexPath.row].p_name!)"
+        cell.lblObserv.text = "Observations: \(arrpendingTicket[indexPath.row].mt_subject)"
+        
+        let Date = lcdata.created_time
+        cell.lbldate.text = Date.convertDateFormaterInList()
+        
         return cell
     }
-   
     
-
-func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-{
-    let vc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "AdminDetailMaverickTickVc") as! AdminDetailMaverickTickVc
-
-      let lcdata = arrpendingTicket[indexPath.row]
-      vc.setTicketData(lcTicket: lcdata)
-   
-    self.navigationController?.pushViewController(vc, animated: true)
-    
-    
-//    let SelectedTicketDetails = GetSelectedTicketDetailsViewController.loadNib()
-//    SelectedTicketDetails.Ticket = arrpendingTicket[indexPath.row]
-//    self.navigationController?.pushViewController(SelectedTicketDetails, animated: true)
-//
-}
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: self.collMaverickTickets.frame.width, height: 160)
-
-        return size
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "AdminDetailMaverickTickVc") as! AdminDetailMaverickTickVc
+        
+        let lcdata = arrpendingTicket[indexPath.row]
+        vc.setTicketData(lcTicket: lcdata)
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
-}
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 
+}

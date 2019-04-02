@@ -64,14 +64,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
             let Role = result["role"] as! String
             let userid = result["user_id"] as! String
             
-          //  let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
-            
-          //  let yourViewController: SplashScreenVc = storyboard.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
             
             let yourViewController = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "SplashScreenVc") as! SplashScreenVc
             
-            
-        //    yourViewController.setViewController(user_id: userid, Role: Role)
+      
             let navigationController = self.window?.rootViewController as! UINavigationController
          navigationController.setViewControllers([yourViewController], animated: true)
             
@@ -185,7 +181,11 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication)
+    {
+        Messaging.messaging().connect { error in
+            print(error)
+        }
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

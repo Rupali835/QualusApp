@@ -43,14 +43,12 @@ class AdminChecklistsVc: UIViewController
         URole = (lcDict["role"] as! String)
         UId = (lcDict["user_id"] as! String)
         UcomId = (lcDict["com_id"] as! String)
-    }
- 
-    override func viewWillAppear(_ animated: Bool) {
         gettingChecklist()
         fetchRecoreds()
-        
+
     }
-    
+ 
+  
     func fetchRecoreds()
     {
         let Prequest  = NSFetchRequest<FeatchProjects>(entityName: "FeatchProjects")
@@ -120,32 +118,28 @@ class AdminChecklistsVc: UIViewController
         {
             if l_id == item2.l_id
             {
-                locationName = item2.l_space
+                let fNm = item2.l_floor
+                let Rnm = item2.l_room
+                let Wnm = item2.l_wing
+                let Snm = item2.l_space
+                
+                if Rnm == "NF" || Wnm == "NF"
+                {
+                    locationName = "Floor: \(fNm!), Space: \(Snm!)"
+                }
+                else
+                {
+                      locationName = "Room: \(Rnm!), Wing: \(Wnm!), Floor: \(fNm!), Space: \(Snm!)"
+                }
+              
+
+                
+//                locationName = item2.l_space
             }
         }
         
     }
-    
-    
-    func convertDateFormater(_ date: String) -> String
-    {
-        //            "start_time": "2018-07-17 13:12:21",
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: date)
-        dateFormatter.dateFormat = "d MMM yyyy"
-        return  dateFormatter.string(from: date!)
-        
-    }
-    func convertTimeFormatter(_ Time: String)-> String
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"         //HH:mm:ss"
-        let Time = dateFormatter.date(from: Time)
-        dateFormatter.dateFormat = "h:mm a"
-        return  dateFormatter.string(from: Time!)
-    }
-    
+
 }
 extension AdminChecklistsVc : UITableViewDelegate, UITableViewDataSource
 {
@@ -169,15 +163,8 @@ extension AdminChecklistsVc : UITableViewDelegate, UITableViewDataSource
         
         cell.lblFilledBy.isHidden = false
 
-        let Date = lcdict.created_time.split(separator: " ")
-        let startTime  = lcdict.start_time.split(separator: " ")
-        
-        let CreatedDate: String = String(Date[0])
-        let convertDate = convertDateFormater(CreatedDate)
-        let stime: String = String(startTime[1])
-        let convertTime = convertTimeFormatter(stime)
-        
-        cell.lblDate.text = "\(convertDate) \(convertTime)"
+        let date = lcdict.created_time.convertDateFormaterInList()
+        cell.lblDate.text = date
         
         let percent = lcdict.percent+"%"
         let TicketScore = lcdict.score
@@ -191,10 +178,10 @@ extension AdminChecklistsVc : UITableViewDelegate, UITableViewDataSource
         else if TicketScore == "2"
         {
             cell.lblAverage.text =  percent + "" + "(Pass)"
+            cell.lblAverage.textColor = UIColor.green
         }else{
             cell.lblAverage.text =  percent + "" + "(Average)"
         }
-        
         return cell
     }
     

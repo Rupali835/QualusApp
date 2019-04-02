@@ -11,7 +11,7 @@ import UIKit
 
 enum AppStoryboard : String {
     
-    case Main, SuperAdmin
+    case Main, SuperAdmin, SuperVisor
     
     var instance : UIStoryboard {
         print(self.rawValue)

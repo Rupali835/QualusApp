@@ -11,32 +11,17 @@
 		580366F12108AA190041B3A4 /* ticketMonitorDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580366F02108AA190041B3A4 /* ticketMonitorDataModel.swift */; };
 		58048DA72101A7DD0076474D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58048DA62101A7DD0076474D /* Constant.swift */; };
 		58048DA92101ACE90076474D /* gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58048DA82101ACE90076474D /* gradient.swift */; };
-		58048DB02101EB1A0076474D /* ticketdetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58048DAE2101EB1A0076474D /* ticketdetailsTableViewCell.swift */; };
-		58048DB12101EB1A0076474D /* ticketdetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58048DAF2101EB1A0076474D /* ticketdetailsTableViewCell.xib */; };
-		58048DB4210310410076474D /* TicketDetaIsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58048DB2210310410076474D /* TicketDetaIsTableViewCell.swift */; };
-		58048DB5210310410076474D /* TicketDetaIsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58048DB3210310410076474D /* TicketDetaIsTableViewCell.xib */; };
 		58048DB8210364650076474D /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58048DB6210364650076474D /* ImageCollectionViewCell.swift */; };
 		58048DB9210364650076474D /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58048DB7210364650076474D /* ImageCollectionViewCell.xib */; };
-		58064D892112DAD20083A726 /* TodayFilledChecklistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58064D872112DAD20083A726 /* TodayFilledChecklistVC.swift */; };
-		58064D8A2112DAD20083A726 /* TodayFilledChecklistVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58064D882112DAD20083A726 /* TodayFilledChecklistVC.xib */; };
+		580510D02243E8B0001ECB62 /* imagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580510CF2243E8B0001ECB62 /* imagesCollectionViewCell.swift */; };
 		58064D8C2112EC8D0083A726 /* FilledChecklistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58064D8B2112EC8D0083A726 /* FilledChecklistData.swift */; };
-		58064D8F21130A010083A726 /* submittedChecklistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58064D8D21130A010083A726 /* submittedChecklistTableViewCell.swift */; };
-		58064D9021130A010083A726 /* submittedChecklistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58064D8E21130A010083A726 /* submittedChecklistTableViewCell.xib */; };
-		58065BFF2108F93300126942 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58065BFD2108F93300126942 /* ImageDisplayViewController.swift */; };
-		58065C002108F93300126942 /* ImageDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58065BFE2108F93300126942 /* ImageDisplayViewController.xib */; };
-		58065C032108FA0A00126942 /* LargImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58065C012108FA0A00126942 /* LargImageCollectionViewCell.swift */; };
-		58065C042108FA0A00126942 /* LargImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58065C022108FA0A00126942 /* LargImageCollectionViewCell.xib */; };
-		580B00B62109B18C00E587F5 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B00B42109B18C00E587F5 /* ChecklistViewController.swift */; };
-		580B00B72109B18C00E587F5 /* ChecklistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580B00B52109B18C00E587F5 /* ChecklistViewController.xib */; };
 		580B00B92109C90C00E587F5 /* checkListDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B00B82109C90C00E587F5 /* checkListDataModel.swift */; };
-		580B00BC2109E76E00E587F5 /* checklistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B00BA2109E76E00E587F5 /* checklistCollectionViewCell.swift */; };
-		580B00BD2109E76E00E587F5 /* checklistCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580B00BB2109E76E00E587F5 /* checklistCollectionViewCell.xib */; };
-		580B3C92210067430052376A /* PendingTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B3C90210067430052376A /* PendingTicketViewController.swift */; };
-		580B3C93210067430052376A /* PendingTicketViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580B3C91210067430052376A /* PendingTicketViewController.xib */; };
-		580B3C96210067A40052376A /* getTicketCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580B3C94210067A40052376A /* getTicketCollectionViewCell.xib */; };
-		580B3C97210067A40052376A /* getTicketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B3C95210067A40052376A /* getTicketCollectionViewCell.swift */; };
-		580B3C9E2100EF0A0052376A /* SupervisorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B3C9C2100EF0A0052376A /* SupervisorTableViewCell.swift */; };
-		580B3C9F2100EF0A0052376A /* SupervisorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580B3C9D2100EF0A0052376A /* SupervisorTableViewCell.xib */; };
+		580C12952244DF4C007F8E7B /* ScanAfterChecklistVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580C12942244DF4C007F8E7B /* ScanAfterChecklistVc.swift */; };
+		580C12972244E356007F8E7B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580C12962244E356007F8E7B /* Alert.swift */; };
+		5817B63A224CA4A30049E280 /* AcceptPendingMavTick_onClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5817B638224CA4A30049E280 /* AcceptPendingMavTick_onClick.swift */; };
+		5817B63B224CA4A30049E280 /* AcceptPendingMavTick_onClick.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5817B639224CA4A30049E280 /* AcceptPendingMavTick_onClick.xib */; };
+		5817B63D224CAB670049E280 /* SupervisorPendingMavTicketsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5817B63C224CAB670049E280 /* SupervisorPendingMavTicketsVc.swift */; };
+		5817B63F224CF0200049E280 /* ProactiveTicketsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5817B63E224CF0200049E280 /* ProactiveTicketsVc.swift */; };
 		582308B9223A39F900BDE05C /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308B8223A39F900BDE05C /* AppStoryboard.swift */; };
 		582308BB223A3A3700BDE05C /* SuperAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 582308BA223A3A3700BDE05C /* SuperAdmin.storyboard */; };
 		582308BE223A427400BDE05C /* SuperAdminHomePageVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308BD223A427400BDE05C /* SuperAdminHomePageVc.swift */; };
@@ -44,10 +29,6 @@
 		582308C4223A58D500BDE05C /* TodaySupervisorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308C3223A58D500BDE05C /* TodaySupervisorCell.swift */; };
 		582308C6223A716600BDE05C /* AdminMaverickTicketsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308C5223A716600BDE05C /* AdminMaverickTicketsVc.swift */; };
 		582308C8223A95FF00BDE05C /* AdminChecklistsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582308C7223A95FF00BDE05C /* AdminChecklistsVc.swift */; };
-		5832DE3B20FF163A00483655 /* AuditordetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE3920FF163A00483655 /* AuditordetailsCollectionViewCell.swift */; };
-		5832DE3C20FF163A00483655 /* AuditordetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5832DE3A20FF163A00483655 /* AuditordetailsCollectionViewCell.xib */; };
-		5832DE4320FF394600483655 /* GetSelectedTicketDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE4120FF394600483655 /* GetSelectedTicketDetailsViewController.swift */; };
-		5832DE4420FF394600483655 /* GetSelectedTicketDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5832DE4220FF394600483655 /* GetSelectedTicketDetailsViewController.xib */; };
 		5832DE5120FF57D700483655 /* SubmittedChecklistVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE4620FF57D700483655 /* SubmittedChecklistVc.swift */; };
 		5832DE5220FF57D700483655 /* BarCodeVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE4720FF57D700483655 /* BarCodeVc.swift */; };
 		5832DE5320FF57D700483655 /* GenarateMaverickTicketVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE4820FF57D700483655 /* GenarateMaverickTicketVc.swift */; };
@@ -60,10 +41,22 @@
 		5832DE5A20FF57D700483655 /* ChecklistQuestionsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE4F20FF57D700483655 /* ChecklistQuestionsVc.swift */; };
 		5832DE5B20FF57D700483655 /* ShowImgFullScreenVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE5020FF57D700483655 /* ShowImgFullScreenVc.swift */; };
 		5832DE5E20FF585000483655 /* ManagemnetDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5832DE5D20FF585000483655 /* ManagemnetDataModel.swift */; };
-		58453EB320FDED630044CBFA /* ManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58453EB120FDED630044CBFA /* ManagementViewController.swift */; };
-		58453EB420FDED630044CBFA /* ManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58453EB220FDED630044CBFA /* ManagementViewController.xib */; };
-		585ED8922142597C006B0DCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 585ED8912142597C006B0DCC /* GoogleService-Info.plist */; };
-		5886E3BE217F0720001F4EEA /* EmpMaverickTicketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5886E3BD217F0720001F4EEA /* EmpMaverickTicketVC.swift */; };
+		583356972248FA78004C8E3F /* MKCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583356862248FA78004C8E3F /* MKCollectionViewCell.swift */; };
+		583356992248FA78004C8E3F /* MKCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583356882248FA78004C8E3F /* MKCardView.swift */; };
+		5833569A2248FA78004C8E3F /* MKSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583356892248FA78004C8E3F /* MKSwitch.swift */; };
+		5833569B2248FA78004C8E3F /* MKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5833568A2248FA78004C8E3F /* MKTableViewCell.swift */; };
+		5833569C2248FA78004C8E3F /* MKNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5833568B2248FA78004C8E3F /* MKNavigationBar.swift */; };
+		5833569D2248FA78004C8E3F /* MKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5833568C2248FA78004C8E3F /* MKTextField.swift */; };
+		5833569E2248FA78004C8E3F /* MKSnackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5833568D2248FA78004C8E3F /* MKSnackbar.swift */; };
+		583356A02248FA78004C8E3F /* MKRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5833568F2248FA78004C8E3F /* MKRefreshControl.swift */; };
+		583356A12248FA78004C8E3F /* MKImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583356902248FA78004C8E3F /* MKImageView.swift */; };
+		583356A22248FA78004C8E3F /* MKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583356912248FA78004C8E3F /* MKLabel.swift */; };
+		583356A32248FA78004C8E3F /* MKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583356922248FA78004C8E3F /* MKButton.swift */; };
+		583356A52248FA78004C8E3F /* MKLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583356942248FA78004C8E3F /* MKLayer.swift */; };
+		583356A62248FA78004C8E3F /* MKColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583356952248FA78004C8E3F /* MKColor.swift */; };
+		5863BF32224DF642005FEB45 /* ScanForCloseProTicVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863BF31224DF642005FEB45 /* ScanForCloseProTicVc.swift */; };
+		5876CF8E2240F50800F47701 /* SuperVisor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5876CF8D2240F50800F47701 /* SuperVisor.storyboard */; };
+		5876CF902240FAE400F47701 /* SuperVisorProjectListVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5876CF8F2240FAE400F47701 /* SuperVisorProjectListVc.swift */; };
 		58A2331E20FE14E6000A1C21 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331620FE14E6000A1C21 /* UIView.swift */; };
 		58A2331F20FE14E6000A1C21 /* UIColor+Customcolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331720FE14E6000A1C21 /* UIColor+Customcolor.swift */; };
 		58A2332020FE14E6000A1C21 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331820FE14E6000A1C21 /* UICollectionView.swift */; };
@@ -73,10 +66,14 @@
 		58A2332420FE14E7000A1C21 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331C20FE14E6000A1C21 /* UIViewController.swift */; };
 		58A2332520FE14E7000A1C21 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A2331D20FE14E6000A1C21 /* UIView+Shadow.swift */; };
 		58C29F69215B769E005D183B /* ReachabilityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C29F68215B769E005D183B /* ReachabilityCheck.swift */; };
+		58C380F9224B9F3B00DAD228 /* EmployeeHomePageVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C380F8224B9F3B00DAD228 /* EmployeeHomePageVc.swift */; };
 		58C992602204695B00E56C5A /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C9925F2204695A00E56C5A /* KLCPopup.m */; };
 		58CB629922365A8000CF9E4A /* Cardview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB629822365A8000CF9E4A /* Cardview.swift */; };
 		58CB629B2236767B00CF9E4A /* MaverickTicketImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB629A2236767B00CF9E4A /* MaverickTicketImageCell.swift */; };
 		58CB629D2236819000CF9E4A /* OpenImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CB629C2236819000CF9E4A /* OpenImageVC.swift */; };
+		58CBE64A225209AA00F12FE6 /* TechnicianHomePageVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBE649225209AA00F12FE6 /* TechnicianHomePageVc.swift */; };
+		58CBE64C2252175C00F12FE6 /* TechnianProactiveTicketVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CBE64B2252175C00F12FE6 /* TechnianProactiveTicketVc.swift */; };
+		58CBE64E2252464600F12FE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58CBE64D2252464600F12FE6 /* GoogleService-Info.plist */; };
 		58D23CC6223CDF8A0048D9FD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CC5223CDF8A0048D9FD /* Reachability.swift */; };
 		58D23CCD223CF4850048D9FD /* ToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CC8223CF4850048D9FD /* ToastWindow.swift */; };
 		58D23CCE223CF4850048D9FD /* UIView+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D23CC9223CF4850048D9FD /* UIView+Toast.swift */; };
@@ -89,6 +86,11 @@
 		58D71F76210743AE008CEE10 /* TicketImagesCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D71F74210743AE008CEE10 /* TicketImagesCVC.xib */; };
 		58D8B86B2237B61500E5481B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8B86A2237B61500E5481B /* Utilities.swift */; };
 		58E8FC1B223FCD33000E8B58 /* AdminDetailMaverickTickVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E8FC1A223FCD33000E8B58 /* AdminDetailMaverickTickVc.swift */; };
+		58EB5137224252E100022F80 /* ShowImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB5136224252E100022F80 /* ShowImagesCollectionViewCell.swift */; };
+		58EB5139224252E900022F80 /* ShowImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EB5138224252E900022F80 /* ShowImagesCollectionViewCell.xib */; };
+		58EB513B2242770300022F80 /* AddimagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EB513A2242770300022F80 /* AddimagesViewController.swift */; };
+		58EC547D224B57B400A9BD01 /* AdminMaverickTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC547B224B57B400A9BD01 /* AdminMaverickTicketCell.swift */; };
+		58EC547E224B57B400A9BD01 /* AdminMaverickTicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58EC547C224B57B400A9BD01 /* AdminMaverickTicketCell.xib */; };
 		58F09926223278F9008FBBD4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F09925223278F8008FBBD4 /* GradientView.swift */; };
 		58F099282232A695008FBBD4 /* PendingMaverickTickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F099272232A695008FBBD4 /* PendingMaverickTickets.swift */; };
 		58F0992B2232A6DF008FBBD4 /* PendingMaverickTicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F099292232A6DF008FBBD4 /* PendingMaverickTicketCell.swift */; };
@@ -159,33 +161,18 @@
 		580366F02108AA190041B3A4 /* ticketMonitorDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ticketMonitorDataModel.swift; sourceTree = "<group>"; };
 		58048DA62101A7DD0076474D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		58048DA82101ACE90076474D /* gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gradient.swift; sourceTree = "<group>"; };
-		58048DAE2101EB1A0076474D /* ticketdetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ticketdetailsTableViewCell.swift; sourceTree = "<group>"; };
-		58048DAF2101EB1A0076474D /* ticketdetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ticketdetailsTableViewCell.xib; sourceTree = "<group>"; };
-		58048DB2210310410076474D /* TicketDetaIsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetaIsTableViewCell.swift; sourceTree = "<group>"; };
-		58048DB3210310410076474D /* TicketDetaIsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketDetaIsTableViewCell.xib; sourceTree = "<group>"; };
 		58048DB6210364650076474D /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		58048DB7210364650076474D /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		58064D872112DAD20083A726 /* TodayFilledChecklistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayFilledChecklistVC.swift; sourceTree = "<group>"; };
-		58064D882112DAD20083A726 /* TodayFilledChecklistVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayFilledChecklistVC.xib; sourceTree = "<group>"; };
+		580510CF2243E8B0001ECB62 /* imagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		58064D8B2112EC8D0083A726 /* FilledChecklistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledChecklistData.swift; sourceTree = "<group>"; };
-		58064D8D21130A010083A726 /* submittedChecklistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = submittedChecklistTableViewCell.swift; sourceTree = "<group>"; };
-		58064D8E21130A010083A726 /* submittedChecklistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = submittedChecklistTableViewCell.xib; sourceTree = "<group>"; };
-		58065BFD2108F93300126942 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
-		58065BFE2108F93300126942 /* ImageDisplayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDisplayViewController.xib; sourceTree = "<group>"; };
-		58065C012108FA0A00126942 /* LargImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		58065C022108FA0A00126942 /* LargImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LargImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		58091AA72105E0B300401FB7 /* Bridge_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge_Header.h; sourceTree = "<group>"; };
-		580B00B42109B18C00E587F5 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
-		580B00B52109B18C00E587F5 /* ChecklistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChecklistViewController.xib; sourceTree = "<group>"; };
 		580B00B82109C90C00E587F5 /* checkListDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkListDataModel.swift; sourceTree = "<group>"; };
-		580B00BA2109E76E00E587F5 /* checklistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checklistCollectionViewCell.swift; sourceTree = "<group>"; };
-		580B00BB2109E76E00E587F5 /* checklistCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = checklistCollectionViewCell.xib; sourceTree = "<group>"; };
-		580B3C90210067430052376A /* PendingTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingTicketViewController.swift; sourceTree = "<group>"; };
-		580B3C91210067430052376A /* PendingTicketViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PendingTicketViewController.xib; sourceTree = "<group>"; };
-		580B3C94210067A40052376A /* getTicketCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = getTicketCollectionViewCell.xib; sourceTree = "<group>"; };
-		580B3C95210067A40052376A /* getTicketCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getTicketCollectionViewCell.swift; sourceTree = "<group>"; };
-		580B3C9C2100EF0A0052376A /* SupervisorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisorTableViewCell.swift; sourceTree = "<group>"; };
-		580B3C9D2100EF0A0052376A /* SupervisorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupervisorTableViewCell.xib; sourceTree = "<group>"; };
+		580C12942244DF4C007F8E7B /* ScanAfterChecklistVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanAfterChecklistVc.swift; sourceTree = "<group>"; };
+		580C12962244E356007F8E7B /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		5817B638224CA4A30049E280 /* AcceptPendingMavTick_onClick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptPendingMavTick_onClick.swift; sourceTree = "<group>"; };
+		5817B639224CA4A30049E280 /* AcceptPendingMavTick_onClick.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AcceptPendingMavTick_onClick.xib; sourceTree = "<group>"; };
+		5817B63C224CAB670049E280 /* SupervisorPendingMavTicketsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisorPendingMavTicketsVc.swift; sourceTree = "<group>"; };
+		5817B63E224CF0200049E280 /* ProactiveTicketsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProactiveTicketsVc.swift; sourceTree = "<group>"; };
 		582308B8223A39F900BDE05C /* AppStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
 		582308BA223A3A3700BDE05C /* SuperAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SuperAdmin.storyboard; sourceTree = "<group>"; };
 		582308BD223A427400BDE05C /* SuperAdminHomePageVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAdminHomePageVc.swift; sourceTree = "<group>"; };
@@ -193,10 +180,6 @@
 		582308C3223A58D500BDE05C /* TodaySupervisorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySupervisorCell.swift; sourceTree = "<group>"; };
 		582308C5223A716600BDE05C /* AdminMaverickTicketsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMaverickTicketsVc.swift; sourceTree = "<group>"; };
 		582308C7223A95FF00BDE05C /* AdminChecklistsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminChecklistsVc.swift; sourceTree = "<group>"; };
-		5832DE3920FF163A00483655 /* AuditordetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditordetailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		5832DE3A20FF163A00483655 /* AuditordetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuditordetailsCollectionViewCell.xib; sourceTree = "<group>"; };
-		5832DE4120FF394600483655 /* GetSelectedTicketDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSelectedTicketDetailsViewController.swift; sourceTree = "<group>"; };
-		5832DE4220FF394600483655 /* GetSelectedTicketDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GetSelectedTicketDetailsViewController.xib; sourceTree = "<group>"; };
 		5832DE4620FF57D700483655 /* SubmittedChecklistVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmittedChecklistVc.swift; sourceTree = "<group>"; };
 		5832DE4720FF57D700483655 /* BarCodeVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarCodeVc.swift; sourceTree = "<group>"; };
 		5832DE4820FF57D700483655 /* GenarateMaverickTicketVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenarateMaverickTicketVc.swift; sourceTree = "<group>"; };
@@ -209,10 +192,22 @@
 		5832DE4F20FF57D700483655 /* ChecklistQuestionsVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistQuestionsVc.swift; sourceTree = "<group>"; };
 		5832DE5020FF57D700483655 /* ShowImgFullScreenVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImgFullScreenVc.swift; sourceTree = "<group>"; };
 		5832DE5D20FF585000483655 /* ManagemnetDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagemnetDataModel.swift; sourceTree = "<group>"; };
-		58453EB120FDED630044CBFA /* ManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementViewController.swift; sourceTree = "<group>"; };
-		58453EB220FDED630044CBFA /* ManagementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagementViewController.xib; sourceTree = "<group>"; };
-		585ED8912142597C006B0DCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5886E3BD217F0720001F4EEA /* EmpMaverickTicketVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpMaverickTicketVC.swift; sourceTree = "<group>"; };
+		583356862248FA78004C8E3F /* MKCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKCollectionViewCell.swift; sourceTree = "<group>"; };
+		583356882248FA78004C8E3F /* MKCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKCardView.swift; sourceTree = "<group>"; };
+		583356892248FA78004C8E3F /* MKSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKSwitch.swift; sourceTree = "<group>"; };
+		5833568A2248FA78004C8E3F /* MKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTableViewCell.swift; sourceTree = "<group>"; };
+		5833568B2248FA78004C8E3F /* MKNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKNavigationBar.swift; sourceTree = "<group>"; };
+		5833568C2248FA78004C8E3F /* MKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTextField.swift; sourceTree = "<group>"; };
+		5833568D2248FA78004C8E3F /* MKSnackbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKSnackbar.swift; sourceTree = "<group>"; };
+		5833568F2248FA78004C8E3F /* MKRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKRefreshControl.swift; sourceTree = "<group>"; };
+		583356902248FA78004C8E3F /* MKImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKImageView.swift; sourceTree = "<group>"; };
+		583356912248FA78004C8E3F /* MKLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKLabel.swift; sourceTree = "<group>"; };
+		583356922248FA78004C8E3F /* MKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKButton.swift; sourceTree = "<group>"; };
+		583356942248FA78004C8E3F /* MKLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKLayer.swift; sourceTree = "<group>"; };
+		583356952248FA78004C8E3F /* MKColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKColor.swift; sourceTree = "<group>"; };
+		5863BF31224DF642005FEB45 /* ScanForCloseProTicVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanForCloseProTicVc.swift; sourceTree = "<group>"; };
+		5876CF8D2240F50800F47701 /* SuperVisor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SuperVisor.storyboard; sourceTree = "<group>"; };
+		5876CF8F2240FAE400F47701 /* SuperVisorProjectListVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperVisorProjectListVc.swift; sourceTree = "<group>"; };
 		58A2331620FE14E6000A1C21 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		58A2331720FE14E6000A1C21 /* UIColor+Customcolor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Customcolor.swift"; sourceTree = "<group>"; };
 		58A2331820FE14E6000A1C21 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
@@ -222,11 +217,15 @@
 		58A2331C20FE14E6000A1C21 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		58A2331D20FE14E6000A1C21 /* UIView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		58C29F68215B769E005D183B /* ReachabilityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCheck.swift; sourceTree = "<group>"; };
+		58C380F8224B9F3B00DAD228 /* EmployeeHomePageVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeHomePageVc.swift; sourceTree = "<group>"; };
 		58C9925E2204695A00E56C5A /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
 		58C9925F2204695A00E56C5A /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
 		58CB629822365A8000CF9E4A /* Cardview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cardview.swift; sourceTree = "<group>"; };
 		58CB629A2236767B00CF9E4A /* MaverickTicketImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaverickTicketImageCell.swift; sourceTree = "<group>"; };
 		58CB629C2236819000CF9E4A /* OpenImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenImageVC.swift; sourceTree = "<group>"; };
+		58CBE649225209AA00F12FE6 /* TechnicianHomePageVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianHomePageVc.swift; sourceTree = "<group>"; };
+		58CBE64B2252175C00F12FE6 /* TechnianProactiveTicketVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnianProactiveTicketVc.swift; sourceTree = "<group>"; };
+		58CBE64D2252464600F12FE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		58D23CC5223CDF8A0048D9FD /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		58D23CC8223CF4850048D9FD /* ToastWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
 		58D23CC9223CF4850048D9FD /* UIView+Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Toast.swift"; sourceTree = "<group>"; };
@@ -238,7 +237,13 @@
 		58D71F73210743AE008CEE10 /* TicketImagesCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImagesCVC.swift; sourceTree = "<group>"; };
 		58D71F74210743AE008CEE10 /* TicketImagesCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketImagesCVC.xib; sourceTree = "<group>"; };
 		58D8B86A2237B61500E5481B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		58E44338224FAF58002B5438 /* QualusApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QualusApp.entitlements; sourceTree = "<group>"; };
 		58E8FC1A223FCD33000E8B58 /* AdminDetailMaverickTickVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDetailMaverickTickVc.swift; sourceTree = "<group>"; };
+		58EB5136224252E100022F80 /* ShowImagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		58EB5138224252E900022F80 /* ShowImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowImagesCollectionViewCell.xib; sourceTree = "<group>"; };
+		58EB513A2242770300022F80 /* AddimagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddimagesViewController.swift; sourceTree = "<group>"; };
+		58EC547B224B57B400A9BD01 /* AdminMaverickTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMaverickTicketCell.swift; sourceTree = "<group>"; };
+		58EC547C224B57B400A9BD01 /* AdminMaverickTicketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminMaverickTicketCell.xib; sourceTree = "<group>"; };
 		58F09925223278F8008FBBD4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		58F099272232A695008FBBD4 /* PendingMaverickTickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingMaverickTickets.swift; sourceTree = "<group>"; };
 		58F099292232A6DF008FBBD4 /* PendingMaverickTicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingMaverickTicketCell.swift; sourceTree = "<group>"; };
@@ -336,36 +341,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		58064D862112DA900083A726 /* AudSup checklist */ = {
-			isa = PBXGroup;
-			children = (
-				58064D872112DAD20083A726 /* TodayFilledChecklistVC.swift */,
-				58064D882112DAD20083A726 /* TodayFilledChecklistVC.xib */,
-				58064D8D21130A010083A726 /* submittedChecklistTableViewCell.swift */,
-				58064D8E21130A010083A726 /* submittedChecklistTableViewCell.xib */,
-			);
-			path = "AudSup checklist";
-			sourceTree = "<group>";
-		};
-		58091A9D2105A4C600401FB7 /* PendingDetailsOfTicket */ = {
-			isa = PBXGroup;
-			children = (
-				5832DE4120FF394600483655 /* GetSelectedTicketDetailsViewController.swift */,
-				5832DE4220FF394600483655 /* GetSelectedTicketDetailsViewController.xib */,
-				58048DB2210310410076474D /* TicketDetaIsTableViewCell.swift */,
-				58048DB3210310410076474D /* TicketDetaIsTableViewCell.xib */,
-				58048DAE2101EB1A0076474D /* ticketdetailsTableViewCell.swift */,
-				58048DAF2101EB1A0076474D /* ticketdetailsTableViewCell.xib */,
-				58048DB6210364650076474D /* ImageCollectionViewCell.swift */,
-				58048DB7210364650076474D /* ImageCollectionViewCell.xib */,
-				58065BFD2108F93300126942 /* ImageDisplayViewController.swift */,
-				58065BFE2108F93300126942 /* ImageDisplayViewController.xib */,
-				58065C012108FA0A00126942 /* LargImageCollectionViewCell.swift */,
-				58065C022108FA0A00126942 /* LargImageCollectionViewCell.xib */,
-			);
-			path = PendingDetailsOfTicket;
-			sourceTree = "<group>";
-		};
 		58091A9E2105D5F200401FB7 /* KLCPopup */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,28 +348,6 @@
 				58C9925F2204695A00E56C5A /* KLCPopup.m */,
 			);
 			path = KLCPopup;
-			sourceTree = "<group>";
-		};
-		580B00B32109B15B00E587F5 /* ChecklistDetails */ = {
-			isa = PBXGroup;
-			children = (
-				580B00B42109B18C00E587F5 /* ChecklistViewController.swift */,
-				580B00B52109B18C00E587F5 /* ChecklistViewController.xib */,
-				580B00BA2109E76E00E587F5 /* checklistCollectionViewCell.swift */,
-				580B00BB2109E76E00E587F5 /* checklistCollectionViewCell.xib */,
-			);
-			path = ChecklistDetails;
-			sourceTree = "<group>";
-		};
-		580B3C8F210067250052376A /* Pending_Tickets */ = {
-			isa = PBXGroup;
-			children = (
-				580B3C90210067430052376A /* PendingTicketViewController.swift */,
-				580B3C91210067430052376A /* PendingTicketViewController.xib */,
-				580B3C95210067A40052376A /* getTicketCollectionViewCell.swift */,
-				580B3C94210067A40052376A /* getTicketCollectionViewCell.xib */,
-			);
-			path = Pending_Tickets;
 			sourceTree = "<group>";
 		};
 		582308B7223A39F900BDE05C /* StoryboardFile */ = {
@@ -432,6 +385,10 @@
 			children = (
 				582308C1223A58B000BDE05C /* TodayAuditorCell.swift */,
 				582308C3223A58D500BDE05C /* TodaySupervisorCell.swift */,
+				58EC547B224B57B400A9BD01 /* AdminMaverickTicketCell.swift */,
+				58EC547C224B57B400A9BD01 /* AdminMaverickTicketCell.xib */,
+				58048DB6210364650076474D /* ImageCollectionViewCell.swift */,
+				58048DB7210364650076474D /* ImageCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -456,6 +413,7 @@
 				58F099272232A695008FBBD4 /* PendingMaverickTickets.swift */,
 				58CB629C2236819000CF9E4A /* OpenImageVC.swift */,
 				58D2F9C9223ECAE6003D71BA /* DetailMaverickTickVc.swift */,
+				58EB513A2242770300022F80 /* AddimagesViewController.swift */,
 			);
 			path = "Auditor Display";
 			sourceTree = "<group>";
@@ -473,23 +431,59 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
-		58453EB020FDED340044CBFA /* Management Display */ = {
+		583356852248FA78004C8E3F /* MaterialDesign */ = {
 			isa = PBXGroup;
 			children = (
-				58453EB120FDED630044CBFA /* ManagementViewController.swift */,
-				58453EB220FDED630044CBFA /* ManagementViewController.xib */,
-				5832DE3920FF163A00483655 /* AuditordetailsCollectionViewCell.swift */,
-				5832DE3A20FF163A00483655 /* AuditordetailsCollectionViewCell.xib */,
-				580B3C9C2100EF0A0052376A /* SupervisorTableViewCell.swift */,
-				580B3C9D2100EF0A0052376A /* SupervisorTableViewCell.xib */,
+				583356862248FA78004C8E3F /* MKCollectionViewCell.swift */,
+				583356882248FA78004C8E3F /* MKCardView.swift */,
+				583356892248FA78004C8E3F /* MKSwitch.swift */,
+				5833568A2248FA78004C8E3F /* MKTableViewCell.swift */,
+				5833568B2248FA78004C8E3F /* MKNavigationBar.swift */,
+				5833568C2248FA78004C8E3F /* MKTextField.swift */,
+				5833568D2248FA78004C8E3F /* MKSnackbar.swift */,
+				5833568F2248FA78004C8E3F /* MKRefreshControl.swift */,
+				583356902248FA78004C8E3F /* MKImageView.swift */,
+				583356912248FA78004C8E3F /* MKLabel.swift */,
+				583356922248FA78004C8E3F /* MKButton.swift */,
+				583356942248FA78004C8E3F /* MKLayer.swift */,
+				583356952248FA78004C8E3F /* MKColor.swift */,
 			);
-			path = "Management Display";
+			path = MaterialDesign;
+			sourceTree = "<group>";
+		};
+		5876CF8A2240F4B200F47701 /* SuperVisorLogin */ = {
+			isa = PBXGroup;
+			children = (
+				5876CF8D2240F50800F47701 /* SuperVisor.storyboard */,
+				5876CF8C2240F4D800F47701 /* Cellls */,
+				5876CF8B2240F4C700F47701 /* ViewControllers */,
+			);
+			path = SuperVisorLogin;
+			sourceTree = "<group>";
+		};
+		5876CF8B2240F4C700F47701 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5876CF8F2240FAE400F47701 /* SuperVisorProjectListVc.swift */,
+				5817B63C224CAB670049E280 /* SupervisorPendingMavTicketsVc.swift */,
+				5817B63E224CF0200049E280 /* ProactiveTicketsVc.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5876CF8C2240F4D800F47701 /* Cellls */ = {
+			isa = PBXGroup;
+			children = (
+				5817B638224CA4A30049E280 /* AcceptPendingMavTick_onClick.swift */,
+				5817B639224CA4A30049E280 /* AcceptPendingMavTick_onClick.xib */,
+			);
+			path = Cellls;
 			sourceTree = "<group>";
 		};
 		5886E3BC217F06F4001F4EEA /* EmployeeLogin */ = {
 			isa = PBXGroup;
 			children = (
-				5886E3BD217F0720001F4EEA /* EmpMaverickTicketVC.swift */,
+				58C380F8224B9F3B00DAD228 /* EmployeeHomePageVc.swift */,
 			);
 			path = EmployeeLogin;
 			sourceTree = "<group>";
@@ -497,6 +491,7 @@
 		58A2331520FE14E6000A1C21 /* Commons Files */ = {
 			isa = PBXGroup;
 			children = (
+				580C12962244E356007F8E7B /* Alert.swift */,
 				58D8B86A2237B61500E5481B /* Utilities.swift */,
 				58D23CC5223CDF8A0048D9FD /* Reachability.swift */,
 				58C29F68215B769E005D183B /* ReachabilityCheck.swift */,
@@ -512,6 +507,15 @@
 				58A2331D20FE14E6000A1C21 /* UIView+Shadow.swift */,
 			);
 			path = "Commons Files";
+			sourceTree = "<group>";
+		};
+		58CBE6482252096F00F12FE6 /* TechnicaianLogin */ = {
+			isa = PBXGroup;
+			children = (
+				58CBE649225209AA00F12FE6 /* TechnicianHomePageVc.swift */,
+				58CBE64B2252175C00F12FE6 /* TechnianProactiveTicketVc.swift */,
+			);
+			path = TechnicaianLogin;
 			sourceTree = "<group>";
 		};
 		58D23CC7223CF4850048D9FD /* EasyToast */ = {
@@ -556,6 +560,7 @@
 		CE0F65F520AD452E00B8F026 /* QualusApp */ = {
 			isa = PBXGroup;
 			children = (
+				58E44338224FAF58002B5438 /* QualusApp.entitlements */,
 				582308B7223A39F900BDE05C /* StoryboardFile */,
 				CE8644C721147CEE00E47E42 /* Third_Party */,
 				5832DE5C20FF581000483655 /* Data Model */,
@@ -572,8 +577,8 @@
 				CE0F65FA20AD452E00B8F026 /* Main.storyboard */,
 				CE0F660020AD452E00B8F026 /* Assets.xcassets */,
 				CE0F660220AD452E00B8F026 /* LaunchScreen.storyboard */,
-				585ED8912142597C006B0DCC /* GoogleService-Info.plist */,
 				CE0F660520AD452E00B8F026 /* Info.plist */,
+				58CBE64D2252464600F12FE6 /* GoogleService-Info.plist */,
 				CE0F65FD20AD452E00B8F026 /* QualusApp.xcdatamodeld */,
 			);
 			path = QualusApp;
@@ -582,6 +587,7 @@
 		CE0F661020AD4B2E00B8F026 /* Third Library */ = {
 			isa = PBXGroup;
 			children = (
+				583356852248FA78004C8E3F /* MaterialDesign */,
 				58F09925223278F8008FBBD4 /* GradientView.swift */,
 				58D23CC7223CF4850048D9FD /* EasyToast */,
 				58091A9E2105D5F200401FB7 /* KLCPopup */,
@@ -594,6 +600,8 @@
 		CE0F661B20AD519400B8F026 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				58CBE6482252096F00F12FE6 /* TechnicaianLogin */,
+				5876CF8A2240F4B200F47701 /* SuperVisorLogin */,
 				5886E3BC217F06F4001F4EEA /* EmployeeLogin */,
 				CE8B4EC0213EAEDE006B2B0D /* CSR  */,
 				CE7BCF02213946C6008F7F52 /* ManagementLogin */,
@@ -635,11 +643,6 @@
 			isa = PBXGroup;
 			children = (
 				582308BC223A423F00BDE05C /* SuperAdmin */,
-				58453EB020FDED340044CBFA /* Management Display */,
-				58064D862112DA900083A726 /* AudSup checklist */,
-				580B3C8F210067250052376A /* Pending_Tickets */,
-				58091A9D2105A4C600401FB7 /* PendingDetailsOfTicket */,
-				580B00B32109B15B00E587F5 /* ChecklistDetails */,
 			);
 			path = ManagementLogin;
 			sourceTree = "<group>";
@@ -691,6 +694,9 @@
 				58F099292232A6DF008FBBD4 /* PendingMaverickTicketCell.swift */,
 				58F0992A2232A6DF008FBBD4 /* PendingMaverickTicketCell.xib */,
 				58CB629A2236767B00CF9E4A /* MaverickTicketImageCell.swift */,
+				58EB5138224252E900022F80 /* ShowImagesCollectionViewCell.xib */,
+				58EB5136224252E100022F80 /* ShowImagesCollectionViewCell.swift */,
+				580510CF2243E8B0001ECB62 /* imagesCollectionViewCell.swift */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -734,6 +740,8 @@
 			children = (
 				CEF1934520B92F3F001567ED /* Utility.swift */,
 				CEF1934320B92C48001567ED /* ScannerVc.swift */,
+				580C12942244DF4C007F8E7B /* ScanAfterChecklistVc.swift */,
+				5863BF31224DF642005FEB45 /* ScanForCloseProTicVc.swift */,
 			);
 			path = ScannerFiles;
 			sourceTree = "<group>";
@@ -773,6 +781,26 @@
 					CE0F65F220AD452E00B8F026 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.NetworkExtensions.iOS = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+							com.apple.VPNLite = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -799,41 +827,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58048DB12101EB1A0076474D /* ticketdetailsTableViewCell.xib in Resources */,
-				580B00BD2109E76E00E587F5 /* checklistCollectionViewCell.xib in Resources */,
 				CE5C36BB20BC01EB002518BB /* ChecklistQuetionCell.xib in Resources */,
 				582308BB223A3A3700BDE05C /* SuperAdmin.storyboard in Resources */,
+				58CBE64E2252464600F12FE6 /* GoogleService-Info.plist in Resources */,
 				CE8B4ECA213EAEDE006B2B0D /* locationsCollectionViewCell.xib in Resources */,
 				CE51B9D6212167D000500224 /* QueTypeTwoBarcodeCell.xib in Resources */,
 				58F0992C2232A6DF008FBBD4 /* PendingMaverickTicketCell.xib in Resources */,
+				5817B63B224CA4A30049E280 /* AcceptPendingMavTick_onClick.xib in Resources */,
 				CE2149D420C1812D00D47754 /* SubmitedChecklistCell.xib in Resources */,
-				580B3C93210067430052376A /* PendingTicketViewController.xib in Resources */,
 				58048DB9210364650076474D /* ImageCollectionViewCell.xib in Resources */,
 				CE8F816621186E89006E1B1E /* ChecklistQTypeCell.xib in Resources */,
-				58064D8A2112DAD20083A726 /* TodayFilledChecklistVC.xib in Resources */,
-				580B00B72109B18C00E587F5 /* ChecklistViewController.xib in Resources */,
 				CE0F660420AD452E00B8F026 /* LaunchScreen.storyboard in Resources */,
 				CE0F660120AD452E00B8F026 /* Assets.xcassets in Resources */,
 				CE8B4EC8213EAEDE006B2B0D /* FeedbackViewController.xib in Resources */,
 				CE82523920ADB5E6000C8586 /* LocationCell.xib in Resources */,
-				5832DE4420FF394600483655 /* GetSelectedTicketDetailsViewController.xib in Resources */,
-				585ED8922142597C006B0DCC /* GoogleService-Info.plist in Resources */,
 				CEEE895920B433F700E75A72 /* MaverickTicketCell.xib in Resources */,
-				58065C002108F93300126942 /* ImageDisplayViewController.xib in Resources */,
 				CE5DC17B20C2A3450014D0FC /* ChecklistRespImageCell.xib in Resources */,
-				58065C042108FA0A00126942 /* LargImageCollectionViewCell.xib in Resources */,
+				5876CF8E2240F50800F47701 /* SuperVisor.storyboard in Resources */,
 				CE51B9D2212167B100500224 /* QueTypeOneBarcodeCell.xib in Resources */,
-				580B3C9F2100EF0A0052376A /* SupervisorTableViewCell.xib in Resources */,
-				5832DE3C20FF163A00483655 /* AuditordetailsCollectionViewCell.xib in Resources */,
-				58064D9021130A010083A726 /* submittedChecklistTableViewCell.xib in Resources */,
-				58453EB420FDED630044CBFA /* ManagementViewController.xib in Resources */,
-				58048DB5210310410076474D /* TicketDetaIsTableViewCell.xib in Resources */,
 				CE0F65FC20AD452E00B8F026 /* Main.storyboard in Resources */,
-				580B3C96210067A40052376A /* getTicketCollectionViewCell.xib in Resources */,
 				CED78C1620B5966D00A62817 /* ProjectNameCell.xib in Resources */,
 				CE12B150213037410062F87C /* ChecklistRespImageInputCell.xib in Resources */,
+				58EB5139224252E900022F80 /* ShowImagesCollectionViewCell.xib in Resources */,
 				58D71F76210743AE008CEE10 /* TicketImagesCVC.xib in Resources */,
 				CE5DC17720C29FFA0014D0FC /* ChecklistResponceCell.xib in Resources */,
+				58EC547E224B57B400A9BD01 /* AdminMaverickTicketCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,8 +928,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEEF5EE120B73FF000E5FA22 /* LocationData.swift in Sources */,
+				5817B63D224CAB670049E280 /* SupervisorPendingMavTicketsVc.swift in Sources */,
+				58CBE64C2252175C00F12FE6 /* TechnianProactiveTicketVc.swift in Sources */,
 				5832DE5520FF57D700483655 /* ProjectInfoVc.swift in Sources */,
-				58048DB02101EB1A0076474D /* ticketdetailsTableViewCell.swift in Sources */,
 				CE0F65FF20AD452E00B8F026 /* QualusApp.xcdatamodeld in Sources */,
 				CE8B4EC6213EAEDE006B2B0D /* CSRViewController.swift in Sources */,
 				CE01FE872119BFCE00BEBB8B /* ClassificationData.swift in Sources */,
@@ -921,68 +940,73 @@
 				58A2332420FE14E7000A1C21 /* UIViewController.swift in Sources */,
 				58D23CD0223CF4850048D9FD /* EasyToastConfiguration.swift in Sources */,
 				582308C6223A716600BDE05C /* AdminMaverickTicketsVc.swift in Sources */,
+				5833569B2248FA78004C8E3F /* MKTableViewCell.swift in Sources */,
+				5817B63F224CF0200049E280 /* ProactiveTicketsVc.swift in Sources */,
 				CE62698A21254C5700C38FCE /* ImgeUploadForChecklist.swift in Sources */,
 				CE8B4EC9213EAEDE006B2B0D /* locationsCollectionViewCell.swift in Sources */,
 				CE0C51A820B2D86500B12027 /* UserListVc.swift in Sources */,
+				5876CF902240FAE400F47701 /* SuperVisorProjectListVc.swift in Sources */,
 				58D8B86B2237B61500E5481B /* Utilities.swift in Sources */,
 				CE5DC17A20C2A3450014D0FC /* ChecklistRespImageCell.swift in Sources */,
-				580B00BC2109E76E00E587F5 /* checklistCollectionViewCell.swift in Sources */,
+				5833569D2248FA78004C8E3F /* MKTextField.swift in Sources */,
+				583356A12248FA78004C8E3F /* MKImageView.swift in Sources */,
 				CE51B9D5212167D000500224 /* QueTypeTwoBarcodeCell.swift in Sources */,
-				58064D892112DAD20083A726 /* TodayFilledChecklistVC.swift in Sources */,
+				58EC547D224B57B400A9BD01 /* AdminMaverickTicketCell.swift in Sources */,
 				58048DA72101A7DD0076474D /* Constant.swift in Sources */,
 				CE82520720AD5516000C8586 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				58EB5137224252E100022F80 /* ShowImagesCollectionViewCell.swift in Sources */,
 				58C992602204695B00E56C5A /* KLCPopup.m in Sources */,
+				58C380F9224B9F3B00DAD228 /* EmployeeHomePageVc.swift in Sources */,
 				CE234ECA20B6844D00502D20 /* TicketImageVc.swift in Sources */,
 				58D23CCD223CF4850048D9FD /* ToastWindow.swift in Sources */,
-				58048DB4210310410076474D /* TicketDetaIsTableViewCell.swift in Sources */,
 				58A2332220FE14E6000A1C21 /* ErrorMsgs.swift in Sources */,
 				CE0CECA3211AC627002E93B2 /* SubmitChecklistData.swift in Sources */,
 				58064D8C2112EC8D0083A726 /* FilledChecklistData.swift in Sources */,
 				58D71F75210743AE008CEE10 /* TicketImagesCVC.swift in Sources */,
 				CE8B4ECC213EB055006B2B0D /* feedbackdataModel.swift in Sources */,
+				58CBE64A225209AA00F12FE6 /* TechnicianHomePageVc.swift in Sources */,
 				582308C2223A58B000BDE05C /* TodayAuditorCell.swift in Sources */,
 				CE234ECC20B6868B00502D20 /* TicketImaheCell.swift in Sources */,
 				5832DE5420FF57D700483655 /* CheckListByLocationVc.swift in Sources */,
 				CE5C36BD20BC1FAC002518BB /* ProjectsVc.swift in Sources */,
 				58048DA92101ACE90076474D /* gradient.swift in Sources */,
+				5863BF32224DF642005FEB45 /* ScanForCloseProTicVc.swift in Sources */,
 				CE2149D320C1812D00D47754 /* SubmitedChecklistCell.swift in Sources */,
 				58D23CCE223CF4850048D9FD /* UIView+Toast.swift in Sources */,
 				5832DE5220FF57D700483655 /* BarCodeVc.swift in Sources */,
 				CE8B4EC7213EAEDE006B2B0D /* FeedbackViewController.swift in Sources */,
+				5833569A2248FA78004C8E3F /* MKSwitch.swift in Sources */,
 				5832DE5A20FF57D700483655 /* ChecklistQuestionsVc.swift in Sources */,
+				583356A02248FA78004C8E3F /* MKRefreshControl.swift in Sources */,
 				5832DE5320FF57D700483655 /* GenarateMaverickTicketVc.swift in Sources */,
-				5832DE3B20FF163A00483655 /* AuditordetailsCollectionViewCell.swift in Sources */,
 				58C29F69215B769E005D183B /* ReachabilityCheck.swift in Sources */,
-				580B3C97210067A40052376A /* getTicketCollectionViewCell.swift in Sources */,
 				58A2331F20FE14E6000A1C21 /* UIColor+Customcolor.swift in Sources */,
 				CE51B9D1212167B100500224 /* QueTypeOneBarcodeCell.swift in Sources */,
 				CE82523820ADB5E6000C8586 /* LocationCell.swift in Sources */,
 				CE82523520ADAD70000C8586 /* AllLocationVc.swift in Sources */,
 				CEEE895820B433F700E75A72 /* MaverickTicketCell.swift in Sources */,
+				58EB513B2242770300022F80 /* AddimagesViewController.swift in Sources */,
 				CED78C1520B5966D00A62817 /* ProjectNameCell.swift in Sources */,
 				CE5C36BA20BC01EB002518BB /* ChecklistQuetionCell.swift in Sources */,
 				5832DE5720FF57D700483655 /* SelectProjectForTicketVc.swift in Sources */,
 				58A2332520FE14E7000A1C21 /* UIView+Shadow.swift in Sources */,
-				58065C032108FA0A00126942 /* LargImageCollectionViewCell.swift in Sources */,
 				58A2331E20FE14E6000A1C21 /* UIView.swift in Sources */,
 				CE2A852920B3F02300EC5FA0 /* UserProfileVc.swift in Sources */,
 				580366F12108AA190041B3A4 /* ticketMonitorDataModel.swift in Sources */,
-				58065BFF2108F93300126942 /* ImageDisplayViewController.swift in Sources */,
 				58D23CD3223D052B0048D9FD /* TodaysFilledChecklistVc.swift in Sources */,
 				58A2332120FE14E6000A1C21 /* UITableView.swift in Sources */,
-				58453EB320FDED630044CBFA /* ManagementViewController.swift in Sources */,
-				58064D8F21130A010083A726 /* submittedChecklistTableViewCell.swift in Sources */,
+				583356A52248FA78004C8E3F /* MKLayer.swift in Sources */,
 				5832DE5B20FF57D700483655 /* ShowImgFullScreenVc.swift in Sources */,
 				CE8644C52114599700E47E42 /* MapLocations.swift in Sources */,
 				CE8644CA21147D1300E47E42 /* DLRadioButton.m in Sources */,
 				582308C4223A58D500BDE05C /* TodaySupervisorCell.swift in Sources */,
 				5832DE5120FF57D700483655 /* SubmittedChecklistVc.swift in Sources */,
-				580B3C92210067430052376A /* PendingTicketViewController.swift in Sources */,
-				5886E3BE217F0720001F4EEA /* EmpMaverickTicketVC.swift in Sources */,
+				580510D02243E8B0001ECB62 /* imagesCollectionViewCell.swift in Sources */,
 				CE5C36C220BC2EFF002518BB /* barcodeNumberCell.swift in Sources */,
 				CE82520820AD5516000C8586 /* TPKeyboardAvoidingTableView.m in Sources */,
 				5832DE5820FF57D700483655 /* SubmitChecklistResponseVc.swift in Sources */,
 				58CB629B2236767B00CF9E4A /* MaverickTicketImageCell.swift in Sources */,
+				583356A32248FA78004C8E3F /* MKButton.swift in Sources */,
 				CE5DC17620C29FFA0014D0FC /* ChecklistResponceCell.swift in Sources */,
 				58CB629922365A8000CF9E4A /* Cardview.swift in Sources */,
 				5832DE5920FF57D700483655 /* MaverickTicketViewVc.swift in Sources */,
@@ -995,13 +1019,19 @@
 				CE12B14F213037410062F87C /* ChecklistRespImageInputCell.swift in Sources */,
 				CEF1934420B92C48001567ED /* ScannerVc.swift in Sources */,
 				CE01FE8521196DA400BEBB8B /* ImageCell.swift in Sources */,
+				583356A62248FA78004C8E3F /* MKColor.swift in Sources */,
+				583356A22248FA78004C8E3F /* MKLabel.swift in Sources */,
+				580C12952244DF4C007F8E7B /* ScanAfterChecklistVc.swift in Sources */,
+				583356972248FA78004C8E3F /* MKCollectionViewCell.swift in Sources */,
 				58F09926223278F9008FBBD4 /* GradientView.swift in Sources */,
 				5832DE5E20FF585000483655 /* ManagemnetDataModel.swift in Sources */,
 				CE8F816521186E89006E1B1E /* ChecklistQTypeCell.swift in Sources */,
 				CE0F661220AD4B4C00B8F026 /* JYToast.swift in Sources */,
+				5833569C2248FA78004C8E3F /* MKNavigationBar.swift in Sources */,
 				CE0F661D20AD51C800B8F026 /* AbbrevationVc.swift in Sources */,
 				582308C8223A95FF00BDE05C /* AdminChecklistsVc.swift in Sources */,
 				58CB629D2236819000CF9E4A /* OpenImageVC.swift in Sources */,
+				5833569E2248FA78004C8E3F /* MKSnackbar.swift in Sources */,
 				CE288A5220BFEDF800D2856E /* imageUpload.swift in Sources */,
 				58A2332320FE14E6000A1C21 /* String.swift in Sources */,
 				CEF1934620B92F3F001567ED /* Utility.swift in Sources */,
@@ -1012,12 +1042,12 @@
 				582308B9223A39F900BDE05C /* AppStoryboard.swift in Sources */,
 				CE82523120AD9E78000C8586 /* ProjectInfoCell.swift in Sources */,
 				CE51B9CE2121630200500224 /* ChecklistQueForBarcodeVC.swift in Sources */,
-				580B00B62109B18C00E587F5 /* ChecklistViewController.swift in Sources */,
+				583356992248FA78004C8E3F /* MKCardView.swift in Sources */,
 				582308BE223A427400BDE05C /* SuperAdminHomePageVc.swift in Sources */,
+				580C12972244E356007F8E7B /* Alert.swift in Sources */,
 				58D23CCF223CF4850048D9FD /* ToastContainerVC.swift in Sources */,
+				5817B63A224CA4A30049E280 /* AcceptPendingMavTick_onClick.swift in Sources */,
 				CE82520920AD5516000C8586 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
-				5832DE4320FF394600483655 /* GetSelectedTicketDetailsViewController.swift in Sources */,
-				580B3C9E2100EF0A0052376A /* SupervisorTableViewCell.swift in Sources */,
 				CE13040F20B8182800E7E61E /* UserDataList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1162,11 +1192,12 @@
 			baseConfigurationReference = E9D400BF70A9A195093E995C /* Pods-QualusApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QualusApp/QualusApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = QualusApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.qualus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1184,11 +1215,12 @@
 			baseConfigurationReference = D4AEDB35C0E4C33A217FE8FD /* Pods-QualusApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QualusApp/QualusApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 879PB75HQ7;
 				INFOPLIST_FILE = QualusApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksoftpl.qualus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
