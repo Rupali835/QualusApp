@@ -364,13 +364,14 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
             cell.backView.applyShadowAndRadiustoView()
             cell.lblQuetnType.text = "Q." + String(indexNumber) + "  " + Qstr
             
+            cell.lblQuetnType.textColor = UIColor.init(hexString: "1576EF")
             cell.backView.applyShadowAndRadiustoView()
             
             cell.btntakeImage.isHidden = m_cQuestionCheckList[indexPath.row].m_bTakePhoto ? true : false
             cell.btnViewPics.isHidden = m_cQuestionCheckList[indexPath.row].m_bViewPhoto ? true : false
             cell.btnSubmitQ.isHidden = m_cQuestionCheckList[indexPath.row].m_bAnsSubmit ? true : false
             
-            cell.backView.backgroundColor = m_cQuestionCheckList[indexPath.row].m_bAnsSubmit ? UIColor(hexString: "dbebfa") : UIColor.white
+            cell.backView.backgroundColor = m_cQuestionCheckList[indexPath.row].m_bAnsSubmit ? UIColor(hexString: "D6ECDA") : UIColor.white
       
             cell.btnViewPics.isUserInteractionEnabled = true
             
@@ -408,7 +409,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         let Qcell = Qcell as! ChecklistQuetionCell
         let Qstr = cDict["c_q_question"] as! String
         Qcell.lblQuestion.text = "Q." + String(indexNumber) + "  " + Qstr
-        
+        Qcell.lblQuestion.textColor = UIColor.init(hexString: "1576EF")
         
         Qcell.backView.applyShadowAndRadiustoView()
         
@@ -420,7 +421,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
         Qcell.btnNO.isSelected = m_cQuestionCheckList[indexPathrow].m_bAnswerNo ? true : false
         Qcell.btnNA.isSelected = m_cQuestionCheckList[indexPathrow].m_bAnswerNA ? true : false
         
-        Qcell.backView.backgroundColor = m_cQuestionCheckList[indexPathrow].m_bAnsSubmit ? UIColor(hexString: "dbebfa") : UIColor.white
+        Qcell.backView.backgroundColor = m_cQuestionCheckList[indexPathrow].m_bAnsSubmit ? UIColor(hexString: "D6ECDA") : UIColor.white
         
         Qcell.btnViewPhotos.isUserInteractionEnabled = true
         
@@ -500,7 +501,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
   
     m_cAnswerChecklistObj.q_id = (lcDict["c_q_id"] as! String)
     
-     let indexpath = IndexPath(row: sender.tag, section: 0)
+    let indexpath = IndexPath(row: sender.tag, section: 0)
     
     if m_cAnswerChecklistObj.q_type == "1"
     {
@@ -691,12 +692,9 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
                     
                     m_cAnswerChecklistObj.marks_obtained = "0"
                     m_cAnswerChecklistObj.max_marks = QueMarks
-                  
                     m_cAnswerChecklistObj.ans = "2"
-                    
                     cSubmitChecklist.m_ticket_status = "1"
       
-                    
                     // m_ticket_data is send
                 
             for(index, _) in LocationDaraArr.enumerated()
@@ -786,13 +784,64 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
    
     @objc func OpenCamera(sender: UIButton)
     {
+        self.view.endEditing(true)
         
-    let vc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "AddimagesViewController") as! AddimagesViewController
-       vc.index = sender.tag
-       vc.delegate = self
-       self.navigationController?.pushViewController(vc, animated: true)
+        let buttonPosition:CGPoint = sender.convert(CGPoint.zero, to:self.tblQuestions)
+        
+        let indexPath = self.tblQuestions.indexPathForRow(at: buttonPosition)
+        
+        let cell = self.tblQuestions.cellForRow(at: indexPath!) as! ChecklistQuetionCell
+        
+        
+        if self.m_cQuestionCheckList[sender.tag].m_cImagArr == nil
+        {
+            openFirstTimeCam(sender: cell.btnTakeImg)
+        }else
+        {
+            let vc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "AddimagesViewController") as! AddimagesViewController
+            vc.index = sender.tag
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    
     }
+    
+    func openFirstTimeCam(sender: UIButton)
+    {
+        let cameraViewController = CameraViewController(croppingParameters: croppingParameters, allowsLibraryAccess: libraryEnabled){ [weak self] image, asset in
+            
+            if image != nil
+            {
+                self?.m_cImageArrFromCam.removeAll(keepingCapacity: false)
+                let vc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "AddimagesViewController") as! AddimagesViewController
+                
+                let timestamp = Date().toMillis()
+                image!.accessibilityIdentifier = String(describing: timestamp)
+                self?.btnCamRabdom.setImage(image, for: .normal)
+                let lcFileName = image?.GetFileName()
+                let randonImgNm = self!.cSubmitChecklist.user_id + "_" + lcFileName!
+                
+                let lcImg = ImgeFromCam(Index: sender.tag, Img: image!, ImgName: randonImgNm, ImgUrl: randonImgNm, ImgPicTime: (self?.getDate())!)
+                
+                self?.m_cImageArrFromCam.append(lcImg)
+                
+                vc.m_cImageArrFromCam = self!.m_cImageArrFromCam
+                vc.index = sender.tag
+                vc.delegate = self
+                
+                self!.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+            DispatchQueue.main.async {
+                self?.dismiss(animated: true, completion: nil)
+            }
+            
+        }
+        present(cameraViewController, animated: true, completion: nil)
         
+    }
+    
     func openCamForRandomQu(sender: UIButton)
     {
         let cameraViewController = CameraViewController(croppingParameters: croppingParameters, allowsLibraryAccess: libraryEnabled){ [weak self] image, asset in
@@ -820,7 +869,7 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
     
     @objc func btnYes_Click(sender: DLRadioButton)
     {
-        
+    
         self.view.endEditing(true)
         
         let buttonPosition:CGPoint = sender.convert(CGPoint.zero, to:self.tblQuestions)

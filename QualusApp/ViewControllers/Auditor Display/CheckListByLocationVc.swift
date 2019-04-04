@@ -24,7 +24,7 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CheckListByLocationVc.back(sender:)))
+        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CheckListByLocationVc.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         
         
@@ -53,12 +53,19 @@ class CheckListByLocationVc: UIViewController, UITableViewDelegate, UITableViewD
         
            self.ColorArr = [UIColor.MKColor.Red.P400, UIColor.MKColor.Blue.P400, UIColor.MKColor.Orange.P400, UIColor.MKColor.Green.P400, UIColor.MKColor.Indigo.P400, UIColor.MKColor.Amber.P400, UIColor.MKColor.LightBlue.P400, UIColor.MKColor.BlueGrey.P400, UIColor.MKColor.Brown.P400, UIColor.MKColor.Cyan.P400, UIColor.MKColor.Teal.P400, UIColor.MKColor.Lime.P400, UIColor.MKColor.Pink.P400, UIColor.MKColor.Purple.P400]
         
-        
     }
 
     @objc func back(sender: UIBarButtonItem) {
 
-        self.navigationController?.popViewController(animated: true)
+        if self.userRole == "2"
+        {
+            self.navigationController?.backToViewController(viewController: SuperVisorProjectListVc.self)
+            
+        }else
+        {
+        self.navigationController?.backToViewController(viewController: ProjectInfoVc.self)
+        }
+        
     }
     
     func setQrString(cQr: String, ProjId: String, Showvc: Bool)

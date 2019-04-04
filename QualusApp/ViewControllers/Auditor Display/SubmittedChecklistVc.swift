@@ -2,6 +2,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -13,6 +14,9 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
     var FcId : String = ""
     //var LocationDataArr = [AnyObject]()
     let cell = SubmitedChecklistCell()
+    var LocationDaraArr = [FetchLocation]()
+    var locationName = String()
+    var context = AppDelegate().persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,11 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         self.tblSubmitedList.estimatedRowHeight = 80
         self.tblSubmitedList.rowHeight = UITableViewAutomaticDimension
         self.getdata()
+        
+        let Lresquest = NSFetchRequest<FetchLocation>(entityName: "FetchLocation")
+        let Lresponse = try! context.fetch(Lresquest)
+        LocationDaraArr = Lresponse
+        
         
     }
 
@@ -77,6 +86,51 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func getLid(l_id : String)
+    {
+        for item2 in LocationDaraArr
+        {
+            if l_id == item2.l_id
+            {
+                let fNm = item2.l_floor
+                let Rnm = item2.l_room
+                let Wnm = item2.l_wing
+                let Snm = item2.l_space
+                
+                let bid = item2.branch_id
+               
+                let BuildingArr = LocationData.cLocationData.fetchOfflineBuilding()!
+                
+                for (index, _) in BuildingArr.enumerated()
+                {
+                    
+                    let BuildingEnt = BuildingArr[index] as! FetchBuilding
+                    
+                    if bid == BuildingEnt.branch_id
+                    {
+                        let b_name = BuildingEnt.b_name
+                        
+                        if Rnm == "NF" || Wnm == "NF"
+                        {
+                            locationName = "Floor: \(fNm!), Space: \(Snm!), \(b_name!)"
+                        }
+                        else
+                        {
+                            locationName = "Room: \(Rnm!), Wing: \(Wnm!), Floor: \(fNm!), Space: \(Snm!), \(b_name!)"
+                        }
+                    }
+                        
+                    
+                }
+                
+                //let Bnm = item2.
+                
+               
+            }
+        }
+        
+    }
+    
     func GetLocationData(cLocationId: String, cell: SubmitedChecklistCell)
     {
         let LocationDataArr = LocationData.cLocationData.fetchOfflineLocation()!
@@ -98,11 +152,9 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
                 for (index, _) in BuildingArr.enumerated()
                {
                 
-                
                  let BuildingEnt = BuildingArr[index] as! FetchBuilding
                 
            //     let cb = BuildingArr.filter { $0.contains(BuildingEnt.branch_id)}
-                
                 
                 
                     let BranchId = BuildingEnt.branch_id
@@ -110,7 +162,17 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
                     {
                        let b_name = BuildingEnt.b_name
                         
-                        cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + "Wing:" + L_wing! + "," + b_name!
+                        if L_room == "NF" && L_wing == "NF"
+                        {
+                           cell.lblLocation.text = "Floor:" + l_floor! + "," + b_name!
+                        }
+                        
+//                        if L_wing == "NF"
+//                        {
+//                           cell.lblLocation.text = "Room:"  + L_room! + "," + "Floor:" + l_floor! + "," + "Wing:" + L_wing! + "," + b_name!
+//                        }
+                        
+                        
 
                    }
               }
@@ -136,7 +198,9 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
         let l_id = lcDict["l_id"] as! String
         
         cell.lblFilledBy.isHidden = true
-        self.GetLocationData(cLocationId: l_id, cell: cell)
+        self.getLid(l_id: l_id)
+        //self.GetLocationData(cLocationId: l_id, cell: cell)
+        cell.lblLocation.text = locationName
         
        let Percent = lcDict["percent"] as! String
         let percent  = Percent + "%"

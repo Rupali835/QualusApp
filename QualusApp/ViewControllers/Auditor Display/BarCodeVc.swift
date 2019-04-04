@@ -316,7 +316,6 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
       
         Alamofire.request(url, method: .post, parameters: Param).responseJSON { (resp) in
          
-            
         }
     
     }
@@ -326,7 +325,6 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
  
     let result = String(barcodeStr.dropLast())
   
-    
     barcodeStr = result
     
         if lblZero.text != ""
@@ -370,7 +368,5 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             lblOne.text = ""
          }
     
-}
-    
-    
+   }
 }

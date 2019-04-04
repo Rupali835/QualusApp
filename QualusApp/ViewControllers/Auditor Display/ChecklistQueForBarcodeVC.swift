@@ -10,6 +10,46 @@ import UIKit
 import CoreLocation
 import Alamofire
 
+
+public class QuestionWithoutScanner
+{
+    var m_bAnsYes       : Bool
+    var m_bAnsNo        : Bool
+    var m_bAnsNa        : Bool
+    var m_bAnsSubmit    : Bool
+    var m_sRemark       : String
+    var m_sAnsInput     : String
+    var m_bIsUserIntraction : Bool!
+    var m_cSecAnswer: String!
+    var m_cSecRemark: String!
+
+    init(yes: Bool, no: Bool, na: Bool, submit: Bool, remark: String, input: String, userInteraction: Bool, secInput: String, secRemark: String)
+    {
+        self.m_bAnsYes = yes
+        self.m_bAnsNo = no
+        self.m_bAnsNa = na
+        self.m_bAnsSubmit = submit
+        self.m_sRemark = remark
+        self.m_sAnsInput = input
+        self.m_bIsUserIntraction = userInteraction
+        self.m_cSecAnswer = secInput
+        self.m_cSecRemark = secRemark
+    }
+    
+    init()
+    {
+        self.m_bAnsYes = false
+        self.m_bAnsNo = false
+        self.m_bAnsNa  = false
+        self.m_bAnsSubmit = false
+        self.m_sRemark = ""
+        self.m_sAnsInput = ""
+        self.m_bIsUserIntraction = false
+        self.m_cSecAnswer = ""
+        self.m_cSecRemark = ""
+    }
+}
+
 class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate
 {
    
@@ -96,6 +136,7 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
     var QrCodeStrSec : String = ""
      var TicketDict = [String: Any]()
     var cBarcode : BarCodeVc!
+    var m_cQuetion = [QuestionWithoutScanner]()
     
     override func viewDidLoad()
     {
@@ -127,7 +168,19 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
         UserDefaultsVal()
         setLocation()
          LocationDaraArr = LocationData.cLocationData.fetchOfflineLocation()!
+        
+        
+//        QuestionArray.forEach{_ in
+//            let lcQuestionListValue = QuestionChecklist(bAnswerYes: false, bAnswerNo: false, bAnswerNA: false, sAnsRemark: "", bAnsSubmit: false, cCellColor: UIColor.white, bTakePhoto: false,cImageArr: nil, sSecAnswer: "", sSecRemark: "")
+//            m_cQuestionCheckList.append(lcQuestionListValue)
+//        }
      
+        QuestionArray.forEach {_ in
+            let lcQueValues = QuestionWithoutScanner(yes: false, no: false, na: false, submit: false, remark: "", input: "", userInteraction: false, secInput: "", secRemark: "")
+            
+            m_cQuetion.append(lcQueValues)
+        }
+        
     }
 
     func UserDefaultsVal()
@@ -135,9 +188,9 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
         UserDefaults.standard.set(self.QrStr, forKey: "QRCode")
         
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
-        cSubmitChecklist.user_role = lcDict["role"] as! String
-        cSubmitChecklist.com_id = lcDict["com_id"] as! String
-        cSubmitChecklist.user_id = lcDict["user_id"] as! String
+        cSubmitChecklist.user_role = (lcDict["role"] as! String)
+        cSubmitChecklist.com_id = (lcDict["com_id"] as! String)
+        cSubmitChecklist.user_id = (lcDict["user_id"] as! String)
         
         UserDefaults.standard.set(self.CheckListArr, forKey: "CheckListArr")
         UserDefaults.standard.setValue(self.ProjId, forKey: "ProjId")
@@ -196,17 +249,33 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
             let cell = tblQueChecklist.dequeueReusableCell(withIdentifier: "QueTypeOneBarcodeCell", for: indexPath) as! QueTypeOneBarcodeCell
             
             let Qstr = lcDict["c_q_question"] as! String
+            
+            cell.lblQuestion.textColor = UIColor.init(hexString: "1576EF")
+            
             cell.backView.applyShadowAndRadiustoView()
             cell.lblQuestion.text = "Q." + String(indexNumber) + "  " + Qstr
             
             cell.btnYES.tag = indexPath.row
             cell.btnNO.tag = indexPath.row
             cell.btnNA.tag = indexPath.row
+            cell.txtRemark.tag = indexPath.row
+            
+            cell.btnYES.isSelected = m_cQuetion[indexPath.row].m_bAnsYes ? true : false
+            cell.btnNO.isSelected = m_cQuetion[indexPath.row].m_bAnsNo ? true : false
+            cell.btnNA.isSelected = m_cQuetion[indexPath.row].m_bAnsNa ? true : false
+            
+            cell.backView.backgroundColor = m_cQuetion[indexPath.row].m_bAnsSubmit ? UIColor(hexString: "D6ECDA") : UIColor.white
+            
+            cell.txtRemark.isUserInteractionEnabled = self.m_cQuetion[indexPath.row].m_bIsUserIntraction ? false : true
+            cell.btnYES.isUserInteractionEnabled = self.m_cQuetion[indexPath.row].m_bIsUserIntraction ? false : true
+            cell.btnNA.isUserInteractionEnabled = self.m_cQuetion[indexPath.row].m_bIsUserIntraction ? false : true
+            cell.btnNO.isUserInteractionEnabled = self.m_cQuetion[indexPath.row].m_bIsUserIntraction ? false : true
             
             cell.btnYES.addTarget(self, action: #selector(btnYES_OnClick(sender:)), for: .touchUpInside)
             cell.btnNO.addTarget(self, action: #selector(btnNO_OnClick(sender:)), for: .touchUpInside)
             cell.btnNA.addTarget(self, action: #selector(btnNA_OnClick(sender:)), for: .touchUpInside)
             cell.btnSubmit.addTarget(self, action: #selector(btnSubmit_OnClick(sender:)), for: .touchUpInside)
+            cell.txtRemark.addTarget(self, action: #selector(remark_textfieldEditing(sender:)), for: .editingDidEnd)
             
             
             return cell
@@ -217,9 +286,16 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
             let Qstr = lcDict["c_q_question"] as! String
             cell.backView.applyShadowAndRadiustoView()
             cell.lblQuetion.text = "Q." + String(indexNumber) + "  " + Qstr
+            cell.lblQuetion.textColor = UIColor.init(hexString: "1576EF")
             
+            cell.txtAnswer.tag = indexPath.row
+            cell.txtRemark.tag = indexPath.row
             cell.btnSubmit.tag = indexPath.row
             cell.btnSubmit.addTarget(self, action: #selector(btnSubmit_OnClick(sender:)), for: .touchUpInside)
+           
+          cell.txtAnswer.addTarget(self, action: #selector(secAns_textfieldEditing(sender:)), for: .editingDidEnd)
+            
+          cell.txtRemark.addTarget(self, action: #selector(secRemark_textfieldEditing(sender:)), for: .editingDidEnd)
             
             return cell
         }
@@ -247,11 +323,35 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
    
 // MARK : EXTRA - METHODS
    
+    @objc func secRemark_textfieldEditing(sender: UITextField)
+    {
+        self.m_cQuetion[sender.tag].m_cSecRemark = sender.text!
+    }
+    
+    @objc func secAns_textfieldEditing(sender: UITextField)
+    {
+        self.m_cQuetion[sender.tag].m_cSecAnswer = sender.text!
+    }
+    
+    @objc func remark_textfieldEditing(sender: UITextField){
+        self.m_cQuetion[sender.tag].m_sRemark = sender.text!
+    }
     
     @objc func btnYES_OnClick(sender: UIButton)
     {
         self.view.endEditing(true)
-        let cell = GetIndexPath(sender: sender as! DLRadioButton)
+        
+        let buttonPosition:CGPoint = sender.convert(CGPoint.zero, to:self.tblQueChecklist)
+        
+        let indexPath = self.tblQueChecklist.indexPathForRow(at: buttonPosition)
+        
+        let cell = self.tblQueChecklist.cellForRow(at: indexPath!) as! QueTypeOneBarcodeCell
+        
+        let lcSetValue = m_cQuetion[(indexPath?.row)!]
+        lcSetValue.m_bAnsYes = true
+        lcSetValue.m_bAnsNo = false
+        lcSetValue.m_bAnsNa = false
+        
         cell.btnYES.tag = 1
         m_cAnswerChecklistObj.ans = "1"
     }
@@ -259,7 +359,18 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
     @objc func btnNO_OnClick(sender: UIButton)
     {
         self.view.endEditing(true)
-        let cell = GetIndexPath(sender: sender as! DLRadioButton)
+        
+        let buttonPosition:CGPoint = sender.convert(CGPoint.zero, to:self.tblQueChecklist)
+        
+        let indexPath = self.tblQueChecklist.indexPathForRow(at: buttonPosition)
+        
+        let cell = self.tblQueChecklist.cellForRow(at: indexPath!) as! QueTypeOneBarcodeCell
+        
+        let lcSetValue = m_cQuetion[(indexPath?.row)!]
+        lcSetValue.m_bAnsYes = false
+        lcSetValue.m_bAnsNo = true
+        lcSetValue.m_bAnsNa = false
+        
         cell.btnNO.tag = 2
         m_cAnswerChecklistObj.ans = "2"
     }
@@ -267,7 +378,18 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
     @objc func btnNA_OnClick(sender: UIButton)
     {
         self.view.endEditing(true)
-        let cell = GetIndexPath(sender: sender as! DLRadioButton)
+        
+        let buttonPosition:CGPoint = sender.convert(CGPoint.zero, to:self.tblQueChecklist)
+        
+        let indexPath = self.tblQueChecklist.indexPathForRow(at: buttonPosition)
+        
+        let cell = self.tblQueChecklist.cellForRow(at: indexPath!) as! QueTypeOneBarcodeCell
+        
+        let lcSetValue = m_cQuetion[(indexPath?.row)!]
+        lcSetValue.m_bAnsYes = false
+        lcSetValue.m_bAnsNo = false
+        lcSetValue.m_bAnsNa = true
+        
         cell.btnNA.tag = 3
         m_cAnswerChecklistObj.ans = "0"
     }
@@ -295,43 +417,52 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
             let indexpath = IndexPath(row: sender.tag, section: 0)
             let cell = self.tblQueChecklist.cellForRow(at: indexpath) as! QueTypeOneBarcodeCell
             
-            
-            if ((cell.btnYES.tag == 0) && (cell.btnNO.tag == 0) && (cell.btnNA.tag == 0))
+           if ((self.m_cQuetion[sender.tag].m_bAnsYes == false) && (self.m_cQuetion[sender.tag].m_bAnsNo == false) && (self.m_cQuetion[sender.tag].m_bAnsNa == false))
             {
                 self.toast.isShow("Please select answer")
                 return
             }
             
-            if cell.btnNO.tag == 2
+            if self.m_cQuetion[sender.tag].m_bAnsNo == true
             {
                 if cell.txtRemark.text == ""
                 {
                     self.toast.isShow("Please enter remark")
                     return
-                    
                 }
                 
             }
             
-            if cell.btnYES.tag == 1
+            
+            if (self.m_cQuetion[sender.tag].m_bAnsYes == true)
             {
                 m_cAnswerChecklistObj.marks_obtained = QueMarks
-            }else if cell.btnNO.tag == 2
+                m_cAnswerChecklistObj.max_marks = QueMarks
+                
+            }else if (self.m_cQuetion[sender.tag].m_bAnsNo == true)
             {
                 m_cAnswerChecklistObj.marks_obtained = "0"
-            }else if cell.btnNA.tag == 3
+                m_cAnswerChecklistObj.max_marks = QueMarks
+                
+            }else if (self.m_cQuetion[sender.tag].m_bAnsNa == true)
             {
                 m_cAnswerChecklistObj.marks_obtained = "0"
+                m_cAnswerChecklistObj.max_marks = "0"
             }
+            
+            if cell.txtRemark.text != ""
+            {
+                self.m_cAnswerChecklistObj.remark = cell.txtRemark.text
+            }else{
+                self.m_cAnswerChecklistObj.remark = "NF"
+            }
+            
             cSubmitChecklist.m_ticket_status = "0"
             cSubmitChecklist.m_ticket_data = "NF"
            
         UserDefaults.standard.setValue(cSubmitChecklist.m_ticket_status, forKey: "m_ticket_status")
-            
         UserDefaults.standard.setValue(cSubmitChecklist.m_ticket_data, forKey: "m_ticket_data")
 
-            
-            
             AnsListDict["ans"] = m_cAnswerChecklistObj.ans
             AnsListDict["answered_time"] = DATE
             AnsListDict["input"] = "0"
@@ -352,9 +483,11 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
             
             UserDefaults.standard.setValue(self.AnsChecklistArr, forKey: "AnsChecklistArr")
             
-            cell.backView.backgroundColor = UIColor(red:1.00, green:0.89, blue:0.77, alpha:1.0)
-            cell.backView.isUserInteractionEnabled = false
+//            cell.backView.backgroundColor = UIColor(red:1.00, green:0.89, blue:0.77, alpha:1.0)
+//            cell.backView.isUserInteractionEnabled = false
             
+            self.m_cQuetion[sender.tag].m_bIsUserIntraction = true
+
             
         }else{
             let indexpath = IndexPath(row: sender.tag, section: 0)
@@ -369,7 +502,6 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
             {
                 self.toast.isShow("Rematk is mandatory")
                 return
-                
             }
             
             if m_cAnswerChecklistObj.q_type == "3"
@@ -386,8 +518,12 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
                     let minVal = lcDict["c_q_min_value"] as! String
                     let maxVal = lcDict["c_q_max_value"] as! String
 
-                    if minVal...maxVal ~= InputVal! {
+                    
+                    if (InputVal! > minVal) && (InputVal! < maxVal)
+                    {
                         m_cAnswerChecklistObj.marks_obtained = QueMarks
+                        m_cAnswerChecklistObj.max_marks = QueMarks
+
                         m_cAnswerChecklistObj.ans = "1"
                         cSubmitChecklist.m_ticket_status = "0"
                         self.TicketDataArr = []
@@ -396,6 +532,8 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
                         
                     } else {
                         m_cAnswerChecklistObj.marks_obtained = "0"
+                        m_cAnswerChecklistObj.max_marks = QueMarks
+
                         m_cAnswerChecklistObj.ans = "2"
                         cSubmitChecklist.m_ticket_status = "1"
                         
@@ -677,7 +815,6 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
         {
             return nil
         }
-        
         return String(data: data, encoding: String.Encoding.utf8)
     }
     
@@ -691,7 +828,6 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
         
         self.Latitude = String(format: "%.6f", lastLocation.coordinate.latitude)
         self.Longitude = String(format: "%.6f", lastLocation.coordinate.longitude)
-        
     }
 
     @IBAction func btnLastYes_click(_ sender: Any)
@@ -706,7 +842,5 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func btnLastNo_click(_ sender: Any)
     {
         popUp.dismiss(true)
-
     }
-    
 }

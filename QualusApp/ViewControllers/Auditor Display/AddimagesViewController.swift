@@ -46,7 +46,10 @@ class AddimagesViewController: UIViewController {
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
      
          self.User_id = lcDict["user_id"] as! String
-
+        if self.m_cImageArrFromCam.count != 0
+        {
+            collectionview.reloadData()
+        }
     
     }
    
