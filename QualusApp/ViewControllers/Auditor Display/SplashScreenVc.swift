@@ -96,7 +96,7 @@ class SplashScreenVc: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         
                     let ProjVc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "ProjectInfoVc") as! ProjectInfoVc
-                        self.navigationController?.pushViewController(ProjVc, animated: true)
+                        self.navigationController?.pushViewController(ProjVc, animated: false)
                     }
                     
                 } else {
@@ -131,7 +131,7 @@ class SplashScreenVc: UIViewController {
                        
                         let vc = AppStoryboard.SuperAdmin.instance.instantiateViewController(withIdentifier: "SuperAdminHomePageVc") as! SuperAdminHomePageVc
                         
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        self.navigationController?.pushViewController(vc, animated: false)
                     }
                     
                 } else {
@@ -165,7 +165,7 @@ class SplashScreenVc: UIViewController {
                         let bool = "false"
                         UserDefaults.standard.set(bool, forKey: "checkVC")
                          let CSRVc = self.storyboard?.instantiateViewController(withIdentifier: "CSRViewController") as! CSRViewController
-                         self.navigationController?.pushViewController(CSRVc, animated: true)
+                         self.navigationController?.pushViewController(CSRVc, animated: false)
                         }
                       
                     }
@@ -200,7 +200,7 @@ class SplashScreenVc: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         
                         let EmpVc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "EmployeeHomePageVc") as! EmployeeHomePageVc
-                        self.navigationController?.pushViewController(EmpVc, animated: true)
+                        self.navigationController?.pushViewController(EmpVc, animated: false)
                     }
                     
                 } else {
@@ -231,7 +231,7 @@ class SplashScreenVc: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
                         let ProjVc = AppStoryboard.SuperVisor.instance.instantiateViewController(withIdentifier: "SuperVisorProjectListVc") as! SuperVisorProjectListVc
-                        self.navigationController?.pushViewController(ProjVc, animated: true)
+                        self.navigationController?.pushViewController(ProjVc, animated: false)
                     }
 
                 } else {
@@ -262,7 +262,7 @@ class SplashScreenVc: UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         
                         let ProjVc = AppStoryboard.SuperVisor.instance.instantiateViewController(withIdentifier: "TechnicianHomePageVc") as! TechnicianHomePageVc
-                        self.navigationController?.pushViewController(ProjVc, animated: true)
+                        self.navigationController?.pushViewController(ProjVc, animated: false)
                     }
                     
                 } else {
@@ -271,7 +271,13 @@ class SplashScreenVc: UIViewController {
                 
             })
         }
-        
+        if Role == "5" // helpdesk
+        {
+          let vc = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "LoginPageVc") as! LoginPageVc
+            
+           self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     

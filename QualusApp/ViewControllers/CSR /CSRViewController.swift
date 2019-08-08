@@ -57,6 +57,12 @@ class CSRViewController: UIViewController {
         super.viewDidLoad()
         popUp = KLCPopup()
         
+        OrientationManager.landscapeSupported = false
+        //The code below will automatically rotate your device's orientation when you exit this ViewController
+        let orientationValue = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(orientationValue, forKey: "orientation")
+        
+        
         let lcDict: [String: AnyObject] = UserDefaults.standard.object(forKey: "UserData") as! [String : AnyObject]
         self.Role = lcDict["role"] as! String
         self.UserId = lcDict["user_id"] as! String
@@ -262,7 +268,7 @@ class CSRViewController: UIViewController {
         popUp.shouldDismissOnContentTouch = false
         popUp.showType = .slideInFromRight
         popUp.dismissType = .slideOutToLeft
-        popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
+    popUp.show(atCenter:CGPoint(x:self.view.frame.size.width/2,y:self.view.frame.size.height/2), in: self.view)
         collectionview.reloadData()
         
     }

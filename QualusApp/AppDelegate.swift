@@ -13,6 +13,10 @@ import UserNotifications
 import FirebaseMessaging
 import IQKeyboardManager
 
+class OrientationManager {
+    static var landscapeSupported: Bool = false
+}
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate,UNUserNotificationCenterDelegate  {
@@ -21,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate,UNUserNo
     var FCMToken: String!
     var Notificationcount = Int(0)
 
+    
+    
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         IQKeyboardManager.shared().isEnabled = true
@@ -76,6 +82,14 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     return true
     }
 
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        if OrientationManager.landscapeSupported {
+            return .allButUpsideDown
+        }
+        return .portrait
+    }
+    
+    
     func application(received remoteMessage: MessagingRemoteMessage)
     {
         print(remoteMessage.appData)

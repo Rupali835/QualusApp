@@ -155,6 +155,7 @@
 		CEEF5EE120B73FF000E5FA22 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF5EE020B73FF000E5FA22 /* LocationData.swift */; };
 		CEF1934420B92C48001567ED /* ScannerVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1934320B92C48001567ED /* ScannerVc.swift */; };
 		CEF1934620B92F3F001567ED /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF1934520B92F3F001567ED /* Utility.swift */; };
+		F2B1380122D75C8600127A05 /* SelectOptionVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1380022D75C8600127A05 /* SelectOptionVc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -318,6 +319,7 @@
 		D4AEDB35C0E4C33A217FE8FD /* Pods-QualusApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QualusApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-QualusApp/Pods-QualusApp.release.xcconfig"; sourceTree = "<group>"; };
 		E0D3FBC11B102FEC20A8B75C /* Pods_QualusApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QualusApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D400BF70A9A195093E995C /* Pods-QualusApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QualusApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QualusApp/Pods-QualusApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F2B1380022D75C8600127A05 /* SelectOptionVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectOptionVc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,6 +562,7 @@
 		CE0F65F520AD452E00B8F026 /* QualusApp */ = {
 			isa = PBXGroup;
 			children = (
+				F2B137FF22D75C5E00127A05 /* NewUserPages */,
 				58E44338224FAF58002B5438 /* QualusApp.entitlements */,
 				582308B7223A39F900BDE05C /* StoryboardFile */,
 				CE8644C721147CEE00E47E42 /* Third_Party */,
@@ -744,6 +747,14 @@
 				5863BF31224DF642005FEB45 /* ScanForCloseProTicVc.swift */,
 			);
 			path = ScannerFiles;
+			sourceTree = "<group>";
+		};
+		F2B137FF22D75C5E00127A05 /* NewUserPages */ = {
+			isa = PBXGroup;
+			children = (
+				F2B1380022D75C8600127A05 /* SelectOptionVc.swift */,
+			);
+			path = NewUserPages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -937,6 +948,7 @@
 				5832DE5620FF57D700483655 /* SplashScreenVc.swift in Sources */,
 				58A2332020FE14E6000A1C21 /* UICollectionView.swift in Sources */,
 				58048DB8210364650076474D /* ImageCollectionViewCell.swift in Sources */,
+				F2B1380122D75C8600127A05 /* SelectOptionVc.swift in Sources */,
 				58A2332420FE14E7000A1C21 /* UIViewController.swift in Sources */,
 				58D23CD0223CF4850048D9FD /* EasyToastConfiguration.swift in Sources */,
 				582308C6223A716600BDE05C /* AdminMaverickTicketsVc.swift in Sources */,

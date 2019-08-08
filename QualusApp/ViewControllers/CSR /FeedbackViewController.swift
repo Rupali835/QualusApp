@@ -28,9 +28,15 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        OrientationManager.landscapeSupported = true
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         
         UIDevice.current.setValue(value, forKey: "orientation")
+        
+        
+//        let value = UIInterfaceOrientation.landscapeLeft.rawValue
+//
+//        UIDevice.current.setValue(value, forKey: "orientation")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
         
@@ -57,8 +63,11 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
         newBackButton = UIBarButtonItem(title: "Select Project", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.BackTapped))
         self.navigationItem.leftBarButtonItem = newBackButton
         
-        
-        
+    }
+   
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        OrientationManager.landscapeSupported = true
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

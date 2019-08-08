@@ -14,8 +14,7 @@ class ShowImgFullScreenVc: UIViewController
 {
 
     @IBOutlet weak var fullTiktimg: UIImageView!
-    
-    @IBOutlet weak var NavigtnView: UIView!
+   @IBOutlet weak var NavigtnView: UIView!
     
     
     override func viewDidLoad()

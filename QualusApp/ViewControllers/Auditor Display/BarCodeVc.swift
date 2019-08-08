@@ -130,7 +130,7 @@ class BarCodeVc: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
 
-   func SubmitBarcode()
+    func SubmitBarcode()
     {
         if (barcodeStr.characters.count == 10)
             {

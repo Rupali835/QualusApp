@@ -934,9 +934,8 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
                 self.tblQuestions.contentOffset = loc
             })
         }
-    }
-
-    
+  }
+  
   func GetIndexPath(sender: DLRadioButton) -> ChecklistQuetionCell
   {
     let buttonPosition:CGPoint = sender.convert(CGPoint.zero, to:self.tblQuestions)
@@ -984,12 +983,8 @@ class ChecklistQuestionsVc: UIViewController, UITableViewDataSource, UITableView
                     
             }) {
                 print("Click no")
-                
             }
         }
-       
-   
-        
     }
     
 // MARK: EXTRA - METHODS
