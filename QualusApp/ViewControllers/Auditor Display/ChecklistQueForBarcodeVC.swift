@@ -765,7 +765,7 @@ class ChecklistQueForBarcodeVC: UIViewController, UITableViewDelegate, UITableVi
         cSubmitChecklist.filled_checklist = json(from: self.FilledChecklistArr)
        
         
-        let uploadUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/upload_filled_checklist"
+        let uploadUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Checklist/upload_filled_checklist"
         
         
         let Param : [String: Any] =

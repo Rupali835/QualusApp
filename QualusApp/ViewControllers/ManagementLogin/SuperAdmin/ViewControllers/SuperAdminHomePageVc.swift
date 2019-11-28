@@ -138,7 +138,7 @@ class SuperAdminHomePageVc: UIViewController {
     
     func ManagementMonitorData()
     {
-        let strurl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Reports/get_monitor_data"
+        let strurl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Reports/get_monitor_data"
         
         let ManagePara = ["user_id": UserId! ,"role": UserRole!]
         

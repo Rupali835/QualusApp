@@ -19,7 +19,7 @@ class MapLocation : NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
         
-        let Url = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/get_mapped_locations"
+        let Url = "https://qualus.ksoftpl.com/index.php/AndroidV2/Login/get_mapped_locations"
         let param : [String : Any] = ["user_id" : UserId]
         
         Alamofire.request(Url, method: .post, parameters: param).responseJSON { (resp) in

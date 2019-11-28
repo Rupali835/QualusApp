@@ -10,7 +10,7 @@ import Foundation
 
 struct constant {
     
-    static let BaseUrl              = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/"
+    static let BaseUrl              = "https://qualus.ksoftpl.com/index.php/AndroidV2/"
     
     static let Login     = "Login/userLogin"
     static let Logout    = "logout.php"
@@ -27,9 +27,9 @@ struct constant {
     
     static let getMaverickticket    = "Tickets/get_maverick_ticket_details"
     
-    static let imagePath            = "http://kanishkagroups.com/Qualus/uploads/ticket_images/"
+    static let imagePath            = "https://qualus.ksoftpl.com/uploads/ticket_images/"
     
-    static let ansImagePath         = "http://kanishkagroups.com/Qualus/uploads/answer_images/"
+    static let ansImagePath         = "https://qualus.ksoftpl.com/uploads/answer_images/"
     
     static let SuperVisorCount      = "Reports/get_counts_for_supervisor"
     
@@ -37,7 +37,7 @@ struct constant {
     
 //    Tickets/get_proactive_ticket_details
     
-    static let proactive_imgPath    = "http://kanishkagroups.com/Qualus/uploads/pro_ticket_images/"
+    static let proactive_imgPath    = "https://qualus.ksoftpl.com/uploads/pro_ticket_images/"
     
     static let acceptProactiveTic       = "Tickets/accept_ticket"
     static let closeProactiveTic        = "Tickets/close_ticket"

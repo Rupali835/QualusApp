@@ -19,7 +19,7 @@ class SplashScreenVc: UIViewController {
     
     @IBOutlet weak var MyImg: UIImageView!
     var ComId : String = ""
-    let urlpath = "http://kanishkagroups.com/Qualus/uploads/company_logo/"
+    let urlpath = "https://qualus.ksoftpl.com/uploads/company_logo/"
     var ImgPath : String!
     var Userrole : String = ""
     var userId : String = ""

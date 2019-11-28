@@ -172,7 +172,7 @@ class ScannerVc: AVScannerViewController, CLLocationManagerDelegate
             
         }
         
-        let url = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Location/update_location_lat_long"
+        let url = "https://qualus.ksoftpl.com/index.php/AndroidV2/Location/update_location_lat_long"
         let Param : [String : Any] = ["l_id" : self.L_id,
                                       "u_id" : self.U_id,
                                       "lat" : self.Latitude,

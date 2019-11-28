@@ -72,7 +72,7 @@ class SubmitChecklistResponseVc: UIViewController, UITableViewDelegate, UITableV
                          "user_role" : self.UserRole]
         }
         
-        let respUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/get_filled_checklist_data"
+        let respUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Checklist/get_filled_checklist_data"
         Alamofire.request(respUrl, method: .post, parameters: param).responseJSON { (fetchData) in
             print(fetchData)
             

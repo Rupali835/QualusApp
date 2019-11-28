@@ -115,7 +115,7 @@ class MaverickTicketViewVc: UIViewController
     
     func getMaverickTicket()
     {
-        let TicketUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Tickets/get_maverick_tickets"
+        let TicketUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Tickets/get_maverick_tickets"
         let tiktParam : [String: Any] = ["user_id" : self.userId,
                                          "user_role" : self.Userrole]
        
@@ -354,10 +354,10 @@ extension MaverickTicketViewVc: UITableViewDelegate, UITableViewDataSource
             let ImgURL : String!
             if Fc_id == "0"
             {
-                ImgURL = "http://kanishkagroups.com/Qualus/uploads/ticket_images/\(lcImageName)"   // fc_id = 0
+                ImgURL = "https://qualus.ksoftpl.com/uploads/ticket_images/\(lcImageName)"   // fc_id = 0
             }else
             {
-                ImgURL = "http://kanishkagroups.com/Qualus/uploads/answer_images/\(lcImageName)"
+                ImgURL = "https://qualus.ksoftpl.com/uploads/answer_images/\(lcImageName)"
             }
             imgPathArr.append(ImgURL)
         }

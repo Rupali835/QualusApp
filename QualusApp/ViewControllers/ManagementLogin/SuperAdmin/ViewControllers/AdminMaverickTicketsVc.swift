@@ -43,7 +43,7 @@ class AdminMaverickTicketsVc: UIViewController {
     
     func GetMonitorTickets()
     {
-        let ticketUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Reports/get_ticket_monitor_data"
+        let ticketUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Reports/get_ticket_monitor_data"
         
         let T_get_para = ["type":  String(ticketType),
                           "role": UserRole!,

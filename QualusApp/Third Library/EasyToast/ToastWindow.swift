@@ -186,7 +186,7 @@ class ToastWindow: UIWindow {
                 self?.resignKey()
                 
                 if let onToastDimissed = self?.onToastDimissed {
-                    onToastDimissed(self ?? ToastWindow())
+                    onToastDimissed(self!)
                 }
             }
         }

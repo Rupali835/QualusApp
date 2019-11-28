@@ -56,7 +56,7 @@ class SubmittedChecklistVc: UIViewController, UITableViewDelegate, UITableViewDa
 
     func getdata()
     {
-        let listUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Checklist/get_7_day_submitted_checklist"
+        let listUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Checklist/get_7_day_submitted_checklist"
         let listParam = ["user_id" : self.UserId,
                          "user_role" : self.UserRole]
         

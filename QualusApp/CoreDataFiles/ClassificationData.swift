@@ -21,7 +21,7 @@ class ClassificationData : NSObject
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
 
-        let clsficationUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/get_active_classifications"
+        let clsficationUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Login/get_active_classifications"
         Alamofire.request(clsficationUrl, method: .get, parameters: nil).responseJSON { (resp) in
          //   print(resp)
             

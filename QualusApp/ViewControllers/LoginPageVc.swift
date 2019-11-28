@@ -51,7 +51,8 @@ class LoginPageVc: UIViewController {
         else{
             self.com_id = "0"
         }
-        let LoginUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/userLogin"
+        let LoginUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Login/userLogin"
+        
         let loginParam : [String: AnyObject] = [
             
             "com_id" :  self.com_id as AnyObject,
@@ -138,7 +139,7 @@ class LoginPageVc: UIViewController {
     
     func getAbbrevation()
     {
-        let AbbrUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/get_com_id_by_abbr"
+        let AbbrUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Login/get_com_id_by_abbr"
         let Abbrparam = ["com_abbr" : self.AbbrevationNm!]
     
         Alamofire.request(AbbrUrl, method: .post, parameters: Abbrparam).responseJSON { (ApiResult) in

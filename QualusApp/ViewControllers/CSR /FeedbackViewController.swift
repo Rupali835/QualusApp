@@ -213,7 +213,7 @@ class FeedbackViewController: UIViewController,UITextViewDelegate {
                 txtName.text = "NF"
             }
             
-            let feedbckurl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Location/add_location_feedback"
+            let feedbckurl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Location/add_location_feedback"
             let parameter = ["l_id":l_id!,
                              "com_id":campanyid!,
                              "p_id":p_id!,

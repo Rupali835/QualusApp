@@ -31,7 +31,7 @@ class UserListVc: UIViewController {
         let appDel = UIApplication.shared.delegate as! AppDelegate
         let context = appDel.persistentContainer.viewContext
         
-        let userUrl = "http://kanishkagroups.com/Qualus/index.php/AndroidV2/Login/get_assigned_project_wise_user"
+        let userUrl = "https://qualus.ksoftpl.com/index.php/AndroidV2/Login/get_assigned_project_wise_user"
         let param = ["user_id" : "150"]
         Alamofire.request(userUrl, method: .post, parameters: param).responseJSON { (userData) in
           
